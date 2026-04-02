@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# cgym data (local-only)
+/data/exercises.json
+/data/progress.json
+/data/materials.json
+/data/materials/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
