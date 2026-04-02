@@ -3,6 +3,11 @@
 import { CodeEditor } from "./CodeEditor";
 import { ControlBar } from "./ControlBar";
 import { OutputPanel } from "./OutputPanel";
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable";
 import type { CompileResult, TestResult, Exercise } from "@/lib/types";
 
 interface EditorPanelProps {
@@ -35,10 +40,11 @@ export function EditorPanel({
   onOutputTabChange,
 }: EditorPanelProps) {
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1 min-h-0 border-b">
+    <ResizablePanelGroup orientation="vertical" className="h-full">
+      <ResizablePanel defaultSize={65} minSize={30}>
         <CodeEditor value={code} onChange={onCodeChange} />
-      </div>
+      </ResizablePanel>
+
       <ControlBar
         onRun={onRun}
         onTest={onTest}
@@ -47,14 +53,17 @@ export function EditorPanel({
         testing={testing}
         hasTestCases={!!exercise && exercise.testCases.length > 0}
       />
-      <div className="h-[200px] border-t">
+
+      <ResizableHandle />
+
+      <ResizablePanel defaultSize={35} minSize={15}>
         <OutputPanel
           output={output}
           testResults={testResults}
           activeTab={outputTab}
           onTabChange={onOutputTabChange}
         />
-      </div>
-    </div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
   );
 }

@@ -4,6 +4,8 @@ import type { TestCase } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Card } from "@/components/ui/card";
+import { PlusIcon, Trash2Icon, FlaskConicalIcon } from "lucide-react";
 
 interface TestCaseEditorProps {
   testCases: TestCase[];
@@ -29,56 +31,65 @@ export function TestCaseEditor({ testCases, onChange }: TestCaseEditorProps) {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-medium">Test Cases</label>
+        <label className="text-sm font-medium flex items-center gap-1.5">
+          <FlaskConicalIcon className="size-3.5" />
+          Test Cases
+        </label>
         <Button type="button" variant="outline" size="sm" onClick={addTestCase}>
-          + Add Test Case
+          <PlusIcon data-icon="inline-start" />
+          Add Test Case
         </Button>
       </div>
-      {testCases.map((tc, idx) => (
-        <div key={tc.id} className="border rounded-md p-3 space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">
-              Test Case {idx + 1}
-            </span>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={() => removeTestCase(idx)}
-              className="h-6 px-2 text-destructive hover:text-destructive"
-            >
-              Remove
-            </Button>
-          </div>
-          <Input
-            placeholder="Label (optional)"
-            value={tc.label ?? ""}
-            onChange={(e) => updateTestCase(idx, { label: e.target.value })}
-          />
-          <Textarea
-            placeholder="Input (stdin)"
-            value={tc.input}
-            onChange={(e) => updateTestCase(idx, { input: e.target.value })}
-            rows={2}
-            className="font-mono text-sm"
-          />
-          <Textarea
-            placeholder="Expected output"
-            value={tc.expectedOutput}
-            onChange={(e) =>
-              updateTestCase(idx, { expectedOutput: e.target.value })
-            }
-            rows={2}
-            className="font-mono text-sm"
-          />
-        </div>
-      ))}
-      {testCases.length === 0 && (
-        <p className="text-sm text-muted-foreground text-center py-4">
-          No test cases yet. Click &quot;Add Test Case&quot; to create one.
-        </p>
+
+      {testCases.length === 0 ? (
+        <Card className="flex items-center justify-center py-8">
+          <p className="text-sm text-muted-foreground">
+            No test cases yet. Click &quot;Add Test Case&quot; to create one.
+          </p>
+        </Card>
+      ) : (
+        testCases.map((tc, idx) => (
+          <Card key={tc.id} className="p-3">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium text-muted-foreground">
+                  Test Case {idx + 1}
+                </span>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon-xs"
+                  onClick={() => removeTestCase(idx)}
+                >
+                  <Trash2Icon className="text-destructive" />
+                </Button>
+              </div>
+              <Input
+                placeholder="Label (optional)"
+                value={tc.label ?? ""}
+                onChange={(e) => updateTestCase(idx, { label: e.target.value })}
+              />
+              <Textarea
+                placeholder="Input (stdin)"
+                value={tc.input}
+                onChange={(e) => updateTestCase(idx, { input: e.target.value })}
+                rows={2}
+                className="font-mono text-xs"
+              />
+              <Textarea
+                placeholder="Expected output"
+                value={tc.expectedOutput}
+                onChange={(e) =>
+                  updateTestCase(idx, { expectedOutput: e.target.value })
+                }
+                rows={2}
+                className="font-mono text-xs"
+              />
+            </div>
+          </Card>
+        ))
       )}
     </div>
   );

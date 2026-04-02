@@ -1,11 +1,13 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge";
 
 const sections = [
   {
     title: "Basic Structure",
+    tag: "basics",
     code: `#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,6 +19,7 @@ int main() {
   },
   {
     title: "Data Types",
+    tag: "types",
     code: `char c = 'A';           // 1 byte
 int n = 42;              // 4 bytes (typically)
 float f = 3.14f;         // 4 bytes
@@ -27,6 +30,7 @@ _Bool b = 1;             // 0 or 1 (C99+)`,
   },
   {
     title: "printf Format Specifiers",
+    tag: "I/O",
     code: `%d, %i   — int (decimal)
 %u       — unsigned int
 %ld, %li — long int
@@ -46,6 +50,7 @@ _Bool b = 1;             // 0 or 1 (C99+)`,
   },
   {
     title: "scanf Input",
+    tag: "I/O",
     code: `int n;
 scanf("%d", &n);        // read int
 
@@ -61,9 +66,10 @@ scanf(" %c", &c);       // space skips whitespace`,
   },
   {
     title: "Arrays",
+    tag: "arrays",
     code: `int arr[5] = {1, 2, 3, 4, 5};
 int zeros[100] = {0};          // all zeros
-int n = sizeof(arr) / sizeof(arr[0]); // array length
+int n = sizeof(arr) / sizeof(arr[0]); // length
 
 // 2D array
 int matrix[3][4] = {
@@ -74,6 +80,7 @@ int matrix[3][4] = {
   },
   {
     title: "Strings (char arrays)",
+    tag: "strings",
     code: `char s[] = "hello";
 int len = strlen(s);           // 5
 strcmp(a, b);                   // 0 if equal
@@ -87,13 +94,14 @@ atof("3.14");                  // string to double`,
   },
   {
     title: "Pointers",
+    tag: "pointers",
     code: `int x = 10;
 int *p = &x;    // p points to x
 *p = 20;        // x is now 20
 
 // Dynamic allocation
 int *arr = malloc(n * sizeof(int));
-int *arr2 = calloc(n, sizeof(int)); // zero-initialized
+int *arr2 = calloc(n, sizeof(int)); // zero-init
 arr = realloc(arr, new_size * sizeof(int));
 free(arr);      // always free when done
 
@@ -102,6 +110,7 @@ free(arr);      // always free when done
   },
   {
     title: "Control Flow",
+    tag: "flow",
     code: `// if-else
 if (x > 0) { ... }
 else if (x == 0) { ... }
@@ -124,6 +133,7 @@ int max = (a > b) ? a : b;`,
   },
   {
     title: "Functions",
+    tag: "functions",
     code: `// Declaration (prototype)
 int add(int a, int b);
 
@@ -145,6 +155,7 @@ void print_arr(int arr[], int n) { ... }`,
   },
   {
     title: "Structs",
+    tag: "structs",
     code: `typedef struct {
     char name[50];
     int age;
@@ -160,7 +171,8 @@ p->age = 22;  // same as (*p).age`,
   },
   {
     title: "File I/O",
-    code: `FILE *f = fopen("data.txt", "r");  // "w", "a", "rb", "wb"
+    tag: "I/O",
+    code: `FILE *f = fopen("data.txt", "r");
 if (f == NULL) { perror("Error"); return 1; }
 
 // Read
@@ -176,6 +188,7 @@ fclose(f);`,
   },
   {
     title: "Common <stdlib.h>",
+    tag: "stdlib",
     code: `abs(n)              // absolute value
 rand() % n          // random 0..n-1
 srand(time(NULL))   // seed random
@@ -186,11 +199,11 @@ int compare(const void *a, const void *b) {
     return (*(int*)a - *(int*)b);
 }
 
-exit(0);            // terminate program
-system("pause");    // Windows pause`,
+exit(0);            // terminate program`,
   },
   {
     title: "Common <math.h>",
+    tag: "math",
     code: `// Compile with: gcc ... -lm
 sqrt(x)    pow(x, y)    fabs(x)
 ceil(x)    floor(x)     round(x)
@@ -203,15 +216,29 @@ M_PI       // 3.14159... (may need #define)`,
 export function CheatsheetContent() {
   return (
     <ScrollArea className="h-full">
-      <div className="p-6 max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">C Syntax Cheatsheet</h1>
+      <div className="p-6 max-w-5xl mx-auto">
+        <div className="mb-6">
+          <h1 className="text-xl font-bold">C Syntax Cheatsheet</h1>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            Quick reference for common C patterns
+          </p>
+        </div>
         <div className="grid gap-4 md:grid-cols-2">
           {sections.map((section) => (
-            <Card key={section.title} className="p-4">
-              <h3 className="font-semibold text-sm mb-2">{section.title}</h3>
-              <pre className="text-xs font-mono bg-muted rounded-md p-3 overflow-x-auto whitespace-pre">
-                {section.code}
-              </pre>
+            <Card key={section.title}>
+              <CardHeader className="pb-2">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-sm">{section.title}</CardTitle>
+                  <Badge variant="outline" className="text-[10px]">
+                    {section.tag}
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <pre className="text-[11px] leading-relaxed font-mono bg-muted rounded-lg p-3 overflow-x-auto whitespace-pre">
+                  {section.code}
+                </pre>
+              </CardContent>
             </Card>
           ))}
         </div>

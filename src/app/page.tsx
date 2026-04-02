@@ -4,6 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import { ExerciseSelector } from "@/components/ExerciseSelector";
 import { ProblemPanel } from "@/components/ProblemPanel";
 import { EditorPanel } from "@/components/EditorPanel";
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable";
 import type { Exercise, CompileResult, TestResult } from "@/lib/types";
 
 const DEFAULT_CODE = `#include <stdio.h>
@@ -26,7 +31,6 @@ export default function Home() {
 
   const selectedExercise = exercises.find((e) => e.id === selectedId) ?? null;
 
-  // Load exercises
   useEffect(() => {
     fetch("/api/exercises")
       .then((r) => r.json())
@@ -34,7 +38,6 @@ export default function Home() {
       .catch(console.error);
   }, []);
 
-  // Load progress when exercise changes
   useEffect(() => {
     if (!selectedId) return;
     const exercise = exercises.find((e) => e.id === selectedId);
@@ -58,7 +61,6 @@ export default function Home() {
     setOutputTab("output");
   }, [selectedId, exercises]);
 
-  // Save progress on code change (debounced)
   useEffect(() => {
     if (!selectedId) return;
     const timer = setTimeout(() => {
@@ -83,11 +85,7 @@ export default function Home() {
       const result = await res.json();
       setOutput(result);
     } catch (error) {
-      setOutput({
-        stdout: "",
-        stderr: `Error: ${error}`,
-        exitCode: 1,
-      });
+      setOutput({ stdout: "", stderr: `Error: ${error}`, exitCode: 1 });
     } finally {
       setRunning(false);
     }
@@ -109,7 +107,6 @@ export default function Home() {
       const result = await res.json();
       setTestResults(result.results);
 
-      // Save solved status
       if (result.allPassed && selectedId) {
         fetch(`/api/progress/${selectedId}`, {
           method: "PUT",
@@ -119,11 +116,7 @@ export default function Home() {
       }
     } catch (error) {
       setTestResults([]);
-      setOutput({
-        stdout: "",
-        stderr: `Error: ${error}`,
-        exitCode: 1,
-      });
+      setOutput({ stdout: "", stderr: `Error: ${error}`, exitCode: 1 });
       setOutputTab("output");
     } finally {
       setTesting(false);
@@ -137,24 +130,28 @@ export default function Home() {
   }, [selectedExercise]);
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden">
-      <div className="flex-1 flex min-h-0">
-        {/* Left panel: exercise selector + problem description */}
-        <div className="w-[420px] min-w-[320px] border-r flex flex-col">
-          <div className="p-3 border-b">
-            <ExerciseSelector
-              exercises={exercises}
-              selectedId={selectedId}
-              onSelect={setSelectedId}
-            />
+    <div className="flex-1 overflow-hidden">
+      <ResizablePanelGroup orientation="horizontal" className="h-full">
+        {/* Left: problem panel */}
+        <ResizablePanel defaultSize={35} minSize={20} maxSize={50}>
+          <div className="flex flex-col h-full">
+            <div className="p-2.5 border-b shrink-0">
+              <ExerciseSelector
+                exercises={exercises}
+                selectedId={selectedId}
+                onSelect={setSelectedId}
+              />
+            </div>
+            <div className="flex-1 min-h-0">
+              <ProblemPanel exercise={selectedExercise} />
+            </div>
           </div>
-          <div className="flex-1 min-h-0">
-            <ProblemPanel exercise={selectedExercise} />
-          </div>
-        </div>
+        </ResizablePanel>
 
-        {/* Right panel: code editor + output */}
-        <div className="flex-1 min-w-0">
+        <ResizableHandle withHandle />
+
+        {/* Right: editor + output */}
+        <ResizablePanel defaultSize={65} minSize={40}>
           <EditorPanel
             code={code}
             onCodeChange={setCode}
@@ -169,8 +166,8 @@ export default function Home() {
             outputTab={outputTab}
             onOutputTabChange={setOutputTab}
           />
-        </div>
-      </div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </div>
   );
 }

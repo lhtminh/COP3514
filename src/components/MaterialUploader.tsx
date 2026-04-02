@@ -3,6 +3,9 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Spinner } from "@/components/ui/spinner";
+import { UploadIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface MaterialUploaderProps {
   onUploaded: () => void;
@@ -56,16 +59,18 @@ export function MaterialUploader({ onUploaded }: MaterialUploaderProps) {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) upload(file);
-    // Reset so the same file can be re-selected
     e.target.value = "";
   };
 
   return (
-    <div className="space-y-2">
+    <div className="flex flex-col gap-2">
       <Card
-        className={`border-2 border-dashed p-8 text-center cursor-pointer transition-colors ${
-          dragOver ? "border-primary bg-primary/5" : "border-muted-foreground/25 hover:border-primary/50"
-        }`}
+        className={cn(
+          "border-2 border-dashed p-8 text-center cursor-pointer transition-colors",
+          dragOver
+            ? "border-primary bg-primary/5"
+            : "border-muted-foreground/20 hover:border-primary/40"
+        )}
         onDragOver={(e) => {
           e.preventDefault();
           setDragOver(true);
@@ -82,21 +87,23 @@ export function MaterialUploader({ onUploaded }: MaterialUploaderProps) {
           className="hidden"
         />
         {uploading ? (
-          <p className="text-muted-foreground">Uploading...</p>
+          <div className="flex items-center justify-center gap-2 text-muted-foreground">
+            <Spinner />
+            Uploading...
+          </div>
         ) : (
-          <>
-            <p className="text-muted-foreground mb-1">
+          <div className="flex flex-col items-center gap-2">
+            <UploadIcon className="size-8 text-muted-foreground/40" />
+            <p className="text-sm text-muted-foreground">
               Drop a PDF or PPTX file here, or click to browse
             </p>
             <Button variant="outline" size="sm" type="button">
               Choose File
             </Button>
-          </>
+          </div>
         )}
       </Card>
-      {error && (
-        <p className="text-sm text-destructive">{error}</p>
-      )}
+      {error && <p className="text-sm text-destructive">{error}</p>}
     </div>
   );
 }

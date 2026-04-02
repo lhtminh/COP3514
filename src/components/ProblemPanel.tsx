@@ -4,12 +4,7 @@ import type { Exercise } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-
-const difficultyColors = {
-  easy: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  medium: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
-  hard: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
-};
+import { BookOpenIcon } from "lucide-react";
 
 interface ProblemPanelProps {
   exercise: Exercise | null;
@@ -18,26 +13,28 @@ interface ProblemPanelProps {
 export function ProblemPanel({ exercise }: ProblemPanelProps) {
   if (!exercise) {
     return (
-      <div className="flex items-center justify-center h-full text-muted-foreground">
-        <p>Select an exercise to get started</p>
+      <div className="flex flex-col items-center justify-center h-full gap-3 text-muted-foreground px-8">
+        <BookOpenIcon className="size-10 opacity-20" />
+        <p className="text-sm text-center">
+          Select an exercise to get started
+        </p>
       </div>
     );
   }
 
   return (
     <ScrollArea className="h-full">
-      <div className="p-4 space-y-4">
-        <div>
-          <h2 className="text-lg font-semibold">{exercise.title}</h2>
-          <div className="flex items-center gap-2 mt-1">
-            <Badge
-              variant="secondary"
-              className={difficultyColors[exercise.difficulty]}
-            >
+      <div className="flex flex-col gap-4 p-4">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-base font-semibold leading-tight">
+            {exercise.title}
+          </h2>
+          <div className="flex flex-wrap items-center gap-1.5">
+            <Badge variant="secondary" className="text-[10px]">
               {exercise.difficulty}
             </Badge>
             {exercise.tags.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs">
+              <Badge key={tag} variant="outline" className="text-[10px]">
                 {tag}
               </Badge>
             ))}
@@ -46,39 +43,45 @@ export function ProblemPanel({ exercise }: ProblemPanelProps) {
 
         <Separator />
 
-        <div className="prose prose-sm dark:prose-invert max-w-none">
-          <div className="whitespace-pre-wrap text-sm leading-relaxed">
-            {exercise.description}
-          </div>
+        <div className="whitespace-pre-wrap text-[13px] leading-relaxed text-foreground/90">
+          {exercise.description}
         </div>
 
         {exercise.testCases.length > 0 && (
           <>
             <Separator />
-            <div>
-              <h3 className="text-sm font-semibold mb-2">Examples</h3>
-              <div className="space-y-3">
-                {exercise.testCases.map((tc, idx) => (
-                  <div
-                    key={tc.id}
-                    className="bg-muted rounded-md p-3 text-sm font-mono"
-                  >
-                    <div className="text-muted-foreground text-xs mb-1">
-                      {tc.label || `Example ${idx + 1}`}
+            <div className="flex flex-col gap-2.5">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Examples
+              </h3>
+              {exercise.testCases.map((tc, idx) => (
+                <div
+                  key={tc.id}
+                  className="rounded-lg bg-muted/60 p-3 font-mono text-xs"
+                >
+                  <div className="text-muted-foreground text-[10px] font-sans font-medium mb-1.5">
+                    {tc.label || `Example ${idx + 1}`}
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <div>
+                      <span className="text-muted-foreground select-none">
+                        Input:{" "}
+                      </span>
+                      <span className="whitespace-pre-wrap">
+                        {tc.input || "(none)"}
+                      </span>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Input: </span>
-                      <span className="whitespace-pre-wrap">{tc.input || "(none)"}</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Output: </span>
+                      <span className="text-muted-foreground select-none">
+                        Output:{" "}
+                      </span>
                       <span className="whitespace-pre-wrap">
                         {tc.expectedOutput}
                       </span>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </>
         )}

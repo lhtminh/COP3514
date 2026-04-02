@@ -7,14 +7,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Spinner } from "@/components/ui/spinner";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { TestCaseEditor } from "./TestCaseEditor";
+import { SaveIcon, XIcon, PlusIcon } from "lucide-react";
 
 interface ExerciseFormProps {
   exercise?: Exercise;
@@ -70,7 +74,14 @@ export function ExerciseForm({ exercise, mode }: ExerciseFormProps) {
     setError(null);
 
     try {
-      const body = { title, description, difficulty, tags, starterCode, testCases };
+      const body = {
+        title,
+        description,
+        difficulty,
+        tags,
+        starterCode,
+        testCases,
+      };
 
       if (mode === "create") {
         const res = await fetch("/api/exercises", {
@@ -98,14 +109,14 @@ export function ExerciseForm({ exercise, mode }: ExerciseFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-2xl">
       {error && (
-        <div className="bg-destructive/10 text-destructive rounded-md p-3 text-sm">
+        <div className="bg-destructive/10 text-destructive rounded-lg p-3 text-sm">
           {error}
         </div>
       )}
 
-      <div className="space-y-2">
+      <div className="flex flex-col gap-1.5">
         <label className="text-sm font-medium">Title</label>
         <Input
           value={title}
@@ -114,7 +125,7 @@ export function ExerciseForm({ exercise, mode }: ExerciseFormProps) {
         />
       </div>
 
-      <div className="space-y-2">
+      <div className="flex flex-col gap-1.5">
         <label className="text-sm font-medium">Description</label>
         <Textarea
           value={description}
@@ -124,21 +135,28 @@ export function ExerciseForm({ exercise, mode }: ExerciseFormProps) {
         />
       </div>
 
-      <div className="space-y-2">
+      <div className="flex flex-col gap-1.5">
         <label className="text-sm font-medium">Difficulty</label>
-        <Select value={difficulty} onValueChange={(v) => { if (v) setDifficulty(v as Exercise["difficulty"]); }}>
+        <Select
+          value={difficulty}
+          onValueChange={(v) => {
+            if (v) setDifficulty(v as Exercise["difficulty"]);
+          }}
+        >
           <SelectTrigger className="w-40">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="easy">Easy</SelectItem>
-            <SelectItem value="medium">Medium</SelectItem>
-            <SelectItem value="hard">Hard</SelectItem>
+            <SelectGroup>
+              <SelectItem value="easy">Easy</SelectItem>
+              <SelectItem value="medium">Medium</SelectItem>
+              <SelectItem value="hard">Hard</SelectItem>
+            </SelectGroup>
           </SelectContent>
         </Select>
       </div>
 
-      <div className="space-y-2">
+      <div className="flex flex-col gap-1.5">
         <label className="text-sm font-medium">Tags</label>
         <div className="flex gap-2">
           <Input
@@ -153,6 +171,7 @@ export function ExerciseForm({ exercise, mode }: ExerciseFormProps) {
             }}
           />
           <Button type="button" variant="outline" onClick={addTag}>
+            <PlusIcon data-icon="inline-start" />
             Add
           </Button>
         </div>
@@ -162,17 +181,18 @@ export function ExerciseForm({ exercise, mode }: ExerciseFormProps) {
               <Badge
                 key={tag}
                 variant="secondary"
-                className="cursor-pointer hover:bg-destructive/20"
+                className="cursor-pointer gap-1"
                 onClick={() => removeTag(tag)}
               >
-                {tag} &times;
+                {tag}
+                <XIcon className="size-3" />
               </Badge>
             ))}
           </div>
         )}
       </div>
 
-      <div className="space-y-2">
+      <div className="flex flex-col gap-1.5">
         <label className="text-sm font-medium">Starter Code</label>
         <Textarea
           value={starterCode}
@@ -182,11 +202,24 @@ export function ExerciseForm({ exercise, mode }: ExerciseFormProps) {
         />
       </div>
 
+      <Separator />
+
       <TestCaseEditor testCases={testCases} onChange={setTestCases} />
+
+      <Separator />
 
       <div className="flex gap-2">
         <Button type="submit" disabled={saving}>
-          {saving ? "Saving..." : mode === "create" ? "Create Exercise" : "Save Changes"}
+          {saving ? (
+            <Spinner data-icon="inline-start" />
+          ) : (
+            <SaveIcon data-icon="inline-start" />
+          )}
+          {saving
+            ? "Saving..."
+            : mode === "create"
+              ? "Create Exercise"
+              : "Save Changes"}
         </Button>
         <Button
           type="button"

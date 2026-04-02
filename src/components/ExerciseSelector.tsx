@@ -4,12 +4,14 @@ import type { Exercise } from "@/lib/types";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { SearchIcon } from "lucide-react";
 import { useState, useMemo } from "react";
 
 interface ExerciseSelectorProps {
@@ -17,12 +19,6 @@ interface ExerciseSelectorProps {
   selectedId: string | null;
   onSelect: (id: string) => void;
 }
-
-const difficultyColors = {
-  easy: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  medium: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
-  hard: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
-};
 
 export function ExerciseSelector({
   exercises,
@@ -45,39 +41,46 @@ export function ExerciseSelector({
   }, [exercises, tagFilter]);
 
   return (
-    <div className="space-y-2">
+    <div className="flex flex-col gap-2">
       {allTags.length > 0 && (
-        <Input
-          placeholder="Filter by tag..."
-          value={tagFilter}
-          onChange={(e) => setTagFilter(e.target.value)}
-          className="h-8 text-sm"
-        />
+        <div className="relative">
+          <SearchIcon className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
+          <Input
+            placeholder="Filter by tag..."
+            value={tagFilter}
+            onChange={(e) => setTagFilter(e.target.value)}
+            className="h-7 pl-8 text-xs"
+          />
+        </div>
       )}
-      <Select value={selectedId ?? ""} onValueChange={(v) => { if (v) onSelect(v); }}>
+      <Select
+        value={selectedId ?? ""}
+        onValueChange={(v) => {
+          if (v) onSelect(v);
+        }}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select an exercise..." />
         </SelectTrigger>
         <SelectContent>
-          {filtered.length === 0 ? (
-            <div className="p-2 text-sm text-muted-foreground text-center">
-              No exercises found
-            </div>
-          ) : (
-            filtered.map((ex) => (
-              <SelectItem key={ex.id} value={ex.id}>
-                <span className="flex items-center gap-2">
-                  <span className="truncate">{ex.title}</span>
-                  <Badge
-                    variant="secondary"
-                    className={`text-xs ${difficultyColors[ex.difficulty]}`}
-                  >
-                    {ex.difficulty}
-                  </Badge>
-                </span>
-              </SelectItem>
-            ))
-          )}
+          <SelectGroup>
+            {filtered.length === 0 ? (
+              <div className="p-4 text-sm text-muted-foreground text-center">
+                No exercises found
+              </div>
+            ) : (
+              filtered.map((ex) => (
+                <SelectItem key={ex.id} value={ex.id}>
+                  <span className="flex items-center gap-2">
+                    <span className="truncate">{ex.title}</span>
+                    <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
+                      {ex.difficulty}
+                    </Badge>
+                  </span>
+                </SelectItem>
+              ))
+            )}
+          </SelectGroup>
         </SelectContent>
       </Select>
     </div>
