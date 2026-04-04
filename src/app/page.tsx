@@ -30,7 +30,8 @@ export default function Home() {
   const [testing, setTesting] = useState(false);
   const [outputTab, setOutputTab] = useState("output");
 
-  const selectedExercise = exercises.find((e) => e.id === selectedId) ?? null;
+  const selectedIndex = exercises.findIndex((e) => e.id === selectedId);
+  const selectedExercise = selectedIndex >= 0 ? exercises[selectedIndex] : null;
 
   useEffect(() => {
     fetch("/api/exercises")
@@ -139,16 +140,24 @@ export default function Home() {
     <div className="flex-1 overflow-hidden">
       <ResizablePanelGroup orientation="horizontal" className="h-full">
         <ResizablePanel defaultSize="38" minSize="25" maxSize="50">
-          <div className="flex flex-col h-full border-r">
-            <div className="shrink-0 border-b bg-card px-4 py-3">
-              <ExerciseSelector
-                exercises={exercises}
-                selectedId={selectedId}
-                onSelect={setSelectedId}
-              />
-            </div>
-            <div className="flex-1 min-h-0">
-              <ProblemPanel exercise={selectedExercise} />
+          <div className="h-full p-2 pr-1">
+            <div className="flex flex-col h-full rounded-xl border overflow-hidden bg-card">
+              <div className="shrink-0 border-b px-4 py-3">
+                <ExerciseSelector
+                  exercises={exercises}
+                  selectedId={selectedId}
+                  onSelect={setSelectedId}
+                />
+              </div>
+              <div className="flex-1 min-h-0">
+                <ProblemPanel
+                  exercise={selectedExercise}
+                  hasPrev={selectedIndex > 0}
+                  hasNext={selectedIndex < exercises.length - 1}
+                  onPrev={() => selectedIndex > 0 && setSelectedId(exercises[selectedIndex - 1].id)}
+                  onNext={() => selectedIndex < exercises.length - 1 && setSelectedId(exercises[selectedIndex + 1].id)}
+                />
+              </div>
             </div>
           </div>
         </ResizablePanel>
@@ -156,36 +165,40 @@ export default function Home() {
         <ResizableHandle withHandle />
 
         <ResizablePanel defaultSize="62" minSize="35">
-          {selectedExercise?.type === "multiple-choice" ? (
-            <MCPanel
-              key={selectedExercise.id}
-              exercise={selectedExercise}
-              onSolved={() => {
-                if (selectedId) {
-                  fetch(`/api/progress/${selectedId}`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ code: "", solved: true }),
-                  }).catch(console.error);
-                }
-              }}
-            />
-          ) : (
-            <EditorPanel
-              code={code}
-              onCodeChange={setCode}
-              exercise={selectedExercise}
-              onRun={handleRun}
-              onTest={handleTest}
-              onReset={handleReset}
-              running={running}
-              testing={testing}
-              output={output}
-              testResults={testResults}
-              outputTab={outputTab}
-              onOutputTabChange={setOutputTab}
-            />
-          )}
+          <div className="h-full p-2 pl-1">
+            <div className="h-full rounded-xl border overflow-hidden bg-card">
+              {selectedExercise?.type === "multiple-choice" ? (
+                <MCPanel
+                  key={selectedExercise.id}
+                  exercise={selectedExercise}
+                  onSolved={() => {
+                    if (selectedId) {
+                      fetch(`/api/progress/${selectedId}`, {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ code: "", solved: true }),
+                      }).catch(console.error);
+                    }
+                  }}
+                />
+              ) : (
+                <EditorPanel
+                  code={code}
+                  onCodeChange={setCode}
+                  exercise={selectedExercise}
+                  onRun={handleRun}
+                  onTest={handleTest}
+                  onReset={handleReset}
+                  running={running}
+                  testing={testing}
+                  output={output}
+                  testResults={testResults}
+                  outputTab={outputTab}
+                  onOutputTabChange={setOutputTab}
+                />
+              )}
+            </div>
+          </div>
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>

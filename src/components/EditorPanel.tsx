@@ -44,7 +44,7 @@ export function EditorPanel({
       <ResizablePanelGroup orientation="vertical" className="flex-1">
         <ResizablePanel defaultSize="60" minSize="25">
           <div className="h-full flex flex-col">
-            <div className="shrink-0 flex items-center border-b bg-card px-4 py-2">
+            <div className="shrink-0 flex items-center border-b px-4 py-2">
               <div className="flex items-center gap-2">
                 <div className="size-2.5 rounded-full bg-primary/40" />
                 <span className="text-xs font-semibold text-muted-foreground tracking-wide">

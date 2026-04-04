@@ -40,7 +40,7 @@ export function MCPanel({ exercise, onSolved }: MCPanelProps) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="shrink-0 flex items-center border-b bg-card px-4 py-2">
+      <div className="shrink-0 flex items-center border-b px-4 py-2">
         <div className="flex items-center gap-2">
           <div className="size-2.5 rounded-full bg-primary/40" />
           <span className="text-xs font-semibold text-muted-foreground tracking-wide">
@@ -152,7 +152,7 @@ export function MCPanel({ exercise, onSolved }: MCPanelProps) {
         </div>
       </ScrollArea>
 
-      <div className="shrink-0 flex items-center justify-between border-t bg-card px-4 py-2">
+      <div className="shrink-0 flex items-center justify-between border-t px-4 py-2">
         <Button onClick={handleSubmit} disabled={!selected || submitted}>
           <SendIcon data-icon="inline-start" />
           Submit

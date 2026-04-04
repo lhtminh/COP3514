@@ -74,7 +74,8 @@
       "Bash(cd C:/Users/Admin/cgym && curl -s \"http://localhost:3000/api/exercises\" | node -e \"\nlet d='';process.stdin.on\\('data',c=>d+=c\\);process.stdin.on\\('end',\\(\\)=>{\n  const data=JSON.parse\\(d\\);\n  // Find one with >= in code\n  const ex=data.find\\(e=>e.codeSnippet && e.codeSnippet.includes\\('>='\\)\\);\n  if\\(ex\\){\n    console.log\\('Title:', ex.title\\);\n    // Show the raw bytes around >=\n    const s = ex.codeSnippet;\n    const idx = s.indexOf\\('>='\\);\n    console.log\\('Chars around >=:', [...s.substring\\(idx-3,idx+5\\)].map\\(c=>c+' \\('+c.charCodeAt\\(0\\)+'\\)'\\).join\\(', '\\)\\);\n    // Show around !=  \n    const idx2 = s.indexOf\\('!='\\);\n    if \\(idx2 >= 0\\) {\n      console.log\\('Chars around !=:', [...s.substring\\(idx2-3,idx2+5\\)].map\\(c=>c+' \\('+c.charCodeAt\\(0\\)+'\\)'\\).join\\(', '\\)\\);\n    }\n  }\n}\\);\")",
       "Bash(cd C:/Users/Admin/cgym && rm -rf tmp scripts/check-snippets.mjs scripts/check-raw.mjs scripts/check-starter.mjs scripts/check-escapes.mjs)",
       "Bash(cd C:/Users/Admin/cgym && mkdir -p tmp && npx pdf2json -f \"C:/Users/Admin/Documents/COP/COP Final Fall24.pdf\" -o \"C:/Users/Admin/cgym/tmp\" -c -s 2>&1 | tail -3)",
-      "Bash(cd C:/Users/Admin/cgym && mkdir -p tmp && npx pdf2json -f \"C:/Users/Admin/Documents/COP/Final_Spring_25.pdf\" -o \"C:/Users/Admin/cgym/tmp\" -c -s 2>&1 | tail -3)"
+      "Bash(cd C:/Users/Admin/cgym && mkdir -p tmp && npx pdf2json -f \"C:/Users/Admin/Documents/COP/Final_Spring_25.pdf\" -o \"C:/Users/Admin/cgym/tmp\" -c -s 2>&1 | tail -3)",
+      "Bash(cd C:/Users/Admin/cgym && node scripts/seed-finals.mjs)"
     ]
   }
 }

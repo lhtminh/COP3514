@@ -6,10 +6,15 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { BookOpenIcon } from "lucide-react";
+import { BookOpenIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ProblemPanelProps {
   exercise: Exercise | null;
+  onPrev?: () => void;
+  onNext?: () => void;
+  hasPrev?: boolean;
+  hasNext?: boolean;
 }
 
 const difficultyVariant: Record<string, string> = {
@@ -18,7 +23,7 @@ const difficultyVariant: Record<string, string> = {
   hard: "bg-destructive/10 text-destructive border-destructive/20",
 };
 
-export function ProblemPanel({ exercise }: ProblemPanelProps) {
+export function ProblemPanel({ exercise, onPrev, onNext, hasPrev, hasNext }: ProblemPanelProps) {
   if (!exercise) {
     return (
       <div className="flex flex-col items-center justify-center h-full gap-4 text-muted-foreground px-8">
@@ -39,9 +44,29 @@ export function ProblemPanel({ exercise }: ProblemPanelProps) {
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 p-5">
         <div className="flex flex-col gap-2.5">
-          <h2 className="text-lg font-bold leading-tight tracking-tight">
-            {exercise.title}
-          </h2>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-7 shrink-0"
+              onClick={onPrev}
+              disabled={!hasPrev}
+            >
+              <ChevronLeftIcon className="size-4" />
+            </Button>
+            <h2 className="text-lg font-bold leading-tight tracking-tight flex-1">
+              {exercise.title}
+            </h2>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-7 shrink-0"
+              onClick={onNext}
+              disabled={!hasNext}
+            >
+              <ChevronRightIcon className="size-4" />
+            </Button>
+          </div>
           <div className="flex flex-wrap items-center gap-1.5">
             <Badge
               variant="outline"
