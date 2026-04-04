@@ -5,14 +5,23 @@ export interface TestCase {
   label?: string;
 }
 
+export interface Choice {
+  id: string;
+  text: string;
+}
+
 export interface Exercise {
   id: string;
   title: string;
   description: string;
   tags: string[];
   difficulty: "easy" | "medium" | "hard";
+  type?: "coding" | "multiple-choice";
   starterCode: string;
   testCases: TestCase[];
+  codeSnippet?: string;
+  choices?: Choice[];
+  correctAnswer?: string;
 }
 
 export interface ExerciseProgress {

@@ -49,6 +49,11 @@ export function ProblemPanel({ exercise }: ProblemPanelProps) {
             >
               {exercise.difficulty}
             </Badge>
+            {exercise.type === "multiple-choice" && (
+              <Badge variant="outline" className="text-[11px] font-medium border-purple-500/20 bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                Multiple Choice
+              </Badge>
+            )}
             {exercise.tags.map((tag) => (
               <Badge key={tag} variant="secondary" className="text-[11px]">
                 {tag}
@@ -63,7 +68,7 @@ export function ProblemPanel({ exercise }: ProblemPanelProps) {
           {exercise.description}
         </p>
 
-        {exercise.testCases.length > 0 && (
+        {exercise.type !== "multiple-choice" && exercise.testCases.length > 0 && (
           <>
             <Separator />
             <div className="flex flex-col gap-3">

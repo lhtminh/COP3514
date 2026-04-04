@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { ExerciseSelector } from "@/components/ExerciseSelector";
 import { ProblemPanel } from "@/components/ProblemPanel";
 import { EditorPanel } from "@/components/EditorPanel";
+import { MCPanel } from "@/components/MCPanel";
 import {
   ResizablePanelGroup,
   ResizablePanel,
@@ -155,20 +156,36 @@ export default function Home() {
         <ResizableHandle withHandle />
 
         <ResizablePanel defaultSize="62" minSize="35">
-          <EditorPanel
-            code={code}
-            onCodeChange={setCode}
-            exercise={selectedExercise}
-            onRun={handleRun}
-            onTest={handleTest}
-            onReset={handleReset}
-            running={running}
-            testing={testing}
-            output={output}
-            testResults={testResults}
-            outputTab={outputTab}
-            onOutputTabChange={setOutputTab}
-          />
+          {selectedExercise?.type === "multiple-choice" ? (
+            <MCPanel
+              key={selectedExercise.id}
+              exercise={selectedExercise}
+              onSolved={() => {
+                if (selectedId) {
+                  fetch(`/api/progress/${selectedId}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code: "", solved: true }),
+                  }).catch(console.error);
+                }
+              }}
+            />
+          ) : (
+            <EditorPanel
+              code={code}
+              onCodeChange={setCode}
+              exercise={selectedExercise}
+              onRun={handleRun}
+              onTest={handleTest}
+              onReset={handleReset}
+              running={running}
+              testing={testing}
+              output={output}
+              testResults={testResults}
+              outputTab={outputTab}
+              onOutputTabChange={setOutputTab}
+            />
+          )}
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>

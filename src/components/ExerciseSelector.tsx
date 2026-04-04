@@ -109,6 +109,11 @@ export function ExerciseSelector({
                         )}
                       />
                       <span className="truncate">{ex.title}</span>
+                      {ex.type === "multiple-choice" && (
+                        <span className="text-[9px] font-semibold text-muted-foreground bg-muted px-1.5 py-0.5 rounded shrink-0">
+                          MC
+                        </span>
+                      )}
                     </span>
                   </SelectItem>
                 ))}
