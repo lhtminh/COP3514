@@ -1,0 +1,241 @@
+Graded
+Final Exam_color
+Student
+Khai Dang
+Total Points
+85 / 100 pts
+Question 1
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct:    3
+− 4 ptsany incorrect answer or blank
+Question 2
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct                                      
+    for(q= p->next; q!=NULL; q = q->next)
+                  if (p->value == q->value)
+                        return 1;
+  }
+         return 0;
+− 1 ptincorrect loop header
+− 1 ptincorrect if condition
+− 1 ptincorrect logic for return 1 
+− 1 ptincorrect logic for return 0
+− 4 ptscom pletely wrong or blank
+
+----------------Page (0) Break----------------
+Question 3
+(n o  title )                                                                                                         3 / 4 pts
+− 0  p ts Correct
+fscanf(pFile, “%s %lf  %lf”, nam e, &rate, &num _hours);
+//0.5 points each part
+− 0.5 ptsfor 1 wrong part
+ − 1 ptfor 2 wrong parts
+− 1.5 ptsfor 3 wrong parts
+− 2 ptsfor 4 wrong parts
+− 2.5 ptsfor 5 wrong parts
+− 3 ptsfor 6 wrong parts
+− 3.5 ptsfor 7 wrong parts
+− 4 ptsfor com pleted wrong answer or  blank 
+Question 4
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct:                                                                                 while(list != NULL){
+    p = list;
+     list = list->next;
+     free(p);
+ }
+  
+− 1 ptone incorrect statem ent or loop header
+− 2 ptstwo incorrect statem ents
+− 3 ptsthree incorrect statem ents
+− 4 ptsany incorrect answer or blank
+− 0.25 ptspartially incorrect
+Question 5
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct:  (no partial credit)                                                                                     n= 8      n=7     n=6     
+− 4 ptsany incorrect answer or blank
+----------------Page (1) Break----------------
+Question 6
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct                                                                           for(i=start; i<=end; i++)
+               result = result +f(i);
+       return result;
+− 1 ptincorrect loop header
+− 2 ptsincorrect statem ent for update result
+− 1 ptincorrect return
+− 4 pts blank
+Question 7
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct                                                                                      int tm p = *p; 
+       *p = *q;
+    *q= tm p;
+    p++;
+    q--;
+− 1 ptone incorrect statem ent
+− 2 ptstwo incorrect statem ents
+− 3 ptsthree incorrect statem ents
+− 4 ptscom pletely wrong or blank
+Question 8
+(n o  title )                                                                                                         0 / 4 pts
+− 0  p ts Correct:      (no partial credit)                                                                               p->next == head  //or: if(p->next 
+== head)
+ − 4 ptsany incorrect answer or blank
+Question 9
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct: D
+− 4 ptsany incorrect answer
+Question 10
+(n o  title )                                                                                                         0 / 4 pts
+− 0  p ts Correct:   D
+ − 4 ptsany incorrect answer
+----------------Page (2) Break----------------
+Question 11
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct: new_debt= m alloc(sizeof(struct debt));
+− 1 ptone incorrect part of the statem ent
+− 2 ptstwo incorrect parts of the statem ent
+− 3 ptsthree incorrect parts of the statem ent
+− 4 ptscom pletely wrong or blank
+− 0.25 ptspartially incorrect
+Question 12
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct: C
+− 4 ptsany incorrect answer
+Question 13
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct:      28 41 9 13          (no partial credit)
+− 4 ptsany incorrect answer or blank
+Question 14
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct
+  new_head = list->next;
+  free(list);
+  return new_head;
+− 1 ptone incorrect statem ent
+− 2 ptstwo incorrect statem ents
+− 3 ptsthree incorrect statem ents
+− 4 ptsblank or com pletely incorrect
+− 0.5 ptsSyntax error
+Question 15
+(n o  title )                                                                                                         4 / 4 pts
+ − 0  p ts Correct:   A
+− 4 ptsany incorrect answer
+----------------Page (3) Break----------------
+Question 16
+(n o  title )                                                                                                       8 / 10 pts
+− 0  p ts Correct         struct node *new_node;
+  new_node = m alloc(sizeof(struct node));           //2 points
+  if(new_node == NULL)                    //2 points
+  {
+       printf("m alloc failed");
+       return top;
+  }
+  new_node->value = i;                      //2 points
+  new_node->next = top;                         //2 points
+  return new_node;                               //2 points
+− 2 ptsincorrect m alloc statem ent
+ − 2 ptsincorrect conditional statem ent
+− 2 ptsincorrect statem ent for assign new_node's value
+− 2 ptsincorrect statem ent for assign new_node's next
+− 2 ptsincorrect return statem ent
+− 10 ptscom pletely wrong or blank
+− 2 ptsAnother incorrect statem ent
+Question 17
+(n o  title )                                                                                                       7 / 10 pts
+− 0  p ts Correct                                                                                             while(!feof(pfile)&&!ferror(pfile)){              //3 pt
+               If(fscanf (pfile, "%d", &num )==1){         //3 pts
+//if statem ent is not required. fscanf(pfile, “%d”, &num ); is acceptable
+           num bers[count]=num ;
+                count++;
+       }
+   }
+for(i = 0; i < count; i++)
+if(is_prim e(num bers[i])                    //3 pts
+            printf("%d ", num bers[i]);                //1 pt                                     //not storing num bers in an array is 
+acceptable
+ − 3 ptsincorrect while loop for checking eof and error
+− 3 ptsincorrect fscanf
+− 3 ptsincorrect statem ent for checking if a num ber is a prim e num ber
+− 1 ptincorrect statem ent for printing the num ber
+− 10 ptscom pletely wrong or blank
+----------------Page (4) Break----------------
+Question 18
+(n o  title )                                                                                                       9 / 10 pts
+− 0  p ts Correct       int found = 0; 
+ for (i = 0; i < np; i++){
+if (inv[i].num ber == num ber){
+found = 1;
+             printf("Enter change in quantity on hand: ");
+             scanf("%d", &change);
+             inv[i].on_hand += change;
+    }
+ } 
+ if(!found)
+   printf("Part not found.\n");
+− 1 ptincorrect loop header
+− 1 ptincorrect condition inside the loop
+− 1 ptincorrect statem ent to get input for change
+ − 1 ptincorrect statem ent for updating on_hand
+− 2 ptsincorrect logic for part not found
+− 1 ptOther m istake
+− 10 ptscom pletely incorrect or blank
+Question 19
+(n o  title )                                                                                                      10 / 10 pts
+ − 0  p ts Correct
+     struct node  *prev, *cur;
+       new_node->value = n;                                //1 pt
+         for(prev = NULL, cur = list; cur != NULL&& cur->value != nb;
+               prev = cur, cur = cur->next)
+         ;                                                       //3 pt
+      if(cur==NULL) return list;         //1 pt
+       new_node->next = cur;            //1 pt
+       if(prev == NULL)                       //1 pt
+               return new_node;             //1 pt
+         else {
+               prev->next = new_node;      //1 pt
+               return list;                           //1 pt
+        }
+− 3 ptsincorrect loop for searching for nb
+− 1 ptone incorrect 1 pt statem ent in the solution
+− 2 ptstwo incorrect 1pt statem ent in the solution
+− 3 ptsthree incorrect 1pt statem ents in the solution
+− 4 ptsfour incorrect 1 pt statem ents in the solution
+− 5 ptsfive incorrect 1 pt statem ent in the solution
+− 6 ptssix incorrect 1 pt statem ent in the solution
+− 10 ptscom pletely wrong or blank
+----------------Page (5) Break----------------
+
+----------------Page (6) Break----------------
+
+----------------Page (7) Break----------------
+
+----------------Page (8) Break----------------
+
+----------------Page (9) Break----------------
+
+----------------Page (10) Break----------------
+
+----------------Page (11) Break----------------
+
+----------------Page (12) Break----------------
+
+----------------Page (13) Break----------------
+
+----------------Page (14) Break----------------
+
+----------------Page (15) Break----------------
+
+----------------Page (16) Break----------------
+
+----------------Page (17) Break----------------
+
+----------------Page (18) Break----------------
+
+----------------Page (19) Break----------------
+
+----------------Page (20) Break----------------
+
+----------------Page (21) Break----------------
+
+----------------Page (22) Break----------------
+
+----------------Page (23) Break----------------

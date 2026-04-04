@@ -13,6 +13,7 @@ import {
   SendIcon,
   RotateCcwIcon,
 } from "lucide-react";
+import { CodeViewer } from "./CodeViewer";
 
 interface MCPanelProps {
   exercise: Exercise;
@@ -55,9 +56,7 @@ export function MCPanel({ exercise, onSolved }: MCPanelProps) {
               <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                 Code
               </h3>
-              <pre className="rounded-lg border bg-muted/50 p-4 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre">
-                {exercise.codeSnippet}
-              </pre>
+              <CodeViewer code={exercise.codeSnippet} />
             </div>
           )}
 
