@@ -34,7 +34,12 @@ export default function Home() {
   useEffect(() => {
     fetch("/api/exercises")
       .then((r) => r.json())
-      .then(setExercises)
+      .then((data: Exercise[]) => {
+        setExercises(data);
+        if (!selectedId && data.length > 0) {
+          setSelectedId(data[0].id);
+        }
+      })
       .catch(console.error);
   }, []);
 
@@ -132,10 +137,9 @@ export default function Home() {
   return (
     <div className="flex-1 overflow-hidden">
       <ResizablePanelGroup orientation="horizontal" className="h-full">
-        {/* Left: problem panel */}
-        <ResizablePanel defaultSize={35} minSize={20} maxSize={50}>
-          <div className="flex flex-col h-full">
-            <div className="p-2.5 border-b shrink-0">
+        <ResizablePanel defaultSize="38" minSize="25" maxSize="50">
+          <div className="flex flex-col h-full border-r">
+            <div className="shrink-0 border-b bg-card px-4 py-3">
               <ExerciseSelector
                 exercises={exercises}
                 selectedId={selectedId}
@@ -150,8 +154,7 @@ export default function Home() {
 
         <ResizableHandle withHandle />
 
-        {/* Right: editor + output */}
-        <ResizablePanel defaultSize={65} minSize={40}>
+        <ResizablePanel defaultSize="62" minSize="35">
           <EditorPanel
             code={code}
             onCodeChange={setCode}

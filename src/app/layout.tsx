@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "cgym — C Programming Practice",
+  title: "COP3514",
   description: "LeetCode-inspired C programming practice app",
 };
 
