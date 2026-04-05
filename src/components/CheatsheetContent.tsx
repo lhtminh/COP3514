@@ -18,156 +18,230 @@ int main() {
 }`,
   },
   {
-    title: "Data Types",
-    tag: "types",
+    title: "Data Types & Operators",
+    tag: "basics",
     code: `char c = 'A';           // 1 byte
-int n = 42;              // 4 bytes (typically)
+int n = 42;              // 4 bytes
 float f = 3.14f;         // 4 bytes
 double d = 3.14159;      // 8 bytes
-long long ll = 123456LL; // 8 bytes
-unsigned int u = 100;    // no negative values
-_Bool b = 1;             // 0 or 1 (C99+)`,
+
+// Integer division & modulus
+7 / 2   == 3             // truncates
+7 % 2   == 1             // remainder
+// Precedence: * / % before + -
+int z = 10 + 4 / 2;     // z = 12 (not 7)`,
   },
   {
-    title: "printf Format Specifiers",
+    title: "printf / scanf",
     tag: "I/O",
-    code: `%d, %i   — int (decimal)
-%u       — unsigned int
-%ld, %li — long int
-%lld     — long long int
-%f       — float/double (default 6 decimals)
-%.2f     — float with 2 decimal places
-%e       — scientific notation
-%c       — char
-%s       — string (char*)
-%p       — pointer address
-%x, %X   — hex (lowercase/uppercase)
-%o       — octal
-%%       — literal percent sign
-%5d      — right-align in 5-char field
-%-5d     — left-align in 5-char field
-%05d     — zero-padded 5-char field`,
+    code: `// printf format specifiers
+%d    int          %f    float/double
+%c    char         %s    string
+%lf   double(scanf)%ld   long
+%%    literal %    \\n   newline
+%5d   right-align  %-5d  left-align
+
+// scanf — always use & (except strings)
+int n; scanf("%d", &n);
+double d; scanf("%lf", &d);
+char c; scanf(" %c", &c);   // space skips \\n
+char s[100]; scanf("%s", s); // no &
+fgets(s, 100, stdin);        // read full line`,
   },
   {
-    title: "scanf Input",
-    tag: "I/O",
-    code: `int n;
-scanf("%d", &n);        // read int
+    title: "Control Flow & Loops",
+    tag: "flow",
+    code: `if (x > 0) { ... }
+else if (x == 0) { ... }
+else { ... }
 
-char s[100];
-scanf("%s", s);         // read word (no spaces)
-fgets(s, 100, stdin);   // read entire line
+for (int i = 0; i < n; i++) { ... }
+while (condition) { ... }
+do { ... } while (condition);
 
-double d;
-scanf("%lf", &d);       // read double
-
-char c;
-scanf(" %c", &c);       // space skips whitespace`,
+// break exits loop, continue skips iteration
+for (int i = 1; i <= 20; i++) {
+    if (i % 2 == 0) continue; // skip evens
+    printf("%d ", i);
+}`,
   },
   {
     title: "Arrays",
     tag: "arrays",
     code: `int arr[5] = {1, 2, 3, 4, 5};
 int zeros[100] = {0};          // all zeros
-int n = sizeof(arr) / sizeof(arr[0]); // length
+int n = sizeof(arr)/sizeof(arr[0]); // length
 
-// 2D array
-int matrix[3][4] = {
-    {1, 2, 3, 4},
-    {5, 6, 7, 8},
-    {9, 10, 11, 12}
-};`,
+// Traversal
+for (int i = 0; i < n; i++)
+    printf("%d ", arr[i]);
+
+// Struct array
+struct part inv[] = {{10,50}, {20,30}};
+inv[0].on_hand += 5;`,
   },
   {
     title: "Strings (char arrays)",
     tag: "strings",
-    code: `char s[] = "hello";
-int len = strlen(s);           // 5
-strcmp(a, b);                   // 0 if equal
-strcpy(dest, src);             // copy string
-strcat(dest, src);             // concatenate
-strncpy(dest, src, n);         // copy n chars
-char *p = strstr(hay, needle); // find substring
-char *tok = strtok(s, " ");   // tokenize
-atoi("42");                    // string to int
-atof("3.14");                  // string to double`,
+    code: `#include <string.h>
+char s[] = "hello";          // s[5] = '\\0'
+int len = strlen(s);         // 5
+strcmp(a, b);                 // <0, 0, >0
+strcpy(dest, src);           // copy
+strcat(dest, src);           // append
+atoi("42");                  // string → int
+
+// Character checks (include <ctype.h>)
+isalpha(c)  isupper(c)  islower(c)
+toupper(c)  tolower(c)  isdigit(c)`,
   },
   {
     title: "Pointers",
     tag: "pointers",
     code: `int x = 10;
-int *p = &x;    // p points to x
-*p = 20;        // x is now 20
+int *p = &x;        // p stores address of x
+*p = 20;             // dereference: x is now 20
 
-// Dynamic allocation
+// Pointer arithmetic (arrays)
+int a[] = {10, 20, 30, 40, 50};
+int *p = a;          // p points to a[0]
+*(p + 2) == a[2]     // 30
+p++; // now p points to a[1]
+
+// Pointer subtraction
+int *q = a + 4;
+q - p == 3;          // distance in elements`,
+  },
+  {
+    title: "Dynamic Memory (malloc/free)",
+    tag: "memory",
+    code: `#include <stdlib.h>
+
+// Allocate single struct
+struct node *p = malloc(sizeof(struct node));
+if (p == NULL) { printf("malloc failed"); }
+
+// Allocate array
 int *arr = malloc(n * sizeof(int));
 int *arr2 = calloc(n, sizeof(int)); // zero-init
-arr = realloc(arr, new_size * sizeof(int));
-free(arr);      // always free when done
 
-// Pointer arithmetic
-*(arr + i)  is equivalent to  arr[i]`,
+// Always free when done
+free(p);
+free(arr);`,
   },
   {
-    title: "Control Flow",
-    tag: "flow",
-    code: `// if-else
-if (x > 0) { ... }
-else if (x == 0) { ... }
-else { ... }
-
-// switch
-switch (c) {
-    case 'a': ...; break;
-    case 'b': ...; break;
-    default:  ...; break;
-}
-
-// loops
-for (int i = 0; i < n; i++) { ... }
-while (condition) { ... }
-do { ... } while (condition);
-
-// ternary
-int max = (a > b) ? a : b;`,
-  },
-  {
-    title: "Functions",
+    title: "Functions & Function Pointers",
     tag: "functions",
-    code: `// Declaration (prototype)
-int add(int a, int b);
-
-// Definition
-int add(int a, int b) {
-    return a + b;
-}
-
-// Pass by reference (using pointers)
+    code: `// Pass by reference (using pointers)
 void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+    int temp = *a; *a = *b; *b = temp;
 }
 swap(&x, &y);
 
-// Array parameter (decays to pointer)
-void print_arr(int arr[], int n) { ... }`,
+// Function pointer parameter
+int sum_range(int a, int b, int (*f)(int)) {
+    int result = 0;
+    for (int i = a; i <= b; i++)
+        result += f(i);
+    return result;
+}
+int sq(int x) { return x * x; }
+sum_range(1, 3, sq); // 1+4+9 = 14`,
+  },
+  {
+    title: "Recursion",
+    tag: "functions",
+    code: `// Base case + recursive case
+int factorial(int n) {
+    if (n <= 1) return 1;     // base case
+    return n * factorial(n-1); // recursive
+}
+
+// Sum 1..n
+int sum(int n) {
+    if (n == 0) return 0;
+    return n + sum(n - 1);
+}
+// sum(5) = 5+4+3+2+1 = 15`,
   },
   {
     title: "Structs",
     tag: "structs",
-    code: `typedef struct {
+    code: `struct employee {
     char name[50];
-    int age;
-    float gpa;
-} Student;
+    double salary;
+};
 
-Student s = {"Alice", 20, 3.8};
-s.age = 21;
+struct employee e = {"Alice", 50000};
+e.salary = 55000;
 
 // Pointer to struct
-Student *p = &s;
-p->age = 22;  // same as (*p).age`,
+struct employee *p = &e;
+p->salary = 60000; // same as (*p).salary
+
+// malloc for struct
+struct employee *new_emp;
+new_emp = malloc(sizeof(struct employee));`,
+  },
+  {
+    title: "Linked Lists",
+    tag: "linked lists",
+    code: `struct node {
+    int value;
+    struct node *next;
+};
+
+// Traverse
+for (p = list; p != NULL; p = p->next)
+    printf("%d ", p->value);
+
+// Insert at front (push)
+new_node->value = val;
+new_node->next = list;
+return new_node;  // new head
+
+// Delete first
+struct node *temp = list->next;
+free(list);
+return temp;  // new head`,
+  },
+  {
+    title: "Linked List Patterns",
+    tag: "linked lists",
+    code: `// Free all nodes
+while (list != NULL) {
+    struct node *p = list;
+    list = list->next;
+    free(p);
+}
+
+// Search with prev/cur (for insert/delete)
+struct node *prev = NULL, *cur = list;
+for (; cur != NULL && cur->value != target;
+     prev = cur, cur = cur->next) ;
+
+if (prev == NULL) // target is at head
+    list = cur->next;
+else
+    prev->next = cur->next;`,
+  },
+  {
+    title: "Stack (Linked List)",
+    tag: "stacks",
+    code: `// Push (insert at front)
+struct node *push(struct node *top, int val) {
+    struct node *n = malloc(sizeof(struct node));
+    n->value = val;
+    n->next = top;
+    return n;      // new top
+}
+
+// Pop (remove from front)
+struct node *pop(struct node *top) {
+    struct node *temp = top->next;
+    free(top);
+    return temp;   // new top
+}`,
   },
   {
     title: "File I/O",
@@ -175,41 +249,19 @@ p->age = 22;  // same as (*p).age`,
     code: `FILE *f = fopen("data.txt", "r");
 if (f == NULL) { perror("Error"); return 1; }
 
-// Read
-char line[256];
-while (fgets(line, sizeof(line), f)) { ... }
-fscanf(f, "%d", &n);
-
-// Write
-fprintf(f, "value: %d\\n", n);
-fputs("hello\\n", f);
-
-fclose(f);`,
-  },
-  {
-    title: "Common <stdlib.h>",
-    tag: "stdlib",
-    code: `abs(n)              // absolute value
-rand() % n          // random 0..n-1
-srand(time(NULL))   // seed random
-
-qsort(arr, n, sizeof(int), compare);
-// compare function:
-int compare(const void *a, const void *b) {
-    return (*(int*)a - *(int*)b);
+// Read until EOF
+while (!feof(f) && !ferror(f)) {
+    fscanf(f, "%d", &n);
 }
 
-exit(0);            // terminate program`,
-  },
-  {
-    title: "Common <math.h>",
-    tag: "math",
-    code: `// Compile with: gcc ... -lm
-sqrt(x)    pow(x, y)    fabs(x)
-ceil(x)    floor(x)     round(x)
-log(x)     log10(x)     exp(x)
-sin(x)     cos(x)       tan(x)
-M_PI       // 3.14159... (may need #define)`,
+// feof returns true AFTER a failed read
+// Write
+fprintf(f, "%d\\n", n);
+
+fclose(f);  // always close
+
+// qsort (stdlib.h)
+qsort(arr, n, sizeof(int), cmp_func);`,
   },
 ];
 

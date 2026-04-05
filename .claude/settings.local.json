@@ -75,7 +75,16 @@
       "Bash(cd C:/Users/Admin/cgym && rm -rf tmp scripts/check-snippets.mjs scripts/check-raw.mjs scripts/check-starter.mjs scripts/check-escapes.mjs)",
       "Bash(cd C:/Users/Admin/cgym && mkdir -p tmp && npx pdf2json -f \"C:/Users/Admin/Documents/COP/COP Final Fall24.pdf\" -o \"C:/Users/Admin/cgym/tmp\" -c -s 2>&1 | tail -3)",
       "Bash(cd C:/Users/Admin/cgym && mkdir -p tmp && npx pdf2json -f \"C:/Users/Admin/Documents/COP/Final_Spring_25.pdf\" -o \"C:/Users/Admin/cgym/tmp\" -c -s 2>&1 | tail -3)",
-      "Bash(cd C:/Users/Admin/cgym && node scripts/seed-finals.mjs)"
+      "Bash(cd C:/Users/Admin/cgym && node scripts/seed-finals.mjs)",
+      "Bash(cd C:/Users/Admin/cgym && node -e \"const ex = JSON.parse\\(require\\('fs'\\).readFileSync\\('data/exercises.json','utf8'\\)\\); const tags = new Set\\(\\); ex.forEach\\(e => e.tags.forEach\\(t => tags.add\\(t\\)\\)\\); console.log\\([...tags].sort\\(\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(cd C:/Users/Admin/cgym && node -e \"\nconst ex = JSON.parse\\(require\\('fs'\\).readFileSync\\('data/exercises.json','utf8'\\)\\);\nconst tagCount = {};\nex.forEach\\(e => e.tags.forEach\\(t => { tagCount[t] = \\(tagCount[t]||0\\)+1 }\\)\\);\nObject.entries\\(tagCount\\).sort\\(\\(a,b\\)=>b[1]-a[1]\\).forEach\\(\\([t,c]\\) => console.log\\(c, t\\)\\);\n\")",
+      "Bash(cd C:/Users/Admin/cgym && node -e \"\nconst ex = JSON.parse\\(require\\('fs'\\).readFileSync\\('data/exercises.json','utf8'\\)\\);\n// Show exercises with '2026 Exam' tag\nex.filter\\(e => e.tags.includes\\('2026 Exam'\\)\\).forEach\\(e => console.log\\(e.id, e.title, JSON.stringify\\(e.tags\\)\\)\\);\n\")",
+      "Bash(cd C:/Users/Admin/cgym && node -e \"\nconst ex = JSON.parse\\(require\\('fs'\\).readFileSync\\('data/exercises.json','utf8'\\)\\);\n// Show exercises with 'Midterm 1 2026' tag - are these same as '2026 Exam'?\nex.filter\\(e => e.tags.includes\\('Midterm 1 2026'\\)\\).forEach\\(e => console.log\\(e.id, e.title, JSON.stringify\\(e.tags\\)\\)\\);\n\")",
+      "Bash(cd C:/Users/Admin/cgym && node -e \"\nconst fs = require\\('fs'\\);\nlet ex = JSON.parse\\(fs.readFileSync\\('data/exercises.json','utf8'\\)\\);\nconst before = ex.length;\n\n// 1. Delete exercises with '2026 Exam' tag\nex = ex.filter\\(e => !e.tags.includes\\('2026 Exam'\\)\\);\nconst afterDelete = ex.length;\n\n// 2. Merge 'Midterm 1 2024' and 'Midterm 1 2026' into 'Midterm 1'\nex.forEach\\(e => {\n  e.tags = e.tags.map\\(t => {\n    if \\(t === 'Midterm 1 2024' || t === 'Midterm 1 2026'\\) return 'Midterm 1';\n    return t;\n  }\\);\n  // deduplicate\n  e.tags = [...new Set\\(e.tags\\)];\n}\\);\n\nfs.writeFileSync\\('data/exercises.json', JSON.stringify\\(ex, null, 2\\)\\);\nconsole.log\\('Before:', before\\);\nconsole.log\\('Deleted:', before - afterDelete, '\\(2026 Exam\\)'\\);\nconsole.log\\('After:', afterDelete\\);\nconsole.log\\('Renamed Midterm 1 2024 + Midterm 1 2026 -> Midterm 1'\\);\n\")",
+      "Bash(cd C:/Users/Admin/cgym && node scripts/fix-tags.mjs)",
+      "Bash(cd C:/Users/Admin/cgym && node scripts/restore-2026.mjs)",
+      "Bash(grep -r \"Material\\\\|Reference\\\\|Knowledge\\\\|Cheatsheet\" /c/Users/Admin/cgym/src --include=\"*.tsx\" --include=\"*.ts\" 2>/dev/null | head -20)",
+      "Bash(ls -lah /c/Users/Admin/cgym/data/*.json 2>/dev/null)"
     ]
   }
 }
