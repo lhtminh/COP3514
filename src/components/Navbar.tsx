@@ -6,13 +6,11 @@ import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 import {
   CodeIcon,
-  BookOpenIcon,
   TerminalIcon,
 } from "lucide-react";
 
 const links = [
   { href: "/", label: "Workspace", icon: TerminalIcon },
-  { href: "/exercises", label: "Exercises", icon: BookOpenIcon },
   { href: "/cheatsheet", label: "Cheatsheet", icon: CodeIcon },
 ];
 
