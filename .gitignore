@@ -36,8 +36,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-# cgym data (local-only)
-/data/exercises.json
+# cgym data (local-only, user-specific)
 /data/progress.json
 /data/materials.json
 /data/materials/

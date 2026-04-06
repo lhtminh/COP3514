@@ -1,0 +1,2791 @@
+[
+  {
+    "title": "Sum Two Numbers",
+    "description": "Read two integers from stdin and print their sum.",
+    "difficulty": "easy",
+    "tags": [
+      "math",
+      "basics"
+    ],
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Read two numbers and print their sum\n    \n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3 5",
+        "expectedOutput": "8",
+        "label": "Basic addition"
+      },
+      {
+        "id": "tc2",
+        "input": "0 0",
+        "expectedOutput": "0",
+        "label": "Zeros"
+      },
+      {
+        "id": "tc3",
+        "input": "-1 1",
+        "expectedOutput": "0",
+        "label": "Negative number"
+      }
+    ],
+    "id": "ecf4e23c-44e5-4701-9184-2f25d34b910b"
+  },
+  {
+    "title": "Reverse Array",
+    "description": "Read an integer N followed by N integers. Print the integers in reverse order, separated by spaces.",
+    "difficulty": "easy",
+    "tags": [
+      "arrays",
+      "basics"
+    ],
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Read N, then N integers\n    // Print them in reverse order\n    \n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5\n1 2 3 4 5",
+        "expectedOutput": "5 4 3 2 1",
+        "label": "Five elements"
+      },
+      {
+        "id": "tc2",
+        "input": "1\n42",
+        "expectedOutput": "42",
+        "label": "Single element"
+      },
+      {
+        "id": "tc3",
+        "input": "3\n10 20 30",
+        "expectedOutput": "30 20 10",
+        "label": "Three elements"
+      }
+    ],
+    "id": "170cc643-8bd1-475b-a472-dd1e156c5756"
+  },
+  {
+    "title": "Find Min and Max",
+    "description": "Implement the function find_min_max that finds the smallest and largest elements in an integer array and stores the results through pointer arguments.\n\nFunction signature:\n  void find_min_max(int arr[], int n, int *min, int *max);\n\nThe main function is provided. You only need to implement the find_min_max function body.\n\nThe program reads n, then n integers, and prints the smallest and largest values.",
+    "difficulty": "medium",
+    "tags": [
+      "Pointers",
+      "Arrays"
+    ],
+    "starterCode": "#include <stdio.h>\n\nvoid find_min_max(int arr[], int n, int *min, int *max);\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[100];\n    for (int i = 0; i < n; i++)\n        scanf(\"%d\", &arr[i]);\n\n    int min, max;\n    find_min_max(arr, n, &min, &max);\n    printf(\"Smallest: %d\\n\", min);\n    printf(\"Largest: %d\\n\", max);\n    return 0;\n}\n\nvoid find_min_max(int arr[], int n, int *min, int *max) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "7\n5 1 9 3 7 15 -2",
+        "expectedOutput": "Smallest: -2\nLargest: 15",
+        "label": "Mixed positive and negative"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n10 10 10",
+        "expectedOutput": "Smallest: 10\nLargest: 10",
+        "label": "All same values"
+      },
+      {
+        "id": "tc3",
+        "input": "5\n-5 -1 -9 -3 -7",
+        "expectedOutput": "Smallest: -9\nLargest: -1",
+        "label": "All negative"
+      },
+      {
+        "id": "tc4",
+        "input": "1\n42",
+        "expectedOutput": "Smallest: 42\nLargest: 42",
+        "label": "Single element"
+      }
+    ],
+    "id": "196f6f8d-9212-411f-b887-daf6e8ebba1b"
+  },
+  {
+    "title": "Count Common Letters",
+    "description": "Implement the function number_of_common_letters that counts how many letters in string s also appear in string t. Both s and t contain only lowercase letters with no duplicates.\n\nFor example, if s=\"another\" and t=\"tuned\", the function returns 3 since \"t\", \"n\", \"e\" appear in both strings.\n\nUse pointer arithmetic only — no [] operator or index variables.\n\nFunction signature:\n  int number_of_common_letters(char *s, char *t);",
+    "difficulty": "medium",
+    "tags": [
+      "Pointers",
+      "Strings"
+    ],
+    "starterCode": "#include <stdio.h>\n\nint number_of_common_letters(char *s, char *t);\n\nint main() {\n    char s[100], t[100];\n    scanf(\"%s\", s);\n    scanf(\"%s\", t);\n    printf(\"%d\\n\", number_of_common_letters(s, t));\n    return 0;\n}\n\nint number_of_common_letters(char *s, char *t) {\n    // Use pointer arithmetic only\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "another\ntuned",
+        "expectedOutput": "3",
+        "label": "another vs tuned"
+      },
+      {
+        "id": "tc2",
+        "input": "abc\nxyz",
+        "expectedOutput": "0",
+        "label": "No common letters"
+      },
+      {
+        "id": "tc3",
+        "input": "abc\nabc",
+        "expectedOutput": "3",
+        "label": "Identical strings"
+      },
+      {
+        "id": "tc4",
+        "input": "abcdefg\ngfedcba",
+        "expectedOutput": "7",
+        "label": "All common, reversed"
+      }
+    ],
+    "id": "573db216-11c5-438f-bcb1-7bf8eb1221dd"
+  },
+  {
+    "title": "Same Set Check",
+    "description": "Complete the function same_set that checks if two integer arrays of length n contain the same set of numbers. Assume no duplicates in either array.\n\nReturn 1 if same set, 0 otherwise.\n\nExamples:\n- a={3,9,1,8}, b={8,3,1,9} → returns 1\n- a={8,5,2}, b={5,2,7} → returns 0\n\nUse pointer arithmetic only — no [] operator.\n\nFunction signature:\n  int same_set(int *a, int *b, int n);",
+    "difficulty": "hard",
+    "tags": [
+      "Pointers",
+      "Arrays"
+    ],
+    "starterCode": "#include <stdio.h>\n\nint same_set(int *a, int *b, int n);\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int a[100], b[100];\n    for (int i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (int i = 0; i < n; i++) scanf(\"%d\", &b[i]);\n    printf(\"%d\\n\", same_set(a, b, n));\n    return 0;\n}\n\nint same_set(int *a, int *b, int n) {\n    // Use pointer arithmetic only\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "4\n3 9 1 8\n8 3 1 9",
+        "expectedOutput": "1",
+        "label": "Same set, different order"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n8 5 2\n5 2 7",
+        "expectedOutput": "0",
+        "label": "Different sets"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n5\n5",
+        "expectedOutput": "1",
+        "label": "Single element, same"
+      },
+      {
+        "id": "tc4",
+        "input": "5\n1 2 3 4 5\n5 4 3 2 1",
+        "expectedOutput": "1",
+        "label": "Reversed order"
+      },
+      {
+        "id": "tc5",
+        "input": "3\n1 2 3\n1 2 4",
+        "expectedOutput": "0",
+        "label": "One element differs"
+      }
+    ],
+    "id": "910e6407-a86f-4441-b8f8-3d6cb77e99cd"
+  },
+  {
+    "title": "Decrypt Message",
+    "description": "Consider the following encryption algorithm: the 1st character is shown once, the 2nd is shown twice, the 3rd three times, and so on.\n\nExamples:\n- \"hi\" encrypts to \"hii\"\n- \"abc\" encrypts to \"abbccc\"\n- \"aaa\" encrypts to \"aaaaaa\"\n\nImplement decrypt: given the encrypted message, recover the original.\n\nHint: the first character of the result is message[0], the second is message[1+1]=message[2], the third is message[2+2+1]=message[5], etc. Skip ahead by increasing amounts.\n\nFunction signature:\n  void decrypt(char *message, char *result);",
+    "difficulty": "hard",
+    "tags": [
+      "Strings"
+    ],
+    "starterCode": "#include <stdio.h>\n#include <string.h>\n\nvoid decrypt(char *message, char *result);\n\nint main() {\n    char message[1000], result[1000];\n    fgets(message, sizeof(message), stdin);\n    message[strcspn(message, \"\\n\")] = 0;\n    decrypt(message, result);\n    printf(\"%s\\n\", result);\n    return 0;\n}\n\nvoid decrypt(char *message, char *result) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "hii",
+        "expectedOutput": "hi",
+        "label": "hi encrypted"
+      },
+      {
+        "id": "tc2",
+        "input": "abbccc",
+        "expectedOutput": "abc",
+        "label": "abc encrypted"
+      },
+      {
+        "id": "tc3",
+        "input": "aaaaaa",
+        "expectedOutput": "aaa",
+        "label": "aaa encrypted"
+      },
+      {
+        "id": "tc4",
+        "input": "a",
+        "expectedOutput": "a",
+        "label": "Single character"
+      },
+      {
+        "id": "tc5",
+        "input": "xyyzzzzzzz",
+        "expectedOutput": "xyz",
+        "label": "xyz encrypted (typo-safe)"
+      }
+    ],
+    "id": "1333afce-cc3a-4619-b54c-f1029d3b64a0"
+  },
+  {
+    "title": "Modify Array (Pointer Arithmetic)",
+    "description": "Write the function modify_array that uses pointer arithmetic to modify an array.\n\nThe function iterates from the second element to the last. For each position, it adds the offset (distance from start) to the PREVIOUS element:\n\n  for (p = arr+1; p < arr+n; p++)\n    *(p-1) += p - arr;\n\nFor {1, 2, 3, 4, 5}:\n- p at index 1: arr[0] += 1 → 2\n- p at index 2: arr[1] += 2 → 4\n- p at index 3: arr[2] += 3 → 6\n- p at index 4: arr[3] += 4 → 8\nResult: {2, 4, 6, 8, 5}\n\nRead n integers, apply modify_array, print all elements space-separated.",
+    "difficulty": "easy",
+    "tags": [
+      "Pointers",
+      "Arrays"
+    ],
+    "starterCode": "#include <stdio.h>\n\nvoid modify_array(int *arr, int n);\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[100];\n    for (int i = 0; i < n; i++)\n        scanf(\"%d\", &arr[i]);\n    modify_array(arr, n);\n    for (int i = 0; i < n; i++) {\n        if (i > 0) printf(\" \");\n        printf(\"%d\", arr[i]);\n    }\n    printf(\"\\n\");\n    return 0;\n}\n\nvoid modify_array(int *arr, int n) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5\n1 2 3 4 5",
+        "expectedOutput": "2 4 6 8 5",
+        "label": "{1,2,3,4,5}"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n10 20 30",
+        "expectedOutput": "11 22 30",
+        "label": "{10,20,30}"
+      },
+      {
+        "id": "tc3",
+        "input": "4\n0 0 0 0",
+        "expectedOutput": "1 2 3 0",
+        "label": "All zeros"
+      }
+    ],
+    "id": "77648328-7bff-449e-83cd-e8ba17fdc1ed"
+  },
+  {
+    "title": "String Concat Operations",
+    "description": "Given two words, perform the following string operations:\n\n1. Copy the second word into s2\n2. Copy the first word into s1\n3. Concatenate s1 onto the end of s2: strcat(s2, s1)\n4. Print s1 followed immediately by s2 (no space): printf(\"%s%s\", s1, s2)\n\nExample: input \"coding challenge\"\n- s2 = \"challenge\"\n- s1 = \"coding\"\n- strcat(s2, s1) → s2 = \"challengecoding\"\n- Output: \"codingchallengecoding\"",
+    "difficulty": "easy",
+    "tags": [
+      "Strings"
+    ],
+    "starterCode": "#include <stdio.h>\n#include <string.h>\n\nint main() {\n    char word1[100], word2[100];\n    char s1[200], s2[200];\n    scanf(\"%s %s\", word1, word2);\n\n    // 1. Copy word2 into s2\n    // 2. Copy word1 into s1\n    // 3. strcat(s2, s1)\n    // 4. Print s1 then s2 with no separator\n\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "coding challenge",
+        "expectedOutput": "codingchallengecoding",
+        "label": "coding + challenge"
+      },
+      {
+        "id": "tc2",
+        "input": "hello world",
+        "expectedOutput": "helloworldhello",
+        "label": "hello + world"
+      },
+      {
+        "id": "tc3",
+        "input": "ab cd",
+        "expectedOutput": "abcdab",
+        "label": "Short strings"
+      }
+    ],
+    "id": "513b0e84-49e0-4c1a-9098-fdd3362f9c0c"
+  },
+  {
+    "title": "Q1: Pointer Arithmetic Values",
+    "description": "What is the output of this program? Determine the three printed values.",
+    "tags": [
+      "Pointers",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int a[] = {1, 3, 5, 7, 9, 11};\n    int *p = a + 2;\n    int *q = a + 5;\n\n    printf(\"%d\\n\", *(p + 1) * (q - p));   // value 1\n    printf(\"%d\\n\", (a[1] - *q) + *p);     // value 2\n    printf(\"%d\\n\", (*p) * (*q + *a));      // value 3\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "21, -2, 936"
+      },
+      {
+        "id": "B",
+        "text": "63, -2, 936"
+      },
+      {
+        "id": "C",
+        "text": "21, -3, 60"
+      },
+      {
+        "id": "D",
+        "text": "63, -3, 60"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "e1066b64-832e-4988-8675-d19655c79370"
+  },
+  {
+    "title": "Q2: Pointer Array Tracing",
+    "description": "What value does this program print?",
+    "tags": [
+      "Pointers",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int a[] = {2, 4, 6, 8, 10};\n    int *p;\n    int sum = 0;\n\n    for (p = a; p < a + 5; p++)\n        if (*p % 4 == 0)\n            sum += *p;\n\n    printf(\"%d\\n\", sum - 4);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12"
+      },
+      {
+        "id": "B",
+        "text": "4"
+      },
+      {
+        "id": "C",
+        "text": "8"
+      },
+      {
+        "id": "D",
+        "text": "16"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "62d6475a-8eb3-46a4-8b42-99e3075911cf"
+  },
+  {
+    "title": "Q3: Command Line Arguments",
+    "description": "If this program is run as:  a.out hello\n\n(where argv[0] = \"a.out\")\n\nWhat is the output?",
+    "tags": [
+      "Strings",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main(int argc, char *argv[]) {\n    char *p = argv[1];\n    printf(\"%c\", argv[0][1]);\n    while (*p != '\\0') {\n        printf(\"%c\", *p);\n        p++;\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "hello"
+      },
+      {
+        "id": "B",
+        "text": "/hello"
+      },
+      {
+        "id": "C",
+        "text": ".hello"
+      },
+      {
+        "id": "D",
+        "text": "phello"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "a8aad9ae-1577-460a-a877-d9fdca4e9da4"
+  },
+  {
+    "title": "Q4: String Pointer Manipulation",
+    "description": "What is the output of this program?",
+    "tags": [
+      "Strings",
+      "Pointers",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n#include <string.h>\n\nint main() {\n    char s[] = \"input.bob\";\n    char *q = s;\n\n    // Move q to the '.'\n    while (*q != '.' && *q != '\\0')\n        q++;\n\n    // Print two chars before the dot, then from dot onward\n    printf(\"%c%c\", *(q-2), *(q-1));\n    printf(\"%s\\n\", q);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "tp.bob"
+      },
+      {
+        "id": "B",
+        "text": "pt.bob"
+      },
+      {
+        "id": "C",
+        "text": "ut.bob"
+      },
+      {
+        "id": "D",
+        "text": "tu.bob"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "30bfbbdc-7056-4fa8-8f06-abb9be854cef"
+  },
+  {
+    "title": "Q5: String Operations",
+    "description": "What does this program print given input: coding challenge",
+    "tags": [
+      "Strings",
+      "Midterm 2"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n#include <string.h>\n\nint main() {\n    char s1[200], s2[200];\n    char word1[] = \"coding\";\n    char word2[] = \"challenge\";\n\n    strcpy(s2, word2);\n    strcpy(s1, word1);\n    strcat(s2, s1);\n    printf(\"%s%s\\n\", s1, s2);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "codingchallenge"
+      },
+      {
+        "id": "B",
+        "text": "challengecodingcoding"
+      },
+      {
+        "id": "C",
+        "text": "codingchallengecoding"
+      },
+      {
+        "id": "D",
+        "text": "challengecoding"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "6e6a0cf9-81e6-471c-b39d-255f5bdea5d8"
+  },
+  {
+    "title": "Q6: Function Return Value",
+    "description": "What value does this program print?",
+    "tags": [
+      "Functions",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint mystery(int a, int b) {\n    if (a == 0)\n        return b;\n    return mystery(a - 1, b + 1) + 2;\n}\n\nint main() {\n    printf(\"%d\\n\", mystery(3, 2));\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "5"
+      },
+      {
+        "id": "B",
+        "text": "8"
+      },
+      {
+        "id": "C",
+        "text": "11"
+      },
+      {
+        "id": "D",
+        "text": "14"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "6802374b-7ccf-46d6-90a6-a63797c665c0"
+  },
+  {
+    "title": "Q7: Pass by Value vs Pointer",
+    "description": "What does this program print?",
+    "tags": [
+      "Pointers",
+      "Functions",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nvoid swap(int a, int *b) {\n    int temp = a;\n    a = *b;\n    *b = temp;\n}\n\nint main() {\n    int x = 3, y = -3;\n    swap(x, &y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3 3"
+      },
+      {
+        "id": "B",
+        "text": "-3 3"
+      },
+      {
+        "id": "C",
+        "text": "-3 -3"
+      },
+      {
+        "id": "D",
+        "text": "3 -3"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "72c220bb-2fa0-478f-a010-50f0b0036c85"
+  },
+  {
+    "title": "Q8: read_line Function Behavior",
+    "description": "Which statement correctly describes the behavior of this read_line function?",
+    "tags": [
+      "Strings",
+      "Functions",
+      "Midterm 2"
+    ],
+    "difficulty": "hard",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "int read_line(char str[], int n) {\n    int ch, i = 0;\n    while ((ch = getchar()) != '\\n') {\n        if (i < n)\n            str[i++] = ch;\n    }\n    str[i] = '\\0';\n    return i;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It reads at most n characters and discards the rest including newline"
+      },
+      {
+        "id": "B",
+        "text": "It reads at most n characters and stops at newline, keeping newline in buffer"
+      },
+      {
+        "id": "C",
+        "text": "It reads at most n characters into str, discards the rest, and consumes the newline"
+      },
+      {
+        "id": "D",
+        "text": "It reads all characters including newline into str"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "ccf39c7a-8d21-47eb-9b51-a1b05956fb9f"
+  },
+  {
+    "title": "Q9: strcmp Comparison",
+    "description": "Which expression is true (non-zero)?",
+    "tags": [
+      "Strings",
+      "Midterm 2"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <string.h>\n\n// Given these strings:\nchar s1[] = \"abc\";\nchar s2[] = \"abcd\";\nchar s3[] = \"abd\";\n\n// Which is true?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "strcmp(s3, s2) > 0"
+      },
+      {
+        "id": "B",
+        "text": "strcmp(s1, s2) == 0"
+      },
+      {
+        "id": "C",
+        "text": "strcmp(s1, s3) > 0"
+      },
+      {
+        "id": "D",
+        "text": "strcmp(s2, s3) > 0"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "c545c270-7a51-4caf-8e1f-e8c7e19a85dc"
+  },
+  {
+    "title": "Q10: Segmentation Fault",
+    "description": "At which line does this program cause a segmentation fault?",
+    "tags": [
+      "Pointers",
+      "Midterm 2"
+    ],
+    "difficulty": "hard",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>   // line 1\n#include <stdlib.h>  // line 2\n                     // line 3\nint main() {         // line 4\n    int *p;          // line 5\n    int a = 10;      // line 6\n    p = NULL;        // line 7\n    *p = 20;         // line 8\n    p = &a;          // line 9\n    *p = 30;         // line 10\n    printf(\"%d\\n\", a);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Line 5 - uninitialized pointer declaration"
+      },
+      {
+        "id": "B",
+        "text": "Line 8 - dereferencing NULL pointer"
+      },
+      {
+        "id": "C",
+        "text": "Line 10 - dereferencing p after reassignment"
+      },
+      {
+        "id": "D",
+        "text": "No segfault occurs"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "7568aecd-4fe4-42c5-b6f2-60382e36c573"
+  },
+  {
+    "title": "M1'24 Q1: Loop Output Tracing",
+    "description": "What does this program print? List all numbers on a single line separated by spaces.",
+    "tags": [
+      "Loops",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    for (int i = 1; i <= 20; i++) {\n        if (i % 2 != 0 && i % 3 != 0)\n            printf(\"%d \", i);\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 5 7 11 13 17 19"
+      },
+      {
+        "id": "B",
+        "text": "1 3 5 7 9 11 13 15 17 19"
+      },
+      {
+        "id": "C",
+        "text": "2 4 8 10 14 16 20"
+      },
+      {
+        "id": "D",
+        "text": "1 5 7 11 13 17 19 23"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "1ed5a05b-445f-4a08-84b4-d83a9fb0050a"
+  },
+  {
+    "title": "M1'24 Q2: Variable Tracing",
+    "description": "What are the four values printed by this program?",
+    "tags": [
+      "Loops",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int a = 4, b = 10, c = 2;\n    printf(\"%d \", a);\n    c = a + b;\n    printf(\"%d \", c);\n    a = c % b;\n    printf(\"%d \", a);\n    b = a + c / 7;\n    printf(\"%d\\n\", b);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4 14 4 6"
+      },
+      {
+        "id": "B",
+        "text": "4 14 4 5"
+      },
+      {
+        "id": "C",
+        "text": "4 12 2 6"
+      },
+      {
+        "id": "D",
+        "text": "2 14 4 6"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "e9489f1b-7340-47d1-aca5-24e990dcf209"
+  },
+  {
+    "title": "M1'24 Q3: Operator Precedence",
+    "description": "What does this program print?",
+    "tags": [
+      "Operators",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int a = 5, b = 3, c = 10, d = 2;\n    int w = a * b;\n    int x = w;\n    int y = w / a;\n    int z = c + d / d;\n\n    printf(\"%d %d %d %d\\n\", w, x, y, z);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "15 5 3 11"
+      },
+      {
+        "id": "B",
+        "text": "15 15 3 11"
+      },
+      {
+        "id": "C",
+        "text": "15 15 3 12"
+      },
+      {
+        "id": "D",
+        "text": "8 15 3 11"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "96b9a6e5-74b8-4cfa-8e21-44429a9016ed"
+  },
+  {
+    "title": "M1'24 Q4: Nested Loop Pattern",
+    "description": "What pattern does this program print?",
+    "tags": [
+      "Loops",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int rows[] = {5, 2, 1, 1, 1};\n    for (int i = 0; i < 5; i++) {\n        for (int j = 0; j < rows[i]; j++)\n            printf(\"x\");\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "xxxxx\\nxx\\nx\\nx\\nx"
+      },
+      {
+        "id": "B",
+        "text": "x\\nxx\\nxxx\\nxxxx\\nxxxxx"
+      },
+      {
+        "id": "C",
+        "text": "xxxxx\\nxxxx\\nxxx\\nxx\\nx"
+      },
+      {
+        "id": "D",
+        "text": "xxxxx\\nxx\\nxx\\nx\\nx"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "bc6bafb0-799f-4a76-8bb2-99fefb19a266"
+  },
+  {
+    "title": "M1'24 Q5: Perfect Square Check",
+    "description": "Which line correctly completes this program to detect if N is a perfect square?",
+    "tags": [
+      "Control Flow",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int N;\n    scanf(\"%d\", &N);\n    int is_perfect_square = 0;\n\n    for (int i = 1; i * i <= N; i++) {\n        /* MISSING LINE */\n    }\n\n    if (is_perfect_square)\n        printf(\"%d is a perfect square\\n\", N);\n    else\n        printf(\"%d is not a perfect square\\n\", N);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "if (i * i == N) { is_perfect_square = 1; }"
+      },
+      {
+        "id": "B",
+        "text": "if (i == N / i) { is_perfect_square = i; }"
+      },
+      {
+        "id": "C",
+        "text": "if (N % i == 0) { is_perfect_square = 1; }"
+      },
+      {
+        "id": "D",
+        "text": "is_perfect_square = (i * i == N);"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "2d11f83f-c268-4169-a33f-6cce22c286ff"
+  },
+  {
+    "title": "M1'24 Q6: Function Call Tracing",
+    "description": "What value does this program print?",
+    "tags": [
+      "Functions",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint f(int n) {\n    if (n == 0) return 0;\n    return n + f(n - 1);\n}\n\nint main() {\n    printf(\"%d\\n\", f(5));\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "10"
+      },
+      {
+        "id": "B",
+        "text": "15"
+      },
+      {
+        "id": "C",
+        "text": "20"
+      },
+      {
+        "id": "D",
+        "text": "5"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "23a9a303-41a8-4c80-b932-ec17ecc5d82c"
+  },
+  {
+    "title": "M1'24 Q7: Find the Error",
+    "description": "Which line contains the error that prevents this program from working correctly?",
+    "tags": [
+      "Debugging",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>           // line 1\n                              // line 2\nint sum(int n) {              // line 3\n    int total = 0;            // line 4\n    for (int i = 1; i < n; i++)  // line 5\n        total += i;           // line 6\n    return total;             // line 7\n}                             // line 8\n                              // line 9\nint main() {                  // line 10\n    // Should print 15 (1+2+3+4+5)\n    printf(\"%d\\n\", sum(5));\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Line 4 - total should be initialized to 1"
+      },
+      {
+        "id": "B",
+        "text": "Line 5 - condition should be i <= n"
+      },
+      {
+        "id": "C",
+        "text": "Line 6 - should be total = total * i"
+      },
+      {
+        "id": "D",
+        "text": "Line 7 - return should be inside the loop"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "e8d7bfa0-ff5f-4d21-b918-8a840383e27e"
+  },
+  {
+    "title": "M1'24 Q8: Array Counting",
+    "description": "What does this program print?",
+    "tags": [
+      "Arrays",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int arr[] = {4, 7, 2, 8, 1, 9, 3};\n    int count = 0;\n\n    for (int i = 0; i < 7; i++) {\n        if (arr[i] > 5)\n            count++;\n    }\n    printf(\"%d\\n\", count);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4"
+      },
+      {
+        "id": "B",
+        "text": "3"
+      },
+      {
+        "id": "C",
+        "text": "2"
+      },
+      {
+        "id": "D",
+        "text": "5"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "969f3d0c-dfc6-4f4c-a5ad-4343e43725a0"
+  },
+  {
+    "title": "M1'24 Q11: Swap Case",
+    "description": "Implement the function swap_case that converts lowercase letters to uppercase and uppercase letters to lowercase. Non-alphabetic characters should be returned unchanged.\n\nFunction signature:\n  char swap_case(char ch);\n\nThe main function reads a single character and prints the result of swap_case.",
+    "tags": [
+      "Characters",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "starterCode": "#include <stdio.h>\n\nchar swap_case(char ch);\n\nint main() {\n    char ch;\n    scanf(\"%c\", &ch);\n    printf(\"%c\\n\", swap_case(ch));\n    return 0;\n}\n\nchar swap_case(char ch) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "a",
+        "expectedOutput": "A",
+        "label": "lowercase to uppercase"
+      },
+      {
+        "id": "tc2",
+        "input": "Z",
+        "expectedOutput": "z",
+        "label": "uppercase to lowercase"
+      },
+      {
+        "id": "tc3",
+        "input": "5",
+        "expectedOutput": "5",
+        "label": "non-alphabetic unchanged"
+      },
+      {
+        "id": "tc4",
+        "input": "m",
+        "expectedOutput": "M",
+        "label": "lowercase m"
+      }
+    ],
+    "id": "1124f9e9-903e-4224-9800-849a56aaaf49"
+  },
+  {
+    "title": "M1'24 Q12: Recursive Odd Numbers",
+    "description": "Implement the recursive function odd_numbers that prints all odd numbers from n down to 1, each on a separate line.\n\nFor n=7, the output should be:\n7\n5\n3\n1\n\nFunction signature:\n  void odd_numbers(int n);",
+    "tags": [
+      "Recursion",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nvoid odd_numbers(int n);\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    odd_numbers(n);\n    return 0;\n}\n\nvoid odd_numbers(int n) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "7",
+        "expectedOutput": "7\n5\n3\n1",
+        "label": "n=7"
+      },
+      {
+        "id": "tc2",
+        "input": "10",
+        "expectedOutput": "9\n7\n5\n3\n1",
+        "label": "n=10 (even start)"
+      },
+      {
+        "id": "tc3",
+        "input": "1",
+        "expectedOutput": "1",
+        "label": "n=1"
+      },
+      {
+        "id": "tc4",
+        "input": "5",
+        "expectedOutput": "5\n3\n1",
+        "label": "n=5"
+      }
+    ],
+    "id": "9c95e9af-898f-4e85-b8ff-1afa703b9707"
+  },
+  {
+    "title": "M1'24 Q13: Is Doubled Array",
+    "description": "Implement the function is_doubled that checks whether the second half of an array is a copy of the first half.\n\nReturn 1 if the array is \"doubled\" (first half equals second half), 0 otherwise.\nIf the array has an odd number of elements, return 0.\n\nExamples:\n- {1,2,3,1,2,3} → 1 (doubled)\n- {1,2,3,4,5,6} → 0 (not doubled)\n- {1,2,3} → 0 (odd length)\n\nFunction signature:\n  int is_doubled(int a[], int n);",
+    "tags": [
+      "Arrays",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nint is_doubled(int a[], int n);\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int a[100];\n    for (int i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    printf(\"%d\\n\", is_doubled(a, n));\n    return 0;\n}\n\nint is_doubled(int a[], int n) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "6\n1 2 3 1 2 3",
+        "expectedOutput": "1",
+        "label": "doubled array"
+      },
+      {
+        "id": "tc2",
+        "input": "6\n1 2 3 4 5 6",
+        "expectedOutput": "0",
+        "label": "not doubled"
+      },
+      {
+        "id": "tc3",
+        "input": "3\n1 2 3",
+        "expectedOutput": "0",
+        "label": "odd length"
+      },
+      {
+        "id": "tc4",
+        "input": "4\n5 5 5 5",
+        "expectedOutput": "1",
+        "label": "all same elements"
+      },
+      {
+        "id": "tc5",
+        "input": "2\n1 1",
+        "expectedOutput": "1",
+        "label": "two elements, same"
+      },
+      {
+        "id": "tc6",
+        "input": "2\n1 2",
+        "expectedOutput": "0",
+        "label": "two elements, different"
+      }
+    ],
+    "id": "13d66b78-41b2-4551-85ed-912a5c9a87d2"
+  },
+  {
+    "title": "M1'24 Q14: Letter Frequency Count",
+    "description": "Read a line of lowercase letters (terminated by newline) and print the count of each letter a-z, space-separated.\n\nYou are given #define N 26. Print exactly 26 numbers: the count of 'a', count of 'b', ..., count of 'z'.\n\nExample: for input \"abcabc\", output is:\n2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0",
+    "tags": [
+      "Arrays",
+      "Characters",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\n#define N 26\n\nint main() {\n    // Your code here: read chars until newline,\n    // count frequency of each letter, print counts\n\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "abcabc",
+        "expectedOutput": "2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0",
+        "label": "abcabc"
+      },
+      {
+        "id": "tc2",
+        "input": "hello",
+        "expectedOutput": "0 0 0 0 1 0 0 1 0 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 0 0",
+        "label": "hello"
+      },
+      {
+        "id": "tc3",
+        "input": "zzz",
+        "expectedOutput": "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3",
+        "label": "zzz"
+      }
+    ],
+    "id": "65be95ae-3166-4bda-94cb-1a1f5358d0ab"
+  },
+  {
+    "title": "M1'26 Q1: Loop with Continue",
+    "description": "What does this program print?",
+    "tags": [
+      "Loops",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int sum = 0;\n    for (int i = 3; i < 7; i++) {\n        if (i % 2 == 0)\n            continue;\n        sum += i;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "15"
+      },
+      {
+        "id": "B",
+        "text": "8"
+      },
+      {
+        "id": "C",
+        "text": "18"
+      },
+      {
+        "id": "D",
+        "text": "12"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "58c581b7-4959-4821-92b4-4c811e63a340"
+  },
+  {
+    "title": "M1'26 Q2: Grade Classification",
+    "description": "What is the output of this program? Each grade is printed in brackets like [A], [B], etc.",
+    "tags": [
+      "Control Flow",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int scores[] = {75, 60, 85, 95, 80, 90, 92};\n    for (int i = 0; i < 7; i++) {\n        if (scores[i] >= 90)\n            printf(\"[A]\");\n        else if (scores[i] >= 80)\n            printf(\"[B]\");\n        else if (scores[i] >= 70)\n            printf(\"[C]\");\n        else\n            printf(\"[-]\");\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "[C][B][-][A][B][A][A]"
+      },
+      {
+        "id": "B",
+        "text": "[C][-][B][A][B][A][A]"
+      },
+      {
+        "id": "C",
+        "text": "[B][-][B][A][C][A][A]"
+      },
+      {
+        "id": "D",
+        "text": "[C][-][A][A][B][A][A]"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "8046fb71-a240-4a95-aee7-b1c6af8e7ddd"
+  },
+  {
+    "title": "M1'26 Q3: Fibonacci Fill-in",
+    "description": "Which line correctly fills in the blank to generate the Fibonacci sequence?",
+    "tags": [
+      "Arrays",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int a[20];\n    a[0] = 0;\n    a[1] = 1;\n\n    for (int i = 2; i < 10; i++) {\n        /* MISSING LINE */\n    }\n\n    // Should print: 0 1 1 2 3 5 8 13 21 34\n    for (int i = 0; i < 10; i++)\n        printf(\"%d \", a[i]);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "a[i] = a[i-1] + a[i-2];"
+      },
+      {
+        "id": "B",
+        "text": "a[i] = a[i+1] + a[i+2];"
+      },
+      {
+        "id": "C",
+        "text": "a[n] = a[n-1] + a[n-2];"
+      },
+      {
+        "id": "D",
+        "text": "a[i] = a[i-1] * a[i-2];"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "7b128841-5f49-4c65-89f2-0b846501c3c1"
+  },
+  {
+    "title": "M1'26 Q4: Reverse Digit Printing",
+    "description": "What does this program print?",
+    "tags": [
+      "Loops",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int n = 123456789;\n    while (n > 0) {\n        printf(\"%d\", n % 10);\n        n /= 10;\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "123456789"
+      },
+      {
+        "id": "B",
+        "text": "987654321"
+      },
+      {
+        "id": "C",
+        "text": "9876543210"
+      },
+      {
+        "id": "D",
+        "text": "87654321"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "d059cfc7-2e53-4bb9-be83-c4112798f879"
+  },
+  {
+    "title": "M1'26 Q5: Counting Multiples",
+    "description": "What does this program print?",
+    "tags": [
+      "Loops",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int count = 0;\n    for (int i = 1; i <= 50; i++) {\n        if (i % 7 == 0)\n            count++;\n    }\n    printf(\"%d\\n\", count);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6"
+      },
+      {
+        "id": "B",
+        "text": "7"
+      },
+      {
+        "id": "C",
+        "text": "8"
+      },
+      {
+        "id": "D",
+        "text": "5"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "d25abca0-41f0-4097-b498-aa5fdb4a7022"
+  },
+  {
+    "title": "M1'26 Q6: Variable Assignment Tracing",
+    "description": "What four values does this program print?",
+    "tags": [
+      "Operators",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int x = 19, y = 23;\n    int a = x + y;\n    int b = y;\n    int c = a + b;\n    printf(\"%d %d %d %d\\n\", a, b, c, a + b);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "42 23 65 65"
+      },
+      {
+        "id": "B",
+        "text": "42 19 65 61"
+      },
+      {
+        "id": "C",
+        "text": "42 23 65 42"
+      },
+      {
+        "id": "D",
+        "text": "19 23 42 65"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "1cceca5d-dc79-48fb-92a2-1ae4b5b5d995"
+  },
+  {
+    "title": "M1'26 Q7: Array and Loop Tracing",
+    "description": "What does this program print?",
+    "tags": [
+      "Arrays",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int a = 3, b = 7, c = 2;\n    int x = b - c;\n    int y = a + c - 1;\n    int z = c;\n    int w = y;\n    printf(\"%d %d %d %d\\n\", x, y, z, w);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "5 4 2 4"
+      },
+      {
+        "id": "B",
+        "text": "5 4 2 5"
+      },
+      {
+        "id": "C",
+        "text": "5 5 2 4"
+      },
+      {
+        "id": "D",
+        "text": "4 5 2 4"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "055b4698-0720-40bd-b113-969837576044"
+  },
+  {
+    "title": "M1'26 Q9: Descending Pair Count",
+    "description": "What does this program print?",
+    "tags": [
+      "Arrays",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int arr[] = {5, 2, 8, 1, 9, 3, 7};\n    int count = 0;\n    for (int i = 0; i < 6; i++) {\n        if (arr[i] > arr[i + 1])\n            count++;\n    }\n    printf(\"%d\\n\", count);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2"
+      },
+      {
+        "id": "B",
+        "text": "3"
+      },
+      {
+        "id": "C",
+        "text": "4"
+      },
+      {
+        "id": "D",
+        "text": "5"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "c824a5e4-8b46-42e8-a489-e39840048d0d"
+  },
+  {
+    "title": "M1'26 Q10: Array Slice Output",
+    "description": "What does this program print?",
+    "tags": [
+      "Arrays",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};\n    for (int i = 5; i <= 10; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "5 6 7 8 9 10"
+      },
+      {
+        "id": "B",
+        "text": "6 7 8 9 10 11"
+      },
+      {
+        "id": "C",
+        "text": "6 7 8 9 10 11 12"
+      },
+      {
+        "id": "D",
+        "text": "5 6 7 8 9 10 11"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "064ea500-c428-4125-9ffe-b2c4fd648eb1"
+  },
+  {
+    "title": "M1'26 Q8: Reverse Array In-Place",
+    "description": "Complete the code inside the while loop to reverse an array in-place using two index variables (start and end).\n\nSwap elements at positions start and end, then move inward.\n\nRead n integers, reverse them, and print space-separated.",
+    "tags": [
+      "Arrays",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int a[100];\n    for (int i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n\n    int start = 0, end = n - 1;\n    while (start < end) {\n        // Swap a[start] and a[end], then move inward\n        // Your code here\n    }\n\n    for (int i = 0; i < n; i++) {\n        if (i > 0) printf(\" \");\n        printf(\"%d\", a[i]);\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5\n1 2 3 4 5",
+        "expectedOutput": "5 4 3 2 1",
+        "label": "Five elements"
+      },
+      {
+        "id": "tc2",
+        "input": "4\n10 20 30 40",
+        "expectedOutput": "40 30 20 10",
+        "label": "Four elements"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n42",
+        "expectedOutput": "42",
+        "label": "Single element"
+      },
+      {
+        "id": "tc4",
+        "input": "6\n1 1 2 2 3 3",
+        "expectedOutput": "3 3 2 2 1 1",
+        "label": "With duplicates"
+      }
+    ],
+    "id": "48e28f3e-3842-401f-b7c7-06924d9863bb"
+  },
+  {
+    "title": "M1'26 Q11: Reverse Digits (Recursive)",
+    "description": "Implement the recursive function reverse_digit that prints the digits of a number in reverse order.\n\nFor example: reverse_digit(12345) prints 54321\n\nHint: use n % 10 to get the last digit, and n / 10 to remove it.\n\nFunction signature:\n  void reverse_digit(long int n);",
+    "tags": [
+      "Recursion",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nvoid reverse_digit(long int n);\n\nint main() {\n    long int n;\n    scanf(\"%ld\", &n);\n    reverse_digit(n);\n    printf(\"\\n\");\n    return 0;\n}\n\nvoid reverse_digit(long int n) {\n    // Your code here (recursive)\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "12345",
+        "expectedOutput": "54321",
+        "label": "12345"
+      },
+      {
+        "id": "tc2",
+        "input": "100",
+        "expectedOutput": "001",
+        "label": "Trailing zeros"
+      },
+      {
+        "id": "tc3",
+        "input": "7",
+        "expectedOutput": "7",
+        "label": "Single digit"
+      },
+      {
+        "id": "tc4",
+        "input": "9876543210",
+        "expectedOutput": "0123456789",
+        "label": "Large number"
+      }
+    ],
+    "id": "e399413b-bb18-40c8-9882-27ad3be0a506"
+  },
+  {
+    "title": "M1'26 Q12: Swap Case (convert)",
+    "description": "Implement the function convert that swaps the case of a character:\n- Lowercase → uppercase\n- Uppercase → lowercase\n- Non-alphabetic → unchanged\n\nFunction signature:\n  char convert(char ch);",
+    "tags": [
+      "Characters",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "starterCode": "#include <stdio.h>\n\nchar convert(char ch);\n\nint main() {\n    char ch;\n    scanf(\"%c\", &ch);\n    printf(\"%c\\n\", convert(ch));\n    return 0;\n}\n\nchar convert(char ch) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "a",
+        "expectedOutput": "A",
+        "label": "lower to upper"
+      },
+      {
+        "id": "tc2",
+        "input": "Z",
+        "expectedOutput": "z",
+        "label": "upper to lower"
+      },
+      {
+        "id": "tc3",
+        "input": "3",
+        "expectedOutput": "3",
+        "label": "digit unchanged"
+      },
+      {
+        "id": "tc4",
+        "input": "M",
+        "expectedOutput": "m",
+        "label": "uppercase M"
+      },
+      {
+        "id": "tc5",
+        "input": "!",
+        "expectedOutput": "!",
+        "label": "special char"
+      }
+    ],
+    "id": "c541c187-f30c-4f61-9c70-cb4d74b92d31"
+  },
+  {
+    "title": "M1'26 Q13: Check Array In Order",
+    "description": "Implement the function inOrder that returns 1 if the array is sorted in non-decreasing order, and 0 otherwise.\n\nFunction signature:\n  int inOrder(int a[], int n);",
+    "tags": [
+      "Arrays",
+      "Midterm 1"
+    ],
+    "difficulty": "easy",
+    "starterCode": "#include <stdio.h>\n\nint inOrder(int a[], int n);\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int a[100];\n    for (int i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    printf(\"%d\\n\", inOrder(a, n));\n    return 0;\n}\n\nint inOrder(int a[], int n) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5\n1 2 3 4 5",
+        "expectedOutput": "1",
+        "label": "Sorted ascending"
+      },
+      {
+        "id": "tc2",
+        "input": "5\n5 4 3 2 1",
+        "expectedOutput": "0",
+        "label": "Sorted descending"
+      },
+      {
+        "id": "tc3",
+        "input": "4\n1 3 2 4",
+        "expectedOutput": "0",
+        "label": "Out of order"
+      },
+      {
+        "id": "tc4",
+        "input": "4\n2 2 3 3",
+        "expectedOutput": "1",
+        "label": "With duplicates"
+      },
+      {
+        "id": "tc5",
+        "input": "1\n42",
+        "expectedOutput": "1",
+        "label": "Single element"
+      }
+    ],
+    "id": "dfc4b60d-5bce-47d9-8c9b-c1ad25dc6110"
+  },
+  {
+    "title": "M1'26 Q14: Compute Cross Products Sum",
+    "description": "Implement the function compute that calculates the sum of all products a1[i]*a2[j] for every pair (i, j).\n\nFor a1={1,2} and a2={3,4,5}:\nsum = 1*3 + 1*4 + 1*5 + 2*3 + 2*4 + 2*5 = 3+4+5+6+8+10 = 36\n\nFunction signature:\n  int compute(int a1[], int s1, int a2[], int s2);",
+    "tags": [
+      "Arrays",
+      "Midterm 1"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nint compute(int a1[], int s1, int a2[], int s2);\n\nint main() {\n    int s1, s2;\n    scanf(\"%d\", &s1);\n    int a1[100];\n    for (int i = 0; i < s1; i++) scanf(\"%d\", &a1[i]);\n    scanf(\"%d\", &s2);\n    int a2[100];\n    for (int i = 0; i < s2; i++) scanf(\"%d\", &a2[i]);\n    printf(\"%d\\n\", compute(a1, s1, a2, s2));\n    return 0;\n}\n\nint compute(int a1[], int s1, int a2[], int s2) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "2\n1 2\n3\n3 4 5",
+        "expectedOutput": "36",
+        "label": "{1,2} x {3,4,5}"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n1 1 1\n2\n2 3",
+        "expectedOutput": "15",
+        "label": "All ones times {2,3}"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n5\n1\n3",
+        "expectedOutput": "15",
+        "label": "Single elements"
+      },
+      {
+        "id": "tc4",
+        "input": "2\n-1 2\n2\n3 4",
+        "expectedOutput": "7",
+        "label": "With negative"
+      }
+    ],
+    "id": "80356421-2b09-4a84-9dd9-61568b26a115"
+  },
+  {
+    "title": "F'24 Q1: malloc for Struct",
+    "description": "Which statement correctly allocates memory for a struct employee and assigns it to the pointer new_employee?",
+    "tags": [
+      "Structs",
+      "Dynamic Memory",
+      "Final 2024"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct employee {\n    char name[50];\n    double salary;\n    int department;\n};\n\nstruct employee *new_employee;\n/* Which statement allocates memory for new_employee? */",
+    "choices": [
+      {
+        "id": "A",
+        "text": "new_employee = malloc(sizeof(struct employee));"
+      },
+      {
+        "id": "B",
+        "text": "new_employee = malloc(sizeof(employee));"
+      },
+      {
+        "id": "C",
+        "text": "malloc(new_employee, sizeof(struct employee));"
+      },
+      {
+        "id": "D",
+        "text": "new_employee = sizeof(struct employee);"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "152d9f6c-0bbf-4205-8088-a878e73ddce8"
+  },
+  {
+    "title": "F'24 Q3: Find Largest in Linked List",
+    "description": "Which statement correctly updates 'largest' to point to the current node if its value is greater?",
+    "tags": [
+      "Linked Lists",
+      "Final 2024"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct node {\n    int value;\n    struct node *next;\n};\n\n/* Inside a loop traversing the list with pointer p: */\n/* largest initially points to the first node */\nstruct node *largest = list;\nstruct node *p;\nfor (p = list->next; p != NULL; p = p->next) {\n    /* MISSING: update largest if p->value is bigger */\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "if (p->value > largest->value) largest = p;"
+      },
+      {
+        "id": "B",
+        "text": "if (p > largest) largest = p;"
+      },
+      {
+        "id": "C",
+        "text": "if (p->value > largest) largest->value = p->value;"
+      },
+      {
+        "id": "D",
+        "text": "if (*p > *largest) largest = p;"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "94591a9e-309f-458a-aaae-8e6d334eacec"
+  },
+  {
+    "title": "F'24 Q4: Linked List Traversal Output",
+    "description": "What does this program print?",
+    "tags": [
+      "Linked Lists",
+      "Final 2024"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nint main() {\n    // Build list: -1 -> 0 -> 1 -> 2 -> NULL\n    struct node n3 = {2, NULL};\n    struct node n2 = {1, &n3};\n    struct node n1 = {0, &n2};\n    struct node n0 = {-1, &n1};\n\n    struct node *p;\n    for (p = &n0; p != NULL; p = p->next)\n        printf(\"%d \", p->value);\n    printf(\"\\n\");\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "-1 0 1 2"
+      },
+      {
+        "id": "B",
+        "text": "2 1 0 -1"
+      },
+      {
+        "id": "C",
+        "text": "-1 0 1"
+      },
+      {
+        "id": "D",
+        "text": "0 1 2"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "b9c0c71c-cf2d-41ac-a84a-e620fe43fd3e"
+  },
+  {
+    "title": "F'24 Q5: Stack Operations Trace",
+    "description": "Given a stack implemented as a linked list (push adds to front, pop removes from front), what is the order of elements from top to bottom after these operations?\n\npush(1), push(2), push(3), pop(), push(4)",
+    "tags": [
+      "Stacks",
+      "Final 2024"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "// Stack operations (linked list, push to front):\n// push(1): stack = [1]\n// push(2): stack = [2, 1]\n// push(3): stack = [3, 2, 1]\n// pop():   removes 3, stack = [2, 1]\n// push(4): stack = [4, 2, 1]\n\n// Print from top to bottom:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4 2 1"
+      },
+      {
+        "id": "B",
+        "text": "1 2 4"
+      },
+      {
+        "id": "C",
+        "text": "2 3 1 4"
+      },
+      {
+        "id": "D",
+        "text": "4 3 2 1"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "b12003b7-e2a4-4c5d-bcb2-e73d1cb0c8d0"
+  },
+  {
+    "title": "F'24 Q6: Stack Push Implementation",
+    "description": "Which three statements correctly complete the push function for a stack implemented as a linked list?",
+    "tags": [
+      "Stacks",
+      "Linked Lists",
+      "Final 2024"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *push(struct node *top, int i) {\n    struct node *new_node = malloc(sizeof(struct node));\n    /* Statement 1: set new_node's value */\n    /* Statement 2: set new_node's next */\n    /* Statement 3: return */\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "new_node->value = i;  new_node->next = top;  return new_node;"
+      },
+      {
+        "id": "B",
+        "text": "new_node->value = i;  top->next = new_node;  return top;"
+      },
+      {
+        "id": "C",
+        "text": "new_node->value = i;  new_node->next = NULL;  return new_node;"
+      },
+      {
+        "id": "D",
+        "text": "top->value = i;  new_node->next = top;  return new_node;"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "f0b719ab-e984-455b-92cf-357b2972bae0"
+  },
+  {
+    "title": "F'24 Q7: Sum with Function Pointer",
+    "description": "Implement the function sum_from_to that computes f(start) + f(start+1) + ... + f(end), where f is a function pointer.\n\nFunction signature:\n  int sum_from_to(int start, int end, int (*f)(int));",
+    "tags": [
+      "Functions",
+      "Final 2024"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nint sum_from_to(int start, int end, int (*f)(int));\n\nint square(int x) { return x * x; }\nint identity(int x) { return x; }\n\nint main() {\n    int a, b, mode;\n    scanf(\"%d %d %d\", &a, &b, &mode);\n    if (mode == 0)\n        printf(\"%d\\n\", sum_from_to(a, b, identity));\n    else\n        printf(\"%d\\n\", sum_from_to(a, b, square));\n    return 0;\n}\n\nint sum_from_to(int start, int end, int (*f)(int)) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "1 5 0",
+        "expectedOutput": "15",
+        "label": "sum 1+2+3+4+5"
+      },
+      {
+        "id": "tc2",
+        "input": "1 3 1",
+        "expectedOutput": "14",
+        "label": "1^2+2^2+3^2"
+      },
+      {
+        "id": "tc3",
+        "input": "3 3 0",
+        "expectedOutput": "3",
+        "label": "single value"
+      },
+      {
+        "id": "tc4",
+        "input": "1 4 1",
+        "expectedOutput": "30",
+        "label": "1+4+9+16"
+      }
+    ],
+    "id": "19160258-f0d5-4b09-8ae9-1926949a1431"
+  },
+  {
+    "title": "F'24 Q8: Append to Linked List",
+    "description": "Implement append_to_list that adds a new node with value n to the END of a linked list. Return the head of the list.\n\nHandle the empty list case (list == NULL).\n\nInput: first line is the number of initial elements, followed by the elements, then the value to append.\nOutput: all elements space-separated.",
+    "tags": [
+      "Linked Lists",
+      "Dynamic Memory",
+      "Final 2024"
+    ],
+    "difficulty": "hard",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *append_to_list(struct node *list, int n);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *new_node = malloc(sizeof(struct node));\n        new_node->value = arr[i];\n        new_node->next = head;\n        head = new_node;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    int val;\n    scanf(\"%d\", &val);\n    struct node *list = build_list(arr, size);\n    list = append_to_list(list, val);\n    print_list(list);\n    return 0;\n}\n\nstruct node *append_to_list(struct node *list, int n) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n1 2 3\n4",
+        "expectedOutput": "1 2 3 4",
+        "label": "Append to existing list"
+      },
+      {
+        "id": "tc2",
+        "input": "0\n5",
+        "expectedOutput": "5",
+        "label": "Append to empty list"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n10\n20",
+        "expectedOutput": "10 20",
+        "label": "Append to single-element list"
+      }
+    ],
+    "id": "f931962d-1edd-4ac5-a3c3-472409e9f48a"
+  },
+  {
+    "title": "F'24 Q9: Delete Last Node",
+    "description": "Implement delete_last that removes the last node from a linked list and frees its memory. Return the head.\n\nHandle: empty list (return NULL) and single-node list.\n\nInput: number of elements, then elements.\nOutput: remaining list after deleting the last node.",
+    "tags": [
+      "Linked Lists",
+      "Dynamic Memory",
+      "Final 2024"
+    ],
+    "difficulty": "hard",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *delete_last(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *new_node = malloc(sizeof(struct node));\n        new_node->value = arr[i];\n        new_node->next = head;\n        head = new_node;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    if (list == NULL) { printf(\"(empty)\\n\"); return; }\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, size);\n    list = delete_last(list);\n    print_list(list);\n    return 0;\n}\n\nstruct node *delete_last(struct node *list) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "4\n1 2 3 4",
+        "expectedOutput": "1 2 3",
+        "label": "Delete from 4-element list"
+      },
+      {
+        "id": "tc2",
+        "input": "1\n5",
+        "expectedOutput": "(empty)",
+        "label": "Delete from single-element list"
+      },
+      {
+        "id": "tc3",
+        "input": "2\n10 20",
+        "expectedOutput": "10",
+        "label": "Delete from 2-element list"
+      }
+    ],
+    "id": "0eb086aa-f06a-455b-915b-c559037734cb"
+  },
+  {
+    "title": "F'25 Q1: Linked List Count",
+    "description": "What does this function return when called on the list 5 -> 3 -> 7 -> 3 -> NULL with target = 3?",
+    "tags": [
+      "Linked Lists",
+      "Final 2025"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "int count(struct node *list, int target) {\n    int c = 0;\n    struct node *p;\n    for (p = list; p != NULL; p = p->next)\n        if (p->value == target)\n            c++;\n    return c;\n}\n\n// Called with list: 5 -> 3 -> 7 -> 3 -> NULL\n// target = 3",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1"
+      },
+      {
+        "id": "B",
+        "text": "2"
+      },
+      {
+        "id": "C",
+        "text": "3"
+      },
+      {
+        "id": "D",
+        "text": "0"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "0657354c-a0e0-46d6-a1ad-3958b28635f8"
+  },
+  {
+    "title": "F'25 Q5: Recursive Call Trace",
+    "description": "What values of n are printed when f(8) is called?",
+    "tags": [
+      "Recursion",
+      "Final 2025"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "void f(int n) {\n    printf(\"n=%d\\n\", n);\n    if (n <= 6)\n        return;\n    f(n - 1);\n}\n\n// What is printed when calling f(8)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "n=8  n=7  n=6"
+      },
+      {
+        "id": "B",
+        "text": "n=8  n=7"
+      },
+      {
+        "id": "C",
+        "text": "n=6  n=7  n=8"
+      },
+      {
+        "id": "D",
+        "text": "n=8  n=7  n=6  n=5"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "df5a49ac-53d2-4a40-af4e-0fcc9e98606d"
+  },
+  {
+    "title": "F'25 Q8: Circular Linked List Detection",
+    "description": "In a circular singly linked list, the last node's next pointer points back to the head. Which condition detects that node p is the last node?",
+    "tags": [
+      "Linked Lists",
+      "Final 2025"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct node {\n    int value;\n    struct node *next;\n};\n\n// head points to the first node of a circular list\n// p is traversing the list\n// Which condition is true when p is the LAST node?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "p->next == NULL"
+      },
+      {
+        "id": "B",
+        "text": "p == NULL"
+      },
+      {
+        "id": "C",
+        "text": "p->next == p"
+      },
+      {
+        "id": "D",
+        "text": "p->next == head"
+      }
+    ],
+    "correctAnswer": "D",
+    "id": "f500aff0-7142-436e-8e0e-ab3d425053f7"
+  },
+  {
+    "title": "F'25 Q9: File I/O Concepts",
+    "description": "Which statement about file I/O in C is correct?",
+    "tags": [
+      "File I/O",
+      "Final 2025"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "// Consider these file operations:\nFILE *fp = fopen(\"data.txt\", \"r\");\n// ... read operations ...\nfclose(fp);",
+    "choices": [
+      {
+        "id": "A",
+        "text": "feof() returns true before attempting to read past the end of file"
+      },
+      {
+        "id": "B",
+        "text": "fclose() is optional; files are automatically closed when the program exits"
+      },
+      {
+        "id": "C",
+        "text": "fscanf() returns EOF when it fails to read any items"
+      },
+      {
+        "id": "D",
+        "text": "feof() returns true only AFTER a read operation has failed due to reaching end of file"
+      }
+    ],
+    "correctAnswer": "D",
+    "id": "b6c90c6e-928f-41ce-b088-afee9dec2295"
+  },
+  {
+    "title": "F'25 Q11: malloc for Struct",
+    "description": "Which statement correctly allocates memory for a struct debt?",
+    "tags": [
+      "Structs",
+      "Dynamic Memory",
+      "Final 2025"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct debt {\n    char creditor[100];\n    double amount;\n    double interest_rate;\n};\n\nstruct debt *new_debt;\n/* Which allocates memory? */",
+    "choices": [
+      {
+        "id": "A",
+        "text": "new_debt = malloc(sizeof(struct debt));"
+      },
+      {
+        "id": "B",
+        "text": "new_debt = malloc(sizeof(debt));"
+      },
+      {
+        "id": "C",
+        "text": "new_debt = calloc(struct debt);"
+      },
+      {
+        "id": "D",
+        "text": "malloc(new_debt, sizeof(struct debt));"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "165c839f-5e96-410e-8f59-830756bdf61e"
+  },
+  {
+    "title": "F'25 Q12: Struct Pointer Access",
+    "description": "Which expression correctly accesses the 'salary' field of an employee through a pointer?",
+    "tags": [
+      "Structs",
+      "Final 2025"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct employee {\n    char name[50];\n    double salary;\n};\n\nstruct employee *ptr;\n// ptr points to a valid employee struct\n// How to access salary?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "ptr.salary"
+      },
+      {
+        "id": "B",
+        "text": "(*ptr).salary  or equivalently  ptr->salary"
+      },
+      {
+        "id": "C",
+        "text": "ptr->salary"
+      },
+      {
+        "id": "D",
+        "text": "&ptr->salary"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "2e17ff91-ba24-4c13-a9dc-4e991d534114"
+  },
+  {
+    "title": "F'25 Q13: Struct Array Trace",
+    "description": "What does this program print?",
+    "tags": [
+      "Structs",
+      "Arrays",
+      "Final 2025"
+    ],
+    "difficulty": "hard",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nstruct item {\n    int id;\n    int qty;\n};\n\nint main() {\n    struct item inv[] = {{10, 28}, {20, 41}, {30, 9}, {40, 13}};\n    int n = 4;\n    for (int i = 0; i < n; i++)\n        printf(\"%d \", inv[i].qty);\n    printf(\"\\n\");\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "10 20 30 40"
+      },
+      {
+        "id": "B",
+        "text": "28 41 9 13"
+      },
+      {
+        "id": "C",
+        "text": "10 28 20 41"
+      },
+      {
+        "id": "D",
+        "text": "13 9 41 28"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "90911f03-fc0b-4088-9359-8c5c10ccb86e"
+  },
+  {
+    "title": "F'25 Q15: Linked List Deletion",
+    "description": "After executing: list = delete_first(list) on the list 10 -> 20 -> 30, which statement about the implementation is true?",
+    "tags": [
+      "Linked Lists",
+      "Final 2025"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct node *delete_first(struct node *list) {\n    struct node *new_head = list->next;\n    free(list);\n    return new_head;\n}\n// Called on list: 10 -> 20 -> 30 -> NULL",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Returns pointer to node with value 20; node 10 is freed"
+      },
+      {
+        "id": "B",
+        "text": "Returns pointer to node with value 30; nodes 10 and 20 are freed"
+      },
+      {
+        "id": "C",
+        "text": "Returns NULL; all nodes are freed"
+      },
+      {
+        "id": "D",
+        "text": "Returns pointer to node with value 10; nothing is freed"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "6868cd9a-90af-4b54-9076-543ce7bfde27"
+  },
+  {
+    "title": "F'25 Q2: Check Duplicate in Linked List",
+    "description": "Implement has_duplicate that checks if a node's value appears more than once in the linked list. For a given node p, check if any later node q has the same value.\n\nReturn 1 if any duplicate exists, 0 otherwise.\n\nInput: number of elements, then elements.\nOutput: 1 or 0.",
+    "tags": [
+      "Linked Lists",
+      "Final 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nint has_duplicate(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, size);\n    printf(\"%d\\n\", has_duplicate(list));\n    return 0;\n}\n\nint has_duplicate(struct node *list) {\n    // For each node p, check if any node q after p has the same value\n    // Return 1 if duplicate found, 0 otherwise\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "4\n1 2 3 2",
+        "expectedOutput": "1",
+        "label": "Has duplicate (2)"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n1 2 3",
+        "expectedOutput": "0",
+        "label": "No duplicates"
+      },
+      {
+        "id": "tc3",
+        "input": "5\n5 5 5 5 5",
+        "expectedOutput": "1",
+        "label": "All same"
+      },
+      {
+        "id": "tc4",
+        "input": "1\n42",
+        "expectedOutput": "0",
+        "label": "Single element"
+      }
+    ],
+    "id": "88ff7c43-7187-4737-ae84-2de45c555936"
+  },
+  {
+    "title": "F'25 Q4: Free All Nodes",
+    "description": "Implement free_all that frees every node in a linked list.\n\nHint: save list->next before freeing list.\n\nInput: number of elements, then elements.\nOutput: print \"done\" after freeing all nodes.",
+    "tags": [
+      "Linked Lists",
+      "Dynamic Memory",
+      "Final 2025"
+    ],
+    "difficulty": "easy",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nvoid free_all(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, size);\n    free_all(list);\n    printf(\"done\\n\");\n    return 0;\n}\n\nvoid free_all(struct node *list) {\n    // Free every node in the list\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n1 2 3",
+        "expectedOutput": "done",
+        "label": "Free 3-node list"
+      },
+      {
+        "id": "tc2",
+        "input": "0",
+        "expectedOutput": "done",
+        "label": "Empty list"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n5",
+        "expectedOutput": "done",
+        "label": "Single node"
+      }
+    ],
+    "id": "a3f5eef8-2442-4a52-a993-9a00e30fe7b1"
+  },
+  {
+    "title": "F'25 Q6: Sum with Function Pointer",
+    "description": "Complete the function sum_range that computes f(start) + f(start+1) + ... + f(end).\n\nFunction signature:\n  int sum_range(int start, int end, int (*f)(int));",
+    "tags": [
+      "Functions",
+      "Final 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nint sum_range(int start, int end, int (*f)(int));\n\nint cube(int x) { return x * x * x; }\nint identity(int x) { return x; }\n\nint main() {\n    int a, b, mode;\n    scanf(\"%d %d %d\", &a, &b, &mode);\n    if (mode == 0)\n        printf(\"%d\\n\", sum_range(a, b, identity));\n    else\n        printf(\"%d\\n\", sum_range(a, b, cube));\n    return 0;\n}\n\nint sum_range(int start, int end, int (*f)(int)) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "1 5 0",
+        "expectedOutput": "15",
+        "label": "sum 1..5"
+      },
+      {
+        "id": "tc2",
+        "input": "1 3 1",
+        "expectedOutput": "36",
+        "label": "1^3+2^3+3^3"
+      },
+      {
+        "id": "tc3",
+        "input": "5 5 0",
+        "expectedOutput": "5",
+        "label": "single value"
+      },
+      {
+        "id": "tc4",
+        "input": "2 4 1",
+        "expectedOutput": "99",
+        "label": "8+27+64"
+      }
+    ],
+    "id": "2b1349c8-c714-4506-a635-0ed9a85eefc4"
+  },
+  {
+    "title": "F'25 Q7: Reverse Array with Pointers",
+    "description": "Complete the code that reverses an array in-place using two pointers p (start) and q (end). Swap *p and *q, then move inward.\n\nFill in the 5 statements inside the while loop.",
+    "tags": [
+      "Pointers",
+      "Arrays",
+      "Final 2025"
+    ],
+    "difficulty": "easy",
+    "starterCode": "#include <stdio.h>\n\nvoid reverse(int *arr, int n) {\n    int *p = arr;\n    int *q = arr + n - 1;\n    while (p < q) {\n        // Swap *p and *q using a temp variable\n        // Then move p forward and q backward\n        // Your code here (5 statements)\n    }\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[100];\n    for (int i = 0; i < n; i++) scanf(\"%d\", &arr[i]);\n    reverse(arr, n);\n    for (int i = 0; i < n; i++) {\n        if (i > 0) printf(\" \");\n        printf(\"%d\", arr[i]);\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5\n1 2 3 4 5",
+        "expectedOutput": "5 4 3 2 1",
+        "label": "5 elements"
+      },
+      {
+        "id": "tc2",
+        "input": "4\n10 20 30 40",
+        "expectedOutput": "40 30 20 10",
+        "label": "4 elements"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n42",
+        "expectedOutput": "42",
+        "label": "single element"
+      }
+    ],
+    "id": "27bd392d-a1fc-4902-8fa9-986b7c9b7eba"
+  },
+  {
+    "title": "F'25 Q14: Delete First Node",
+    "description": "Implement delete_first that removes the first node from a linked list, frees it, and returns the new head.\n\nInput: number of elements, then elements.\nOutput: remaining list.",
+    "tags": [
+      "Linked Lists",
+      "Dynamic Memory",
+      "Final 2025"
+    ],
+    "difficulty": "easy",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *delete_first(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    if (list == NULL) { printf(\"(empty)\\n\"); return; }\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, size);\n    list = delete_first(list);\n    print_list(list);\n    return 0;\n}\n\nstruct node *delete_first(struct node *list) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n10 20 30",
+        "expectedOutput": "20 30",
+        "label": "Delete from 3 nodes"
+      },
+      {
+        "id": "tc2",
+        "input": "1\n5",
+        "expectedOutput": "(empty)",
+        "label": "Delete only node"
+      },
+      {
+        "id": "tc3",
+        "input": "4\n1 2 3 4",
+        "expectedOutput": "2 3 4",
+        "label": "Delete from 4 nodes"
+      }
+    ],
+    "id": "4dd633f4-f5fa-4772-b6f7-bf8d888034e6"
+  },
+  {
+    "title": "F'25 Q16: Stack Push with Error Check",
+    "description": "Implement push for a stack (linked list). Allocate a new node, check if malloc failed (print \"malloc failed\" and return top), set value and next, return the new top.",
+    "tags": [
+      "Stacks",
+      "Dynamic Memory",
+      "Final 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *push(struct node *top, int i);\n\nvoid print_stack(struct node *top) {\n    for (struct node *p = top; p != NULL; p = p->next) {\n        if (p != top) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    struct node *stack = NULL;\n    for (int i = 0; i < n; i++) {\n        int val;\n        scanf(\"%d\", &val);\n        stack = push(stack, val);\n    }\n    print_stack(stack);\n    return 0;\n}\n\nstruct node *push(struct node *top, int i) {\n    // Allocate new node\n    // Check malloc failure\n    // Set value and next\n    // Return new top\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n1 2 3",
+        "expectedOutput": "3 2 1",
+        "label": "Push 3 values"
+      },
+      {
+        "id": "tc2",
+        "input": "1\n42",
+        "expectedOutput": "42",
+        "label": "Push single value"
+      },
+      {
+        "id": "tc3",
+        "input": "5\n10 20 30 40 50",
+        "expectedOutput": "50 40 30 20 10",
+        "label": "Push 5 values"
+      }
+    ],
+    "id": "67bfc123-7519-4e93-97b5-38d2789c2270"
+  },
+  {
+    "title": "F'25 Q18: Update Inventory",
+    "description": "Implement update that searches an inventory array for a part with the given number. If found, prompt for quantity change and update on_hand. If not found, print \"Part not found.\"",
+    "tags": [
+      "Structs",
+      "Arrays",
+      "Final 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nstruct part {\n    int number;\n    int on_hand;\n};\n\nvoid update(struct part inv[], int np);\n\nint main() {\n    int np;\n    scanf(\"%d\", &np);\n    struct part inv[100];\n    for (int i = 0; i < np; i++)\n        scanf(\"%d %d\", &inv[i].number, &inv[i].on_hand);\n\n    update(inv, np);\n\n    // Print final inventory\n    for (int i = 0; i < np; i++)\n        printf(\"%d:%d\\n\", inv[i].number, inv[i].on_hand);\n    return 0;\n}\n\nvoid update(struct part inv[], int np) {\n    int number, change;\n    scanf(\"%d\", &number);\n\n    // Search for part with matching number\n    // If found: read change, update on_hand\n    // If not found: print \"Part not found.\\n\"\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n101 50\n102 30\n103 20\n102 10",
+        "expectedOutput": "101:50\n102:40\n103:20",
+        "label": "Update existing part"
+      },
+      {
+        "id": "tc2",
+        "input": "2\n101 50\n102 30\n999 5",
+        "expectedOutput": "Part not found.\n101:50\n102:30",
+        "label": "Part not found"
+      },
+      {
+        "id": "tc3",
+        "input": "2\n10 100\n20 200\n10 -50",
+        "expectedOutput": "10:50\n20:200",
+        "label": "Decrease quantity"
+      }
+    ],
+    "id": "02e8a897-b632-46aa-89b5-27ebd15cd8f7"
+  },
+  {
+    "title": "F'25 Q19: Insert Before Node",
+    "description": "Implement insert_before that inserts a new node with value n before the node with value nb in the list. If nb is not found, return the list unchanged.\n\nThe new_node is already allocated for you.\n\nInput: list size, elements, value to insert (n), value to insert before (nb).\nOutput: resulting list.",
+    "tags": [
+      "Linked Lists",
+      "Final 2025"
+    ],
+    "difficulty": "hard",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *insert_before(struct node *list, struct node *new_node, int n, int nb);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *nd = malloc(sizeof(struct node));\n        nd->value = arr[i];\n        nd->next = head;\n        head = nd;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    if (list == NULL) { printf(\"(empty)\\n\"); return; }\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    int n, nb;\n    scanf(\"%d %d\", &n, &nb);\n    struct node *list = build_list(arr, size);\n    struct node *new_node = malloc(sizeof(struct node));\n    list = insert_before(list, new_node, n, nb);\n    print_list(list);\n    return 0;\n}\n\nstruct node *insert_before(struct node *list, struct node *new_node, int n, int nb) {\n    // Set new_node->value = n\n    // Find node with value nb using prev/cur traversal\n    // If not found, return list unchanged\n    // If found at head, new_node->next = list, return new_node\n    // Otherwise, prev->next = new_node, new_node->next = cur, return list\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n1 2 3\n5 2",
+        "expectedOutput": "1 5 2 3",
+        "label": "Insert 5 before 2"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n1 2 3\n5 1",
+        "expectedOutput": "5 1 2 3",
+        "label": "Insert before head"
+      },
+      {
+        "id": "tc3",
+        "input": "3\n1 2 3\n5 9",
+        "expectedOutput": "1 2 3",
+        "label": "Target not found"
+      },
+      {
+        "id": "tc4",
+        "input": "1\n10\n5 10",
+        "expectedOutput": "5 10",
+        "label": "Insert before only node"
+      }
+    ],
+    "id": "60e6b912-5ec2-4685-a521-8ca9482d738b"
+  },
+  {
+    "title": "2026 Q1: String Functions Tracing",
+    "description": "What does this program print?",
+    "tags": [
+      "Strings",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n#include <string.h>\n\nint main() {\n    char s1[50], s2[50];\n    strcpy(s1, \"plank\");\n    strcpy(s2, \"squat\");\n\n    if (strcmp(s1, s2) < 0) {\n        strcat(s1, s2);\n    } else {\n        strcat(s2, s1);\n    }\n    printf(\"%s %s\\n\", s1, s2);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "planksquat squat"
+      },
+      {
+        "id": "B",
+        "text": "plank squatplank"
+      },
+      {
+        "id": "C",
+        "text": "planksquat squatplank"
+      },
+      {
+        "id": "D",
+        "text": "plank planksquat"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "27ec4ba6-5011-46e0-89f2-a0448e3a0e67"
+  },
+  {
+    "title": "2026 Q2: Pointer Arithmetic Expressions",
+    "description": "Given an array and pointers, what are the three printed values?",
+    "tags": [
+      "Pointers",
+      "Midterm 2"
+    ],
+    "difficulty": "hard",
+    "type": "multiple-choice",
+    "starterCode": "",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int a[] = {10, 20, 30, 40, 50, 60, 70};\n    int *p1 = a;\n    int *p2 = a + 2;\n    int *p3 = a + 4;\n    int *p4 = a + 3;\n\n    printf(\"1) %d\\n\", *p2 + 20);\n    printf(\"2) %d\\n\", (int)(p1 - p4));\n    printf(\"3) %d\\n\", *p1 - *p3);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1) 50  2) -3  3) -40"
+      },
+      {
+        "id": "B",
+        "text": "1) 50  2) -3  3) -52"
+      },
+      {
+        "id": "C",
+        "text": "1) 50  2) 3  3) -40"
+      },
+      {
+        "id": "D",
+        "text": "1) 40  2) -3  3) -52"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "ecae8f7f-a491-47f9-8a75-ac174a748794"
+  },
+  {
+    "title": "2026 Q4: Pointer Comparison",
+    "description": "What does this program print?",
+    "tags": [
+      "Pointers",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint check(int *a, int *b, int n) {\n    for (int i = 0; i < n; i++) {\n        if (a[i] != b[n - 1 - i])\n            return 0;\n    }\n    return 1;\n}\n\nint main() {\n    int x[] = {1, 2, 3};\n    int y[] = {3, 2, 1};\n    printf(\"%d\\n\", check(x, y, 3));\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "0"
+      },
+      {
+        "id": "B",
+        "text": "1"
+      },
+      {
+        "id": "C",
+        "text": "3"
+      },
+      {
+        "id": "D",
+        "text": "-1"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "37045ac0-9885-430c-9694-7ea36a848bc9"
+  },
+  {
+    "title": "2026 Q5: Pointer Loop Output",
+    "description": "What is the output of this program?",
+    "tags": [
+      "Pointers",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main() {\n    int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};\n    int *p;\n    for (p = a; p < a + 12; p += 2)\n        printf(\"%d \", *p);\n    printf(\"\\n\");\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2 4 6 8 10 12"
+      },
+      {
+        "id": "B",
+        "text": "1 2 3 4 5 6"
+      },
+      {
+        "id": "C",
+        "text": "1 3 5 7 9 11"
+      },
+      {
+        "id": "D",
+        "text": "1 4 7 10"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "7d884da2-7144-4484-b9cf-803a5198b605"
+  },
+  {
+    "title": "2026 Q7: Array Bug Identification",
+    "description": "This function is supposed to print all elements of an array, but it has a bug. Which answer correctly describes the issue?",
+    "tags": [
+      "Pointers",
+      "Debugging",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "",
+    "testCases": [],
+    "codeSnippet": "void print_array(int *a, int n) {\n    int *p;\n    for (p = a; p < a + n - 1; p++)\n        printf(\"%d \", *p);\n    printf(\"\\n\");\n}\n\n// Called with: int arr[] = {10, 20, 30, 40, 50};\n// print_array(arr, 5);\n// Expected: 10 20 30 40 50\n// Actual:   10 20 30 40",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Loop should start at p = a + 1"
+      },
+      {
+        "id": "B",
+        "text": "Condition should be p < a + n (not a + n - 1)"
+      },
+      {
+        "id": "C",
+        "text": "printf should use *(p+1) instead of *p"
+      },
+      {
+        "id": "D",
+        "text": "p++ should be p += 2"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "831e1082-d49e-485a-a7d6-5eaf29364ba2"
+  },
+  {
+    "title": "2026 Q9: Pointer Swap Analysis",
+    "description": "What does this program output?",
+    "tags": [
+      "Pointers",
+      "Functions",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nvoid mystery(int *p, int *q) {\n    int temp = *p;\n    *p = *q + *p;\n    *q = temp;\n}\n\nint main() {\n    int a = 5, b = 3;\n    mystery(&a, &b);\n    printf(\"%d %d\\n\", a, b);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "8 5"
+      },
+      {
+        "id": "B",
+        "text": "3 5"
+      },
+      {
+        "id": "C",
+        "text": "5 3"
+      },
+      {
+        "id": "D",
+        "text": "8 3"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "3b413339-18cc-42b2-a851-674a9ffd4485"
+  },
+  {
+    "title": "2026 Q10: Modify Array Tracing",
+    "description": "What does this program print?",
+    "tags": [
+      "Pointers",
+      "Arrays",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nvoid modify(int *a, int n) {\n    int *p;\n    for (p = a; p < a + n; p++) {\n        if (*p % 2 == 0)\n            *p = *p / 2;\n        else\n            *p = *p * 2 - 1;\n    }\n}\n\nint main() {\n    int arr[] = {1, 2, 3, 4, 5, 6};\n    modify(arr, 6);\n    for (int i = 0; i < 6; i++)\n        printf(\"%d \", arr[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 1 5 2 9 3"
+      },
+      {
+        "id": "B",
+        "text": "0 1 5 2 9 3"
+      },
+      {
+        "id": "C",
+        "text": "1 3 5 7 9 11"
+      },
+      {
+        "id": "D",
+        "text": "2 1 6 2 10 3"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "be20082f-ea9d-4c41-aee1-03f4f10f7ac2"
+  },
+  {
+    "title": "2026 Q3: Vector Multiply (Pointers)",
+    "description": "Complete the loop that multiplies two vectors element-by-element using pointer arithmetic only.\n\nGiven arrays v1, v2, and v3, each of size n, compute v3[i] = v1[i] * v2[i] for all i.\n\nYou must use pointers p, q, r — no array indexing [].",
+    "tags": [
+      "Pointers",
+      "Arrays",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n\n    int v1[100], v2[100], v3[100];\n    for (int i = 0; i < n; i++) scanf(\"%d\", &v1[i]);\n    for (int i = 0; i < n; i++) scanf(\"%d\", &v2[i]);\n\n    int *p, *q, *r;\n    // Use a single for loop with p, q, r to compute v3 = v1 * v2\n    // Your code here\n\n    for (int i = 0; i < n; i++) {\n        if (i > 0) printf(\" \");\n        printf(\"%d\", v3[i]);\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n1 2 3\n4 5 6",
+        "expectedOutput": "4 10 18",
+        "label": "Basic multiply"
+      },
+      {
+        "id": "tc2",
+        "input": "4\n2 0 -1 3\n3 5 4 -2",
+        "expectedOutput": "6 0 -4 -6",
+        "label": "With negatives and zero"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n7\n8",
+        "expectedOutput": "56",
+        "label": "Single element"
+      }
+    ],
+    "id": "06cd7312-0dda-428b-94a3-28f2e858d484"
+  },
+  {
+    "title": "2026 Q8: Command Line Argument Sum",
+    "description": "Write a program that takes integers as command line arguments and prints their sum.\n\nUse atoi() to convert string arguments to integers. Skip argv[0] (program name).\n\nExample: ./program 10 20 30 → prints: sum is 60\n\nFormat: printf(\"\\tsum is %d\\n\", sum);",
+    "tags": [
+      "Strings",
+      "Functions",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(int argc, char *argv[]) {\n    // Your code here: sum all argv[1] through argv[argc-1]\n    // using atoi() to convert strings to integers\n    // Print: printf(\"\\tsum is %d\\n\", sum);\n\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "10 20 30",
+        "expectedOutput": "\tsum is 60",
+        "label": "Three numbers"
+      },
+      {
+        "id": "tc2",
+        "input": "5",
+        "expectedOutput": "\tsum is 5",
+        "label": "Single number"
+      },
+      {
+        "id": "tc3",
+        "input": "-1 1",
+        "expectedOutput": "\tsum is 0",
+        "label": "Negative and positive"
+      }
+    ],
+    "id": "36140801-3161-4b58-8e39-963603fb22f0"
+  },
+  {
+    "title": "2026 Q11: Largest and Second Largest",
+    "description": "Implement the function find_top_two that finds the largest and second largest elements in an integer array.\n\nAssume the array has at least 2 elements. The first two elements initialize max and max2 (with max being the larger of the two).\n\nFunction signature:\n  void find_top_two(int arr[], int n, int *largest, int *second_largest);",
+    "tags": [
+      "Pointers",
+      "Arrays",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nvoid find_top_two(int arr[], int n, int *largest, int *second_largest);\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[100];\n    for (int i = 0; i < n; i++)\n        scanf(\"%d\", &arr[i]);\n\n    int largest, second_largest;\n    find_top_two(arr, n, &largest, &second_largest);\n    printf(\"Largest: %d\\nSecond: %d\\n\", largest, second_largest);\n    return 0;\n}\n\nvoid find_top_two(int arr[], int n, int *largest, int *second_largest) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5\n3 7 1 9 5",
+        "expectedOutput": "Largest: 9\nSecond: 7",
+        "label": "Mixed values"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n10 20 15",
+        "expectedOutput": "Largest: 20\nSecond: 15",
+        "label": "Three elements"
+      },
+      {
+        "id": "tc3",
+        "input": "4\n-1 -5 -2 -3",
+        "expectedOutput": "Largest: -1\nSecond: -2",
+        "label": "All negative"
+      },
+      {
+        "id": "tc4",
+        "input": "2\n5 8",
+        "expectedOutput": "Largest: 8\nSecond: 5",
+        "label": "Two elements"
+      }
+    ],
+    "id": "cbc0532e-92b1-4a96-9d3f-906c687000dd"
+  },
+  {
+    "title": "2026 Q12: Copy Non-Alphabetic Characters",
+    "description": "Complete the code that copies all non-alphabetic characters from str1 into str2, using pointer arithmetic.\n\nFor example: \"h3llo w0rld!\" → \"30!\"",
+    "tags": [
+      "Strings",
+      "Pointers",
+      "Midterm 2"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <string.h>\n\nint main() {\n    char str1[200], str2[200];\n    fgets(str1, sizeof(str1), stdin);\n    str1[strcspn(str1, \"\\n\")] = 0;\n\n    char *p, *q;\n    q = str2;\n    // Loop through str1 with pointer p\n    // If character is NOT alphabetic, copy it to str2 via q\n    // Your code here\n\n    *q = '\\0';\n    printf(\"%s\\n\", str2);\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "h3llo w0rld!",
+        "expectedOutput": "3 0!",
+        "label": "Mixed string"
+      },
+      {
+        "id": "tc2",
+        "input": "abc",
+        "expectedOutput": "",
+        "label": "All alphabetic"
+      },
+      {
+        "id": "tc3",
+        "input": "123!@#",
+        "expectedOutput": "123!@#",
+        "label": "No letters"
+      },
+      {
+        "id": "tc4",
+        "input": "A1B2C3",
+        "expectedOutput": "123",
+        "label": "Alternating"
+      }
+    ],
+    "id": "aacb3281-f09b-4817-af28-84167ad592c1"
+  },
+  {
+    "title": "2026 Q13: Test Reverse Arrays",
+    "description": "Implement the function test_reverse that returns 1 if array b is the reverse of array a, and 0 otherwise. Both arrays have n elements.\n\nUse pointer arithmetic only — no [] operator.\n\nFunction signature:\n  int test_reverse(int *a, int *b, int n);",
+    "tags": [
+      "Pointers",
+      "Arrays",
+      "Midterm 2"
+    ],
+    "difficulty": "hard",
+    "starterCode": "#include <stdio.h>\n\nint test_reverse(int *a, int *b, int n);\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int a[100], b[100];\n    for (int i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (int i = 0; i < n; i++) scanf(\"%d\", &b[i]);\n    printf(\"%d\\n\", test_reverse(a, b, n));\n    return 0;\n}\n\nint test_reverse(int *a, int *b, int n) {\n    // Use pointer arithmetic only\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n1 2 3\n3 2 1",
+        "expectedOutput": "1",
+        "label": "Reversed"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n1 2 3\n1 2 3",
+        "expectedOutput": "0",
+        "label": "Same order"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n5\n5",
+        "expectedOutput": "1",
+        "label": "Single element"
+      },
+      {
+        "id": "tc4",
+        "input": "4\n1 2 2 1\n1 2 2 1",
+        "expectedOutput": "1",
+        "label": "Palindrome array"
+      },
+      {
+        "id": "tc5",
+        "input": "4\n1 2 3 4\n4 3 2 0",
+        "expectedOutput": "0",
+        "label": "Almost reversed"
+      }
+    ],
+    "id": "c840c294-198e-4435-bc27-9b3335509ca8"
+  },
+  {
+    "title": "2026 Q14: Weird String Concatenation",
+    "description": "Implement weird_strcat: given strings s1 and s2, find N = min(strlen(s1), strlen(s2)). Then build result by taking the first N chars of s1, followed by the first N chars of s2.\n\nExamples:\n- s1=\"hello\", s2=\"world\" → \"helloworld\" (N=5)\n- s1=\"hi\", s2=\"world\" → \"hiwo\" (N=2)\n- s1=\"abcde\", s2=\"xy\" → \"abxy\" (N=2)\n\nFunction signature:\n  void weird_strcat(char *s1, char *s2, char *result);",
+    "tags": [
+      "Strings",
+      "Pointers",
+      "Midterm 2"
+    ],
+    "difficulty": "hard",
+    "starterCode": "#include <stdio.h>\n#include <string.h>\n\nvoid weird_strcat(char *s1, char *s2, char *result);\n\nint main() {\n    char s1[200], s2[200], result[400];\n    scanf(\"%s %s\", s1, s2);\n    weird_strcat(s1, s2, result);\n    printf(\"%s\\n\", result);\n    return 0;\n}\n\nvoid weird_strcat(char *s1, char *s2, char *result) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "hello world",
+        "expectedOutput": "helloworld",
+        "label": "Equal length"
+      },
+      {
+        "id": "tc2",
+        "input": "hi world",
+        "expectedOutput": "hiwo",
+        "label": "s1 shorter"
+      },
+      {
+        "id": "tc3",
+        "input": "abcde xy",
+        "expectedOutput": "abxy",
+        "label": "s2 shorter"
+      },
+      {
+        "id": "tc4",
+        "input": "a b",
+        "expectedOutput": "ab",
+        "label": "Single chars"
+      }
+    ],
+    "id": "22847f1f-570a-46bb-a220-dc23eba518eb"
+  }
+]
