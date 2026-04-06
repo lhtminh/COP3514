@@ -36,6 +36,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# claude code (local state)
+.claude/settings.local.json
+skills-lock.json
+.agents/
+
+# temp working files (exam extracts, images)
+/tmp/
+
 # cgym data (local-only, user-specific)
 /data/progress.json
 /data/materials.json
