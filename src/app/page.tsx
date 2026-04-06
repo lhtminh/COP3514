@@ -35,13 +35,19 @@ export default function Home() {
   const selectedExercise = selectedIndex >= 0 ? exercises[selectedIndex] : null;
 
   useEffect(() => {
+    if (selectedId) {
+      localStorage.setItem("cgym-selected-exercise", selectedId);
+    }
+  }, [selectedId]);
+
+  useEffect(() => {
     fetch("/api/exercises")
       .then((r) => r.json())
       .then((data: Exercise[]) => {
         setExercises(data);
-        if (!selectedId && data.length > 0) {
-          setSelectedId(data[0].id);
-        }
+        const saved = localStorage.getItem("cgym-selected-exercise");
+        const restored = saved && data.some((e) => e.id === saved);
+        setSelectedId(restored ? saved : data[0]?.id ?? null);
       })
       .catch(console.error);
   }, []);

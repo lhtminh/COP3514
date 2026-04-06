@@ -38,6 +38,9 @@ interface CodeEditorProps {
 
 const baseTheme = EditorView.theme({
   "&": { height: "100%" },
+  ".cm-content": {
+    fontVariantLigatures: "none",
+  },
   ".cm-gutters": {
     backgroundColor: "transparent",
     borderRight: "none",
