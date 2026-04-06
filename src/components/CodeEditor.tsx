@@ -20,6 +20,7 @@ import {
   defaultHighlightStyle,
   bracketMatching,
   indentOnInput,
+  indentUnit,
 } from "@codemirror/language";
 import { cpp } from "@codemirror/lang-cpp";
 import { oneDark } from "@codemirror/theme-one-dark";
@@ -79,6 +80,7 @@ export function CodeEditor({ value, onChange }: CodeEditorProps) {
           onChangeRef.current(update.state.doc.toString());
         }
       }),
+      indentUnit.of("    "),
       EditorState.tabSize.of(4),
     ],
     []

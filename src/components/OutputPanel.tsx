@@ -5,13 +5,15 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { TestResultItem } from "./TestResultItem";
 import type { CompileResult, TestResult } from "@/lib/types";
-import { TerminalIcon, FlaskConicalIcon, CheckCircle2Icon } from "lucide-react";
+import { TerminalIcon, FlaskConicalIcon, CheckCircle2Icon, KeyboardIcon } from "lucide-react";
 
 interface OutputPanelProps {
   output: CompileResult | null;
   testResults: TestResult[] | null;
   activeTab: string;
   onTabChange: (tab: string) => void;
+  stdin: string;
+  onStdinChange: (value: string) => void;
 }
 
 export function OutputPanel({
@@ -19,6 +21,8 @@ export function OutputPanel({
   testResults,
   activeTab,
   onTabChange,
+  stdin,
+  onStdinChange,
 }: OutputPanelProps) {
   const passCount = testResults?.filter((r) => r.passed).length ?? 0;
   const totalCount = testResults?.length ?? 0;
@@ -32,6 +36,10 @@ export function OutputPanel({
     >
       <div className="shrink-0 flex items-center border-b px-3 py-1.5">
         <TabsList>
+          <TabsTrigger value="input">
+            <KeyboardIcon />
+            Input
+          </TabsTrigger>
           <TabsTrigger value="output">
             <TerminalIcon />
             Output
@@ -50,6 +58,21 @@ export function OutputPanel({
           </TabsTrigger>
         </TabsList>
       </div>
+
+      <TabsContent value="input" className="flex-1">
+        <div className="h-full flex flex-col p-3">
+          <label className="text-[11px] font-medium text-muted-foreground mb-1.5">
+            stdin (for scanf, fgets, etc.)
+          </label>
+          <textarea
+            value={stdin}
+            onChange={(e) => onStdinChange(e.target.value)}
+            placeholder="Enter input here, one value per line..."
+            className="flex-1 min-h-0 resize-none rounded-md border bg-transparent px-3 py-2 font-mono text-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+            spellCheck={false}
+          />
+        </div>
+      </TabsContent>
 
       <TabsContent value="output" className="flex-1">
         <ScrollArea className="h-full">

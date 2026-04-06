@@ -29,6 +29,7 @@ export default function Home() {
   const [running, setRunning] = useState(false);
   const [testing, setTesting] = useState(false);
   const [outputTab, setOutputTab] = useState("output");
+  const [stdin, setStdin] = useState("");
 
   const selectedIndex = exercises.findIndex((e) => e.id === selectedId);
   const selectedExercise = selectedIndex >= 0 ? exercises[selectedIndex] : null;
@@ -87,7 +88,7 @@ export default function Home() {
       const res = await fetch("/api/compile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code }),
+        body: JSON.stringify({ code, stdin }),
       });
       const result = await res.json();
       setOutput(result);
@@ -96,7 +97,7 @@ export default function Home() {
     } finally {
       setRunning(false);
     }
-  }, [code]);
+  }, [code, stdin]);
 
   const handleTest = useCallback(async () => {
     if (!selectedExercise) return;
@@ -195,6 +196,8 @@ export default function Home() {
                   testResults={testResults}
                   outputTab={outputTab}
                   onOutputTabChange={setOutputTab}
+                  stdin={stdin}
+                  onStdinChange={setStdin}
                 />
               )}
             </div>

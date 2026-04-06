@@ -86,7 +86,8 @@
       "Bash(grep -r \"Material\\\\|Reference\\\\|Knowledge\\\\|Cheatsheet\" /c/Users/Admin/cgym/src --include=\"*.tsx\" --include=\"*.ts\" 2>/dev/null | head -20)",
       "Bash(ls -lah /c/Users/Admin/cgym/data/*.json 2>/dev/null)",
       "Bash(cd C:/Users/Admin/cgym && curl -s http://localhost:3000/api/exercises 2>&1 | head -c 500)",
-      "Bash(kill %1 2>/dev/null; rm -rf /tmp/cgym-test)"
+      "Bash(kill %1 2>/dev/null; rm -rf /tmp/cgym-test)",
+      "Bash(cd C:/Users/Admin/cgym && npx next build 2>&1 | tail -20)"
     ]
   }
 }

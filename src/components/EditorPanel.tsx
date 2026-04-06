@@ -23,6 +23,8 @@ interface EditorPanelProps {
   testResults: TestResult[] | null;
   outputTab: string;
   onOutputTabChange: (tab: string) => void;
+  stdin: string;
+  onStdinChange: (value: string) => void;
 }
 
 export function EditorPanel({
@@ -38,6 +40,8 @@ export function EditorPanel({
   testResults,
   outputTab,
   onOutputTabChange,
+  stdin,
+  onStdinChange,
 }: EditorPanelProps) {
   return (
     <div className="flex flex-col h-full">
@@ -66,6 +70,8 @@ export function EditorPanel({
             testResults={testResults}
             activeTab={outputTab}
             onTabChange={onOutputTabChange}
+            stdin={stdin}
+            onStdinChange={onStdinChange}
           />
         </ResizablePanel>
       </ResizablePanelGroup>
