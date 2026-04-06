@@ -1800,7 +1800,7 @@
     "description": "What does this function return when called on the list 5 -> 3 -> 7 -> 3 -> NULL with target = 3?",
     "tags": [
       "Linked Lists",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "easy",
     "type": "multiple-choice",
@@ -1833,7 +1833,7 @@
     "description": "What values of n are printed when f(8) is called?",
     "tags": [
       "Recursion",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "medium",
     "type": "multiple-choice",
@@ -1866,7 +1866,7 @@
     "description": "In a circular singly linked list, the last node's next pointer points back to the head. Which condition detects that node p is the last node?",
     "tags": [
       "Linked Lists",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "medium",
     "type": "multiple-choice",
@@ -1899,7 +1899,7 @@
     "description": "Which statement about file I/O in C is correct?",
     "tags": [
       "File I/O",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "medium",
     "type": "multiple-choice",
@@ -1933,7 +1933,7 @@
     "tags": [
       "Structs",
       "Dynamic Memory",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "easy",
     "type": "multiple-choice",
@@ -1966,7 +1966,7 @@
     "description": "Which expression correctly accesses the 'salary' field of an employee through a pointer?",
     "tags": [
       "Structs",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "easy",
     "type": "multiple-choice",
@@ -2000,7 +2000,7 @@
     "tags": [
       "Structs",
       "Arrays",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "hard",
     "type": "multiple-choice",
@@ -2033,7 +2033,7 @@
     "description": "After executing: list = delete_first(list) on the list 10 -> 20 -> 30, which statement about the implementation is true?",
     "tags": [
       "Linked Lists",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "easy",
     "type": "multiple-choice",
@@ -2066,7 +2066,7 @@
     "description": "Implement has_duplicate that checks if a node's value appears more than once in the linked list. For a given node p, check if any later node q has the same value.\n\nReturn 1 if any duplicate exists, 0 otherwise.\n\nInput: number of elements, then elements.\nOutput: 1 or 0.",
     "tags": [
       "Linked Lists",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "medium",
     "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nint has_duplicate(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, size);\n    printf(\"%d\\n\", has_duplicate(list));\n    return 0;\n}\n\nint has_duplicate(struct node *list) {\n    // For each node p, check if any node q after p has the same value\n    // Return 1 if duplicate found, 0 otherwise\n}",
@@ -2104,7 +2104,7 @@
     "tags": [
       "Linked Lists",
       "Dynamic Memory",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "easy",
     "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nvoid free_all(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, size);\n    free_all(list);\n    printf(\"done\\n\");\n    return 0;\n}\n\nvoid free_all(struct node *list) {\n    // Free every node in the list\n}",
@@ -2135,7 +2135,7 @@
     "description": "Complete the function sum_range that computes f(start) + f(start+1) + ... + f(end).\n\nFunction signature:\n  int sum_range(int start, int end, int (*f)(int));",
     "tags": [
       "Functions",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "medium",
     "starterCode": "#include <stdio.h>\n\nint sum_range(int start, int end, int (*f)(int));\n\nint cube(int x) { return x * x * x; }\nint identity(int x) { return x; }\n\nint main() {\n    int a, b, mode;\n    scanf(\"%d %d %d\", &a, &b, &mode);\n    if (mode == 0)\n        printf(\"%d\\n\", sum_range(a, b, identity));\n    else\n        printf(\"%d\\n\", sum_range(a, b, cube));\n    return 0;\n}\n\nint sum_range(int start, int end, int (*f)(int)) {\n    // Your code here\n}",
@@ -2173,7 +2173,7 @@
     "tags": [
       "Pointers",
       "Arrays",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "easy",
     "starterCode": "#include <stdio.h>\n\nvoid reverse(int *arr, int n) {\n    int *p = arr;\n    int *q = arr + n - 1;\n    while (p < q) {\n        // Swap *p and *q using a temp variable\n        // Then move p forward and q backward\n        // Your code here (5 statements)\n    }\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[100];\n    for (int i = 0; i < n; i++) scanf(\"%d\", &arr[i]);\n    reverse(arr, n);\n    for (int i = 0; i < n; i++) {\n        if (i > 0) printf(\" \");\n        printf(\"%d\", arr[i]);\n    }\n    printf(\"\\n\");\n    return 0;\n}",
@@ -2205,7 +2205,7 @@
     "tags": [
       "Linked Lists",
       "Dynamic Memory",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "easy",
     "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *delete_first(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    if (list == NULL) { printf(\"(empty)\\n\"); return; }\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, size);\n    list = delete_first(list);\n    print_list(list);\n    return 0;\n}\n\nstruct node *delete_first(struct node *list) {\n    // Your code here\n}",
@@ -2237,7 +2237,7 @@
     "tags": [
       "Stacks",
       "Dynamic Memory",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "medium",
     "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *push(struct node *top, int i);\n\nvoid print_stack(struct node *top) {\n    for (struct node *p = top; p != NULL; p = p->next) {\n        if (p != top) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    struct node *stack = NULL;\n    for (int i = 0; i < n; i++) {\n        int val;\n        scanf(\"%d\", &val);\n        stack = push(stack, val);\n    }\n    print_stack(stack);\n    return 0;\n}\n\nstruct node *push(struct node *top, int i) {\n    // Allocate new node\n    // Check malloc failure\n    // Set value and next\n    // Return new top\n}",
@@ -2269,7 +2269,7 @@
     "tags": [
       "Structs",
       "Arrays",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "medium",
     "starterCode": "#include <stdio.h>\n\nstruct part {\n    int number;\n    int on_hand;\n};\n\nvoid update(struct part inv[], int np);\n\nint main() {\n    int np;\n    scanf(\"%d\", &np);\n    struct part inv[100];\n    for (int i = 0; i < np; i++)\n        scanf(\"%d %d\", &inv[i].number, &inv[i].on_hand);\n\n    update(inv, np);\n\n    // Print final inventory\n    for (int i = 0; i < np; i++)\n        printf(\"%d:%d\\n\", inv[i].number, inv[i].on_hand);\n    return 0;\n}\n\nvoid update(struct part inv[], int np) {\n    int number, change;\n    scanf(\"%d\", &number);\n\n    // Search for part with matching number\n    // If found: read change, update on_hand\n    // If not found: print \"Part not found.\\n\"\n}",
@@ -2300,7 +2300,7 @@
     "description": "Implement insert_before that inserts a new node with value n before the node with value nb in the list. If nb is not found, return the list unchanged.\n\nThe new_node is already allocated for you.\n\nInput: list size, elements, value to insert (n), value to insert before (nb).\nOutput: resulting list.",
     "tags": [
       "Linked Lists",
-      "Final 2025"
+      "Final Spring 2025"
     ],
     "difficulty": "hard",
     "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *insert_before(struct node *list, struct node *new_node, int n, int nb);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *nd = malloc(sizeof(struct node));\n        nd->value = arr[i];\n        nd->next = head;\n        head = nd;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    if (list == NULL) { printf(\"(empty)\\n\"); return; }\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    int n, nb;\n    scanf(\"%d %d\", &n, &nb);\n    struct node *list = build_list(arr, size);\n    struct node *new_node = malloc(sizeof(struct node));\n    list = insert_before(list, new_node, n, nb);\n    print_list(list);\n    return 0;\n}\n\nstruct node *insert_before(struct node *list, struct node *new_node, int n, int nb) {\n    // Set new_node->value = n\n    // Find node with value nb using prev/cur traversal\n    // If not found, return list unchanged\n    // If found at head, new_node->next = list, return new_node\n    // Otherwise, prev->next = new_node, new_node->next = cur, return list\n}",
@@ -2787,5 +2787,886 @@
       }
     ],
     "id": "22847f1f-570a-46bb-a220-dc23eba518eb"
+  },
+  {
+    "title": "FF'25 Q3: Allocate Struct with malloc",
+    "description": "Which line correctly allocates memory for a `struct tutor` and assigns it to `new_node`?",
+    "tags": [
+      "Dynamic Memory",
+      "Structs",
+      "Final Fall 2025"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct tutor {\n    char name[50];\n    int rating;\n    struct tutor *next;\n};\n\nstruct tutor *new_node;\n/* Which line correctly allocates memory? */",
+    "choices": [
+      {
+        "id": "A",
+        "text": "new_node = malloc(struct tutor);"
+      },
+      {
+        "id": "B",
+        "text": "new_node = malloc(sizeof(struct tutor));"
+      },
+      {
+        "id": "C",
+        "text": "new_node = sizeof(malloc(struct tutor));"
+      },
+      {
+        "id": "D",
+        "text": "new_node = malloc(sizeof(tutor));"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "c23d9f71-75e3-40c6-b1ad-21545f565c10"
+  },
+  {
+    "title": "FF'25 Q6: Stack Pop Operation",
+    "description": "Implement the function `pop` that removes the top element from a stack (linked list). Store the popped value in `*p` and return the new top of the stack. If the stack is empty, return NULL without modifying `*p`.\n\nFunction signature:\n  struct node *pop(struct node *top, int *p);",
+    "tags": [
+      "Stacks",
+      "Linked Lists",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *pop(struct node *top, int *p);\n\nstruct node *push(struct node *top, int val) {\n    struct node *n = malloc(sizeof(struct node));\n    n->value = val;\n    n->next = top;\n    return n;\n}\n\nvoid print_stack(struct node *top) {\n    for (struct node *p = top; p != NULL; p = p->next) {\n        if (p != top) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    struct node *stack = NULL;\n    for (int i = 0; i < n; i++) {\n        int val;\n        scanf(\"%d\", &val);\n        stack = push(stack, val);\n    }\n    int popped;\n    stack = pop(stack, &popped);\n    printf(\"%d\\n\", popped);\n    print_stack(stack);\n    return 0;\n}\n\nstruct node *pop(struct node *top, int *p) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n10 20 30",
+        "expectedOutput": "30\n20 10",
+        "label": "Pop from 3-element stack"
+      },
+      {
+        "id": "tc2",
+        "input": "1\n42",
+        "expectedOutput": "42\n",
+        "label": "Pop from single-element stack"
+      },
+      {
+        "id": "tc3",
+        "input": "4\n1 2 3 4",
+        "expectedOutput": "4\n3 2 1",
+        "label": "Pop from 4-element stack"
+      }
+    ],
+    "id": "24123cc1-4404-4819-be6e-ee7a91c3df4a"
+  },
+  {
+    "title": "FF'25 Q11: Find Duplicate in Linked List",
+    "description": "Implement the function `find_duplicate` that searches a linked list for any value that appears more than once. Return the duplicate value if found, or -1 if all values are unique.\n\nUse a nested loop: for each node `p`, check all subsequent nodes `q` to see if `p->value == q->value`.\n\nFunction signature:\n  int find_duplicate(struct node *list);",
+    "tags": [
+      "Linked Lists",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nint find_duplicate(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, size);\n    printf(\"%d\\n\", find_duplicate(list));\n    return 0;\n}\n\nint find_duplicate(struct node *list) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5\n1 2 3 2 4",
+        "expectedOutput": "2",
+        "label": "Duplicate in middle"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n1 2 3",
+        "expectedOutput": "-1",
+        "label": "No duplicates"
+      },
+      {
+        "id": "tc3",
+        "input": "4\n5 5 5 5",
+        "expectedOutput": "5",
+        "label": "All same"
+      },
+      {
+        "id": "tc4",
+        "input": "6\n1 2 3 4 5 1",
+        "expectedOutput": "1",
+        "label": "Duplicate at ends"
+      }
+    ],
+    "id": "df438ce9-d4c9-43fc-a332-f828fbeac563"
+  },
+  {
+    "title": "FF'25 Q12: Using qsort",
+    "description": "You are given an array `arr` of 50 integers and a comparison function `int_cmp`. Write the single line that calls `qsort` to sort the array in ascending order.\n\nComplete the `sort_array` function which should call `qsort` on the array.",
+    "tags": [
+      "Arrays",
+      "Functions",
+      "Final Fall 2025"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n#include <stdlib.h>\n\nint int_cmp(const void *a, const void *b) {\n    return (*(int *)a - *(int *)b);\n}\n\nint main() {\n    int arr[50];\n    // ... arr is filled with values ...\n\n    /* Which line correctly sorts arr using qsort? */\n\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "qsort(arr, 50, sizeof(int), int_cmp);"
+      },
+      {
+        "id": "B",
+        "text": "qsort(arr, sizeof(int), 50, int_cmp);"
+      },
+      {
+        "id": "C",
+        "text": "qsort(50, arr, sizeof(int), int_cmp);"
+      },
+      {
+        "id": "D",
+        "text": "qsort(arr, 50, int_cmp, sizeof(int));"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "1473a93b-aa72-4d07-81e1-68094c6101f1"
+  },
+  {
+    "title": "FF'25 Q13: Prepend to Linked List",
+    "description": "Implement the function `add_to_list` that creates a new node with value `i`, inserts it at the **beginning** of the linked list, and returns the new head.\n\nFunction signature:\n  struct node *add_to_list(struct node *list, int i);",
+    "tags": [
+      "Linked Lists",
+      "Final Fall 2025"
+    ],
+    "difficulty": "easy",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *add_to_list(struct node *list, int i);\n\nvoid print_list(struct node *list) {\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    struct node *list = NULL;\n    for (int i = 0; i < n; i++) {\n        int val;\n        scanf(\"%d\", &val);\n        list = add_to_list(list, val);\n    }\n    print_list(list);\n    return 0;\n}\n\nstruct node *add_to_list(struct node *list, int i) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n1 2 3",
+        "expectedOutput": "3 2 1",
+        "label": "Prepend 3 elements"
+      },
+      {
+        "id": "tc2",
+        "input": "1\n42",
+        "expectedOutput": "42",
+        "label": "Prepend to empty list"
+      },
+      {
+        "id": "tc3",
+        "input": "5\n10 20 30 40 50",
+        "expectedOutput": "50 40 30 20 10",
+        "label": "5 elements reversed"
+      }
+    ],
+    "id": "40b259df-29e1-40f7-9aeb-dd810233d108"
+  },
+  {
+    "title": "FF'25 Q15: Last Occurrence in Linked List",
+    "description": "Implement the function `find_last` that traverses a linked list and returns a pointer to the **last** node whose value equals `n`. If no node matches, return NULL.\n\nFunction signature:\n  struct node *find_last(struct node *list, int n);",
+    "tags": [
+      "Linked Lists",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *find_last(struct node *list, int n);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *node = malloc(sizeof(struct node));\n        node->value = arr[i];\n        node->next = head;\n        head = node;\n    }\n    return head;\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    int target;\n    scanf(\"%d\", &target);\n    struct node *list = build_list(arr, size);\n    struct node *result = find_last(list, target);\n    if (result)\n        printf(\"%d\\n\", result->value);\n    else\n        printf(\"NULL\\n\");\n    return 0;\n}\n\nstruct node *find_last(struct node *list, int n) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5\n3 7 3 5 3\n3",
+        "expectedOutput": "3",
+        "label": "Multiple occurrences"
+      },
+      {
+        "id": "tc2",
+        "input": "4\n1 2 3 4\n5",
+        "expectedOutput": "NULL",
+        "label": "Not found"
+      },
+      {
+        "id": "tc3",
+        "input": "3\n10 20 10\n10",
+        "expectedOutput": "10",
+        "label": "First and last"
+      },
+      {
+        "id": "tc4",
+        "input": "1\n7\n7",
+        "expectedOutput": "7",
+        "label": "Single element match"
+      }
+    ],
+    "id": "1e187232-99ff-48b7-8e09-5f291bda3a56"
+  },
+  {
+    "title": "FF'25 Q16: Delete Last Node",
+    "description": "Implement the function `delete_last` that removes the **last** node from a linked list and returns the updated head.\n\nHandle these cases:\n- Empty list: return NULL\n- Single node: free it and return NULL\n- Multiple nodes: find the second-to-last node, free the last, set second-to-last's next to NULL\n\nFunction signature:\n  struct node *delete_last(struct node *list);",
+    "tags": [
+      "Linked Lists",
+      "Final Fall 2025"
+    ],
+    "difficulty": "hard",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *delete_last(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    if (list == NULL) {\n        printf(\"(empty)\\n\");\n        return;\n    }\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, size);\n    list = delete_last(list);\n    print_list(list);\n    return 0;\n}\n\nstruct node *delete_last(struct node *list) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "4\n1 2 3 4",
+        "expectedOutput": "1 2 3",
+        "label": "Delete last of 4"
+      },
+      {
+        "id": "tc2",
+        "input": "1\n42",
+        "expectedOutput": "(empty)",
+        "label": "Single node"
+      },
+      {
+        "id": "tc3",
+        "input": "2\n10 20",
+        "expectedOutput": "10",
+        "label": "Two nodes"
+      },
+      {
+        "id": "tc4",
+        "input": "0",
+        "expectedOutput": "(empty)",
+        "label": "Empty list"
+      },
+      {
+        "id": "tc5",
+        "input": "5\n5 4 3 2 1",
+        "expectedOutput": "5 4 3 2",
+        "label": "Delete last of 5"
+      }
+    ],
+    "id": "58e9bdbf-f84f-494a-b541-6b49f488e61d"
+  },
+  {
+    "title": "FF'25 Q17: File Average (stdin)",
+    "description": "Read integers from stdin until EOF. Print the average as an integer (integer division) and the count of numbers read.\n\nOutput format:\n  average: <avg>\\ncount: <count>\n\nThis is based on the original exam question which reads from a file — here we use stdin instead.",
+    "tags": [
+      "File I/O",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Read integers from stdin until EOF\n    // Print the average (integer division) and count\n    // Format:\n    //   average: <avg>\n    //   count: <count>\n\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "10 20 30",
+        "expectedOutput": "average: 20\ncount: 3",
+        "label": "Three numbers"
+      },
+      {
+        "id": "tc2",
+        "input": "5",
+        "expectedOutput": "average: 5\ncount: 1",
+        "label": "Single number"
+      },
+      {
+        "id": "tc3",
+        "input": "1 2 3 4 5 6 7 8 9 10",
+        "expectedOutput": "average: 5\ncount: 10",
+        "label": "1 to 10"
+      },
+      {
+        "id": "tc4",
+        "input": "100 200",
+        "expectedOutput": "average: 150\ncount: 2",
+        "label": "Two numbers"
+      }
+    ],
+    "id": "efafb8ed-d8db-4b6f-b1ec-2ff05bf2d810"
+  },
+  {
+    "title": "FF'25 Q19: Insert After Node",
+    "description": "Implement the function `insert_after` that inserts a new node with value `new_val` **after** the first node whose value equals `target`. If `target` is not found, do not modify the list.\n\nReturn the head of the list.\n\nFunction signature:\n  struct node *insert_after(struct node *list, int target, int new_val);",
+    "tags": [
+      "Linked Lists",
+      "Final Fall 2025"
+    ],
+    "difficulty": "hard",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *insert_after(struct node *list, int target, int new_val);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    int target, new_val;\n    scanf(\"%d %d\", &target, &new_val);\n    struct node *list = build_list(arr, size);\n    list = insert_after(list, target, new_val);\n    print_list(list);\n    return 0;\n}\n\nstruct node *insert_after(struct node *list, int target, int new_val) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "4\n1 2 3 4\n2 99",
+        "expectedOutput": "1 2 99 3 4",
+        "label": "Insert after middle node"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n10 20 30\n30 40",
+        "expectedOutput": "10 20 30 40",
+        "label": "Insert after last node"
+      },
+      {
+        "id": "tc3",
+        "input": "3\n1 2 3\n5 99",
+        "expectedOutput": "1 2 3",
+        "label": "Target not found"
+      },
+      {
+        "id": "tc4",
+        "input": "1\n7\n7 8",
+        "expectedOutput": "7 8",
+        "label": "Single node, insert after it"
+      },
+      {
+        "id": "tc5",
+        "input": "4\n5 5 5 5\n5 99",
+        "expectedOutput": "5 99 5 5 5",
+        "label": "Insert after first occurrence"
+      }
+    ],
+    "id": "8f9dbc48-a290-4204-9b4b-23add3059f10"
+  },
+  {
+    "title": "FF'25 Q1: Array Pointer Search",
+    "description": "Implement the function `search` that checks if integer `number` is in integer array `a` of length `n` using pointer arithmetic. Return 1 if found, 0 otherwise.\n\nUse a pointer `p` to iterate through the array.\n\nFunction signature:\n  int search(int *a, int n, int number);",
+    "tags": [
+      "Pointers",
+      "Arrays",
+      "Final Fall 2025"
+    ],
+    "difficulty": "easy",
+    "starterCode": "#include <stdio.h>\n\nint search(int *a, int n, int number);\n\nint main() {\n    int size;\n    scanf(\"%d\", &size);\n    int arr[100];\n    for (int i = 0; i < size; i++) scanf(\"%d\", &arr[i]);\n    int target;\n    scanf(\"%d\", &target);\n    printf(\"%d\\n\", search(arr, size, target));\n    return 0;\n}\n\nint search(int *a, int n, int number) {\n    // Use pointer p to search through the array\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "4\n3 5 7 9\n5",
+        "expectedOutput": "1",
+        "label": "Found in middle"
+      },
+      {
+        "id": "tc2",
+        "input": "4\n3 5 7 9\n4",
+        "expectedOutput": "0",
+        "label": "Not found"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n10\n10",
+        "expectedOutput": "1",
+        "label": "Single element, found"
+      },
+      {
+        "id": "tc4",
+        "input": "5\n1 2 3 4 5\n5",
+        "expectedOutput": "1",
+        "label": "Found at end"
+      },
+      {
+        "id": "tc5",
+        "input": "3\n1 2 3\n0",
+        "expectedOutput": "0",
+        "label": "Not in array"
+      }
+    ],
+    "id": "362ab216-bc11-4152-a1ee-8f479d1f4902"
+  },
+  {
+    "title": "FF'25 Q18: Find Highest Rating",
+    "description": "Complete the `find_highest` function for finding the restaurant with the highest rating in an array of restaurants. `n` is the number of restaurants stored in the array. Assume each restaurant has a unique rating.\n\nFunction signature:\n  int find_highest(struct restaurant list[], int n);",
+    "tags": [
+      "Structs",
+      "Arrays",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nstruct restaurant {\n    char name[51];\n    double rating;\n};\n\nint find_highest(struct restaurant list[], int n);\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    struct restaurant list[100];\n    for (int i = 0; i < n; i++)\n        scanf(\"%s %lf\", list[i].name, &list[i].rating);\n\n    int idx = find_highest(list, n);\n    printf(\"%s %.1f\\n\", list[idx].name, list[idx].rating);\n    return 0;\n}\n\nint find_highest(struct restaurant list[], int n) {\n    int i, index_highest = 0;\n\n    // add code to find the restaurant with highest rating in the array,\n    // and store the index in index_highest\n\n    // Your code here\n\n    // return index of the restaurant with the highest rating\n    return index_highest;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\nPizza 4.2\nSushi 4.8\nTacos 4.5",
+        "expectedOutput": "Sushi 4.8",
+        "label": "Highest in middle"
+      },
+      {
+        "id": "tc2",
+        "input": "4\nA 3.1\nB 4.9\nC 2.0\nD 4.1",
+        "expectedOutput": "B 4.9",
+        "label": "4 restaurants"
+      },
+      {
+        "id": "tc3",
+        "input": "1\nSolo 5.0",
+        "expectedOutput": "Solo 5.0",
+        "label": "Single restaurant"
+      },
+      {
+        "id": "tc4",
+        "input": "3\nX 1.0\nY 2.0\nZ 3.0",
+        "expectedOutput": "Z 3.0",
+        "label": "Ascending order"
+      }
+    ],
+    "id": "f3c3b1ed-de06-4421-8416-a98f6768e881"
+  },
+  {
+    "title": "FF'25 Q2: Recursive Function Tracing",
+    "description": "What will be the output when this program is run?",
+    "tags": [
+      "Recursion",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nvoid f(int n){\n    if (n > 5)\n        return;\n    printf(\"%d \", n);\n    n += 2;\n    f(n);\n    printf(\"%d \", n);\n}\n\nint main (){\n    f(3);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3 5 7 5"
+      },
+      {
+        "id": "B",
+        "text": "3 5 7 5 3"
+      },
+      {
+        "id": "C",
+        "text": "3 5 5 3"
+      },
+      {
+        "id": "D",
+        "text": "3 5 7 7 5 3"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "95806124-c26f-42a2-89b0-6e6b6baf3d6b"
+  },
+  {
+    "title": "FF'25 Q4: Clear Linked List",
+    "description": "Which alternative completes the missing code in the function `clear_list` to correctly release all nodes from a linked list?",
+    "tags": [
+      "Linked Lists",
+      "Dynamic Memory",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct node {\n    int value;\n    struct node *next;\n};\n\nvoid clear_list(struct node *list) {\n    struct node *temp;\n    while(list != NULL) {\n        temp = list;\n        // missing code\n    }\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "free(temp); list=list->next;"
+      },
+      {
+        "id": "B",
+        "text": "free(list); list=temp->next;"
+      },
+      {
+        "id": "C",
+        "text": "list=list->next; free(list);"
+      },
+      {
+        "id": "D",
+        "text": "list=temp->next; free(temp);"
+      }
+    ],
+    "correctAnswer": "D",
+    "id": "e6c00f47-4319-4f95-9744-61f957b83928"
+  },
+  {
+    "title": "FF'25 Q5: File Open Mode",
+    "description": "What does the following program do?",
+    "tags": [
+      "File I/O",
+      "Final Fall 2025"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main () {\n    FILE *fp = fopen(\"1.txt\", \"w\");\n\n    if(fp == NULL) return 1;\n\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "For appending to an existing file \"1.txt\". It does not create a new file for writing if \"1.txt\" doesn't exist."
+      },
+      {
+        "id": "B",
+        "text": "For overwriting an existing file \"1.txt\". It does not create a new file for writing if \"1.txt\" doesn't exist."
+      },
+      {
+        "id": "C",
+        "text": "For overwriting an existing file \"1.txt\". It creates a new file for writing if \"1.txt\" doesn't exist."
+      },
+      {
+        "id": "D",
+        "text": "For appending to an existing file \"1.txt\". It creates a new file for writing if \"1.txt\" doesn't exist."
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "06573378-8484-42a9-b80b-7ef0f7835f35"
+  },
+  {
+    "title": "FF'25 Q7: Memory Leak",
+    "description": "What is the problem with the following code?",
+    "tags": [
+      "Dynamic Memory",
+      "Pointers",
+      "Final Fall 2025"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(){\n    int *p = malloc(20 * sizeof(int));\n\n    p = NULL;\n\n    free(p);\n\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Compiler error"
+      },
+      {
+        "id": "B",
+        "text": "Runtime error"
+      },
+      {
+        "id": "C",
+        "text": "Dangling pointer"
+      },
+      {
+        "id": "D",
+        "text": "Memory leak"
+      }
+    ],
+    "correctAnswer": "D",
+    "id": "5fe4cebe-619a-45ca-97fe-69fbba6920a1"
+  },
+  {
+    "title": "FF'25 Q8: fscanf Format String",
+    "description": "Suppose you have just opened a file with FILE pointer pFile on permit request records with the following data format:\n\n```\nCOP2510 84652123 pending\nCOP3514 17680087 approved\n```\n\nThe first field is the course id, the second is the student id, the third is the status.\n\n`student_id` is an int variable, `course_id` is a string variable, and `status` is a string variable.\n\nWhat statement is correct for reading a row of data?",
+    "tags": [
+      "File I/O",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "// Data format:\n// COP2510 84652123 pending\n// COP3514 17680087 approved\n\n// Variables:\n// int student_id;\n// char course_id[...];  (string)\n// char status[...];     (string)",
+    "choices": [
+      {
+        "id": "A",
+        "text": "fscanf(pFile, \"%s %d %s\", course_id, &student_id, status);"
+      },
+      {
+        "id": "B",
+        "text": "fscanf(pFile, \"%s %s\", &course_id, &student_id, &status);"
+      },
+      {
+        "id": "C",
+        "text": "fscanf(pFile, \"%s %d %s\", &course_id, student_id, &status);"
+      },
+      {
+        "id": "D",
+        "text": "fscanf(pFile, \"%s %d %s\", course_id, student_id, status);"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "f20d5080-25ac-45e7-afdd-b0af26ee12d1"
+  },
+  {
+    "title": "FF'25 Q9: Function Pointer Output",
+    "description": "What is the output of the following program?",
+    "tags": [
+      "Functions",
+      "Pointers",
+      "Final Fall 2025"
+    ],
+    "difficulty": "hard",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint mystery(int (*f) (int)){\n    int n = 0;\n    while(f(n)>0) n++;\n    return n;\n}\n\nint g(int i){\n    return 3*i - i*i*i + 4;\n}\n\nint main(){\n    printf(\"%d\\n\", mystery(g));\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4"
+      },
+      {
+        "id": "B",
+        "text": "2"
+      },
+      {
+        "id": "C",
+        "text": "3"
+      },
+      {
+        "id": "D",
+        "text": "Infinite loop"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "a40e0201-4f75-4075-9fca-ccd55bb3aaba"
+  },
+  {
+    "title": "FF'25 Q10: Circular Linked List",
+    "description": "A circular linked list is a variation of a linked list in which the last node of the list points to the first node of the list.\n\nConsidering that the variable `head` points to the first node of a circular linked list, which of the following conditions will check if a pointer `p` points to the last node of this list?",
+    "tags": [
+      "Linked Lists",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "// Circular linked list: last node's next points back to head\n//\n//   head → [3] → [5] → [9] ─┐\n//           ↑                │\n//           └────────────────┘\n\nstruct node {\n    int value;\n    struct node *next;\n};\n// head points to first node\n// p is some pointer to a node in the list",
+    "choices": [
+      {
+        "id": "A",
+        "text": "p == head"
+      },
+      {
+        "id": "B",
+        "text": "p->next == head"
+      },
+      {
+        "id": "C",
+        "text": "p == head->next"
+      },
+      {
+        "id": "D",
+        "text": "p->next == NULL"
+      },
+      {
+        "id": "E",
+        "text": "p == NULL"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "112664f8-d09e-459f-b1a9-ac5f2884158e"
+  },
+  {
+    "title": "FF'25 Q14: Function Pointer Call",
+    "description": "Consider the function `sum` and the function `cube` below. Which of the following statements correctly calls `sum` to compute the sum of cubes?",
+    "tags": [
+      "Functions",
+      "Pointers",
+      "Final Fall 2025"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "int sum(int (*f)(int), int a, int b){\n    int i, total = 0;\n    for(i=a; i < b; i++)\n        total += f(i);\n    return total;\n}\n\nint cube(int n) { return n*n*n; }",
+    "choices": [
+      {
+        "id": "A",
+        "text": "result = sum(cube(n), 2, 5);"
+      },
+      {
+        "id": "B",
+        "text": "result = sum(*cube, 2, 5);"
+      },
+      {
+        "id": "C",
+        "text": "result = sum(cube(), 2, 5);"
+      },
+      {
+        "id": "D",
+        "text": "result = sum(cube, 2, 5);"
+      }
+    ],
+    "correctAnswer": "D",
+    "id": "d900c9d8-0fdc-4d61-82be-602e9ee7922b"
+  },
+  {
+    "title": "F'25 Q3: fscanf Format String",
+    "description": "Suppose you have just opened an employee data file for temporary workers with the following data formats:\n\n```\nMary 25.3 14.0\nMike 30.0 35.5\nJohn 18.4 65.0\n```\n\nThe first field is the employee first name (assume the first name is one word), the second is the hourly rate, and the third is the number of hours.\n\nThe function prototype of `fscanf` is:\n```c\nint fscanf(FILE* pFile, char *format, ... )\n// ... indicates variables to read into\n```\n\nAssume the file has been opened and `pFile` is the FILE pointer variable. The following variables have been declared:\n```c\nchar name[31];\ndouble rate;\ndouble num_hours;\n```\n\nWhich statement correctly reads a row of data?",
+    "tags": [
+      "File I/O",
+      "Final Spring 2025"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "// Data format:\n// Mary 25.3 14.0\n// Mike 30.0 35.5\n// John 18.4 65.0\n\n// Variables:\nchar name[31];\ndouble rate;\ndouble num_hours;",
+    "choices": [
+      {
+        "id": "A",
+        "text": "fscanf(pFile, \"%s %lf %lf\", name, &rate, &num_hours);"
+      },
+      {
+        "id": "B",
+        "text": "fscanf(pFile, \"%s %f %f\", name, &rate, &num_hours);"
+      },
+      {
+        "id": "C",
+        "text": "fscanf(pFile, \"%s %lf %lf\", &name, &rate, &num_hours);"
+      },
+      {
+        "id": "D",
+        "text": "fscanf(pFile, \"%s %d %d\", name, &rate, &num_hours);"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "5425ca4a-accc-4e4e-a2e7-9a461fe76e9b"
+  },
+  {
+    "title": "F'25 Q10: Function Pointer with min_in_range",
+    "description": "Consider the function below and the prototype of the cosine function, which returns the cosine of x:\n```c\ndouble cos(double x);\n```\n\nWhich of the following statements will find the value in the range from 0 to 6 with minimum cosine value using the `min_in_range` function?",
+    "tags": [
+      "Functions",
+      "Pointers",
+      "Final Spring 2025"
+    ],
+    "difficulty": "hard",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "double min_in_range(double (*f)(double), double a, double b,\n                     double step) {\n    double res = b;\n    for (double x = a; x < b; x += step)\n        if (f(x) < f(res))\n            res = x;\n    return res;\n}\n\n// Prototype: double cos(double x);",
+    "choices": [
+      {
+        "id": "A",
+        "text": "result = min_in_range(0.0, 6.0, 0.0001);"
+      },
+      {
+        "id": "B",
+        "text": "result = min_in_range(cos(x), 0.0, 6.0, 0.0001);"
+      },
+      {
+        "id": "C",
+        "text": "result = min_in_range(cos(0.0, 6.0, 0.0001));"
+      },
+      {
+        "id": "D",
+        "text": "result = min_in_range(cos, 0.0, 6.0, 0.0001);"
+      }
+    ],
+    "correctAnswer": "D",
+    "id": "43940a5b-c2a0-4dd2-b31b-9708ff41c213"
+  },
+  {
+    "title": "F'25 Q17: Print Prime Numbers",
+    "description": "Complete the program to read integers from input and display only the prime numbers.\n\nThe `is_prime` function is provided for checking if a number is a prime number.\n\nRead integers using `scanf` until it fails (returns != 1). For each prime integer, print it followed by a space. Print a newline at the end.\n\n**Original exam context:** The exam version reads from a file `numbers.txt` using `fscanf` with `feof`/`ferror` checks. This exercise adapts it to use stdin.",
+    "tags": [
+      "File I/O",
+      "Functions",
+      "Final Spring 2025"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\nint is_prime(int n);\n\nint main() {\n    int num;\n\n    // Read integers from input and print the prime ones\n    // Each prime followed by a space, then a newline at the end\n    // Your code here\n\n    return 0;\n}\n\nint is_prime(int n) {\n    int divisor;\n    if (n <= 1)\n        return 0;\n    for (divisor = 2; divisor * divisor <= n; divisor++)\n        if (n % divisor == 0)\n            return 0;\n    return 1;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5 10 34 1 32 3 4",
+        "expectedOutput": "5 3",
+        "label": "Mixed primes and non-primes"
+      },
+      {
+        "id": "tc2",
+        "input": "2 3 5 7 11",
+        "expectedOutput": "2 3 5 7 11",
+        "label": "All primes"
+      },
+      {
+        "id": "tc3",
+        "input": "4 6 8 9 10",
+        "expectedOutput": "",
+        "label": "No primes"
+      },
+      {
+        "id": "tc4",
+        "input": "1 2",
+        "expectedOutput": "2",
+        "label": "1 is not prime"
+      },
+      {
+        "id": "tc5",
+        "input": "17",
+        "expectedOutput": "17",
+        "label": "Single prime"
+      }
+    ],
+    "id": "230f9985-e4a7-480e-b059-d3ba8889ecd3"
+  },
+  {
+    "title": "F'24 Q2: Delete Second Node",
+    "description": "Complete the function `delete_second` to delete the second node of a linked list. The function returns a pointer to the head of the linked list.\n\nNote that the linked list could contain any number of nodes. The guard clause for empty/single-node lists is already provided.\n\nFill in the missing statements to:\n1. Save a pointer to the second node in `temp`\n2. Make the first node skip over the second node\n3. Free the second node's memory\n4. Return the head of the list",
+    "tags": [
+      "Linked Lists",
+      "Dynamic Memory",
+      "Final 2024"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *delete_second(struct node *list);\n\nstruct node *build_list(int n) {\n    struct node *head = NULL, *tail = NULL;\n    for (int i = 0; i < n; i++) {\n        int v;\n        scanf(\"%d\", &v);\n        struct node *nd = malloc(sizeof(struct node));\n        nd->value = v;\n        nd->next = NULL;\n        if (!head) head = nd;\n        else tail->next = nd;\n        tail = nd;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    int first = 1;\n    while (list) {\n        if (!first) printf(\" \");\n        printf(\"%d\", list->value);\n        first = 0;\n        list = list->next;\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    struct node *list = build_list(n);\n    list = delete_second(list);\n    print_list(list);\n    return 0;\n}\n\nstruct node *delete_second(struct node *list) {\n    struct node *temp;\n\n    if (list == NULL || list->next == NULL) {\n        return list;\n    }\n\n    // Missing statements:\n    // 1. temp = ? (save pointer to second node)\n    // 2. Bypass the second node\n    // 3. Free the second node\n    // 4. Return head\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3\n2 3 5",
+        "expectedOutput": "2 5",
+        "label": "Delete from 3-node list"
+      },
+      {
+        "id": "tc2",
+        "input": "2\n2 3",
+        "expectedOutput": "2",
+        "label": "Delete from 2-node list"
+      },
+      {
+        "id": "tc3",
+        "input": "1\n5",
+        "expectedOutput": "5",
+        "label": "Single node - unchanged"
+      },
+      {
+        "id": "tc4",
+        "input": "4\n10 20 30 40",
+        "expectedOutput": "10 30 40",
+        "label": "Delete from 4-node list"
+      },
+      {
+        "id": "tc5",
+        "input": "5\n1 2 3 4 5",
+        "expectedOutput": "1 3 4 5",
+        "label": "Delete from 5-node list"
+      }
+    ],
+    "id": "b6576030-bb46-436d-815f-d9462472cba9"
+  },
+  {
+    "title": "F'24 Q10: Sort Integers with qsort",
+    "description": "Complete the program that reads positive integers from the user until 0 is entered, sorts them using `qsort`, and prints the sorted integers each on a separate line.\n\nThe `int_cmp` compare function is provided. Assume the user will not enter more than 100 numbers. Do NOT store the 0.\n\nYou need to:\n1. Read positive integers until 0 is entered\n2. Call `qsort` to sort the array\n3. Print each sorted integer on its own line\n\n**Original exam context:** The exam version writes sorted integers to a file using `fprintf`. This exercise uses stdout instead.",
+    "tags": [
+      "Arrays",
+      "Sorting",
+      "Final 2024"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nint int_cmp(const void *p, const void *q);\n\nint main() {\n    int numbers[100];\n    int count = 0;\n\n    // 1. Read positive integers until 0 is entered (don't store 0)\n    // 2. Sort using qsort\n    // 3. Print each sorted integer on its own line\n    // Your code here\n\n    return 0;\n}\n\nint int_cmp(const void *p, const void *q) {\n    return *(int *)p - *(int *)q;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5 3 1 4 2 0",
+        "expectedOutput": "1\n2\n3\n4\n5",
+        "label": "5 unsorted integers"
+      },
+      {
+        "id": "tc2",
+        "input": "10 0",
+        "expectedOutput": "10",
+        "label": "Single integer"
+      },
+      {
+        "id": "tc3",
+        "input": "3 1 2 0",
+        "expectedOutput": "1\n2\n3",
+        "label": "3 integers"
+      },
+      {
+        "id": "tc4",
+        "input": "100 50 75 25 0",
+        "expectedOutput": "25\n50\n75\n100",
+        "label": "Larger numbers"
+      },
+      {
+        "id": "tc5",
+        "input": "1 1 2 1 0",
+        "expectedOutput": "1\n1\n1\n2",
+        "label": "Duplicates"
+      }
+    ],
+    "id": "13a72773-a4dd-4b6a-8826-4073ad061040"
   }
 ]
