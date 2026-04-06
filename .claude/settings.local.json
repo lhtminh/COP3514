@@ -84,7 +84,8 @@
       "Bash(cd C:/Users/Admin/cgym && node scripts/fix-tags.mjs)",
       "Bash(cd C:/Users/Admin/cgym && node scripts/restore-2026.mjs)",
       "Bash(grep -r \"Material\\\\|Reference\\\\|Knowledge\\\\|Cheatsheet\" /c/Users/Admin/cgym/src --include=\"*.tsx\" --include=\"*.ts\" 2>/dev/null | head -20)",
-      "Bash(ls -lah /c/Users/Admin/cgym/data/*.json 2>/dev/null)"
+      "Bash(ls -lah /c/Users/Admin/cgym/data/*.json 2>/dev/null)",
+      "Bash(cd C:/Users/Admin/cgym && curl -s http://localhost:3000/api/exercises 2>&1 | head -c 500)"
     ]
   }
 }
