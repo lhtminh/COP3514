@@ -90,8 +90,33 @@ export function ProblemPanel({ exercise, onPrev, onNext, hasPrev, hasNext }: Pro
 
         <Separator />
 
-        <div className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed [&_pre]:bg-muted [&_pre]:rounded-md [&_pre]:px-3 [&_pre]:py-2 [&_pre]:text-xs [&_pre]:font-mono [&_code]:bg-muted [&_code]:rounded [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-xs [&_code]:font-mono [&_pre_code]:bg-transparent [&_pre_code]:p-0">
-          <Markdown>{exercise.description}</Markdown>
+        <div className="text-sm leading-relaxed">
+          <Markdown
+            components={{
+              p: ({ children }) => <p className="mb-3 last:mb-0">{children}</p>,
+              code: ({ children, className }) =>
+                className ? (
+                  <code className={`${className} block bg-muted rounded-md px-3 py-2 text-xs font-mono whitespace-pre-wrap`}>
+                    {children}
+                  </code>
+                ) : (
+                  <code className="bg-muted rounded px-1 py-0.5 text-xs font-mono">
+                    {children}
+                  </code>
+                ),
+              pre: ({ children }) => (
+                <pre className="bg-muted rounded-md px-3 py-2 text-xs font-mono mb-3 overflow-x-auto">
+                  {children}
+                </pre>
+              ),
+              strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+              ol: ({ children }) => <ol className="list-decimal pl-5 mb-3">{children}</ol>,
+              ul: ({ children }) => <ul className="list-disc pl-5 mb-3">{children}</ul>,
+              li: ({ children }) => <li className="mb-1">{children}</li>,
+            }}
+          >
+            {exercise.description}
+          </Markdown>
         </div>
 
         {exercise.type !== "multiple-choice" && exercise.testCases.length > 0 && (
