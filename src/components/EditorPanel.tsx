@@ -8,40 +8,26 @@ import {
   ResizablePanel,
   ResizableHandle,
 } from "@/components/ui/resizable";
-import type { CompileResult, TestResult, Exercise } from "@/lib/types";
+import type { TestResult, Exercise } from "@/lib/types";
 
 interface EditorPanelProps {
   code: string;
   onCodeChange: (code: string) => void;
   exercise: Exercise | null;
-  onRun: () => void;
   onTest: () => void;
   onReset: () => void;
-  running: boolean;
   testing: boolean;
-  output: CompileResult | null;
   testResults: TestResult[] | null;
-  outputTab: string;
-  onOutputTabChange: (tab: string) => void;
-  stdin: string;
-  onStdinChange: (value: string) => void;
 }
 
 export function EditorPanel({
   code,
   onCodeChange,
   exercise,
-  onRun,
   onTest,
   onReset,
-  running,
   testing,
-  output,
   testResults,
-  outputTab,
-  onOutputTabChange,
-  stdin,
-  onStdinChange,
 }: EditorPanelProps) {
   return (
     <div className="flex flex-col h-full">
@@ -65,22 +51,13 @@ export function EditorPanel({
         <ResizableHandle />
 
         <ResizablePanel defaultSize="40" minSize="15">
-          <OutputPanel
-            output={output}
-            testResults={testResults}
-            activeTab={outputTab}
-            onTabChange={onOutputTabChange}
-            stdin={stdin}
-            onStdinChange={onStdinChange}
-          />
+          <OutputPanel testResults={testResults} />
         </ResizablePanel>
       </ResizablePanelGroup>
 
       <ControlBar
-        onRun={onRun}
         onTest={onTest}
         onReset={onReset}
-        running={running}
         testing={testing}
         hasTestCases={!!exercise && exercise.testCases.length > 0}
       />

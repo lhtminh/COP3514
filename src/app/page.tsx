@@ -11,7 +11,7 @@ import {
   ResizableHandle,
 } from "@/components/ui/resizable";
 import { useIsMobile } from "@/lib/use-mobile";
-import type { Exercise, CompileResult, TestResult } from "@/lib/types";
+import type { Exercise, TestResult } from "@/lib/types";
 
 const DEFAULT_CODE = `#include <stdio.h>
 
@@ -25,17 +25,30 @@ export default function Home() {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [code, setCode] = useState(DEFAULT_CODE);
-  const [output, setOutput] = useState<CompileResult | null>(null);
   const [testResults, setTestResults] = useState<TestResult[] | null>(null);
-  const [running, setRunning] = useState(false);
   const [testing, setTesting] = useState(false);
-  const [outputTab, setOutputTab] = useState("output");
-  const [stdin, setStdin] = useState("");
 
   const isMobile = useIsMobile();
 
   const selectedIndex = exercises.findIndex((e) => e.id === selectedId);
   const selectedExercise = selectedIndex >= 0 ? exercises[selectedIndex] : null;
+
+  useEffect(() => {
+    if (isMobile) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || (e.target as HTMLElement)?.isContentEditable) return;
+      if (e.key === "ArrowLeft" && selectedIndex > 0) {
+        e.preventDefault();
+        setSelectedId(exercises[selectedIndex - 1].id);
+      } else if (e.key === "ArrowRight" && selectedIndex < exercises.length - 1) {
+        e.preventDefault();
+        setSelectedId(exercises[selectedIndex + 1].id);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isMobile, selectedIndex, exercises]);
 
   useEffect(() => {
     if (selectedId) {
@@ -73,9 +86,7 @@ export default function Home() {
         setCode(exercise.starterCode || DEFAULT_CODE);
       });
 
-    setOutput(null);
     setTestResults(null);
-    setOutputTab("output");
   }, [selectedId, exercises]);
 
   useEffect(() => {
@@ -90,28 +101,9 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [code, selectedId]);
 
-  const handleRun = useCallback(async () => {
-    setRunning(true);
-    setOutputTab("output");
-    try {
-      const res = await fetch("/api/compile", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code, stdin }),
-      });
-      const result = await res.json();
-      setOutput(result);
-    } catch (error) {
-      setOutput({ stdout: "", stderr: `Error: ${error}`, exitCode: 1 });
-    } finally {
-      setRunning(false);
-    }
-  }, [code, stdin]);
-
   const handleTest = useCallback(async () => {
     if (!selectedExercise) return;
     setTesting(true);
-    setOutputTab("tests");
     try {
       const res = await fetch("/api/test", {
         method: "POST",
@@ -133,8 +125,6 @@ export default function Home() {
       }
     } catch (error) {
       setTestResults([]);
-      setOutput({ stdout: "", stderr: `Error: ${error}`, exitCode: 1 });
-      setOutputTab("output");
     } finally {
       setTesting(false);
     }
@@ -142,7 +132,6 @@ export default function Home() {
 
   const handleReset = useCallback(() => {
     setCode(selectedExercise?.starterCode || DEFAULT_CODE);
-    setOutput(null);
     setTestResults(null);
   }, [selectedExercise]);
 
@@ -185,17 +174,10 @@ export default function Home() {
       code={code}
       onCodeChange={setCode}
       exercise={selectedExercise}
-      onRun={handleRun}
       onTest={handleTest}
       onReset={handleReset}
-      running={running}
       testing={testing}
-      output={output}
       testResults={testResults}
-      outputTab={outputTab}
-      onOutputTabChange={setOutputTab}
-      stdin={stdin}
-      onStdinChange={setStdin}
     />
   );
 
