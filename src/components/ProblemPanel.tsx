@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { BookOpenIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Markdown from "react-markdown";
 
 interface ProblemPanelProps {
   exercise: Exercise | null;
@@ -89,9 +90,9 @@ export function ProblemPanel({ exercise, onPrev, onNext, hasPrev, hasNext }: Pro
 
         <Separator />
 
-        <p className="whitespace-pre-wrap text-sm leading-relaxed">
-          {exercise.description}
-        </p>
+        <div className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed [&_pre]:bg-muted [&_pre]:rounded-md [&_pre]:px-3 [&_pre]:py-2 [&_pre]:text-xs [&_pre]:font-mono [&_code]:bg-muted [&_code]:rounded [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-xs [&_code]:font-mono [&_pre_code]:bg-transparent [&_pre_code]:p-0">
+          <Markdown>{exercise.description}</Markdown>
+        </div>
 
         {exercise.type !== "multiple-choice" && exercise.testCases.length > 0 && (
           <>
