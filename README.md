@@ -2,7 +2,7 @@
 
 A web-based IDE for practicing C programming, built for USF's COP3514 (Program Design) course. Solve coding exercises and multiple-choice questions extracted from real midterm and final exams.
 
-## Requirementsm
+## Requirements
 
 - [Node.js](https://nodejs.org/) v18+
 - [Bun](https://bun.sh/) (package manager)
