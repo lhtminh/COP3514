@@ -65,7 +65,12 @@ export function ExerciseSelector({
               key={value}
               size="xs"
               variant={tagFilter === value ? "default" : "secondary"}
-              onClick={() => setTagFilter(value === tagFilter && value !== "all" ? "all" : value)}
+              onClick={() => {
+                const next = value === tagFilter && value !== "all" ? "all" : value;
+                setTagFilter(next);
+                const pool = next === "all" ? exercises : exercises.filter((e) => e.tags.includes(next));
+                if (pool.length > 0) onSelect(pool[0].id);
+              }}
               className="capitalize"
             >
               {label}
