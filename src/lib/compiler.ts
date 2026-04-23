@@ -144,8 +144,8 @@ export async function runTests(
         timeout: TIMEOUT_MS,
       });
 
-      const actual = run.stdout.trim();
-      const expected = tc.expectedOutput.trim();
+      const actual = run.stdout.replace(/\r\n/g, "\n").trim();
+      const expected = tc.expectedOutput.replace(/\r\n/g, "\n").trim();
 
       results.push({
         testCaseId: tc.id,
