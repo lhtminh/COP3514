@@ -12,12 +12,14 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 
 interface ExerciseSelectorProps {
   exercises: Exercise[];
   selectedId: string | null;
   onSelect: (id: string) => void;
+  tagFilter: string;
+  onTagFilterChange: (tag: string) => void;
 }
 
 const difficultyDot: Record<string, string> = {
@@ -30,8 +32,9 @@ export function ExerciseSelector({
   exercises,
   selectedId,
   onSelect,
+  tagFilter,
+  onTagFilterChange,
 }: ExerciseSelectorProps) {
-  const [tagFilter, setTagFilter] = useState<string>("all");
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
@@ -67,7 +70,7 @@ export function ExerciseSelector({
               variant={tagFilter === value ? "default" : "secondary"}
               onClick={() => {
                 const next = value === tagFilter && value !== "all" ? "all" : value;
-                setTagFilter(next);
+                onTagFilterChange(next);
                 const pool = next === "all" ? exercises : exercises.filter((e) => e.tags.includes(next));
                 if (pool.length > 0) onSelect(pool[0].id);
               }}

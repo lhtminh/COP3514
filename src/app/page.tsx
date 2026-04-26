@@ -27,11 +27,16 @@ export default function Home() {
   const [code, setCode] = useState(DEFAULT_CODE);
   const [testResults, setTestResults] = useState<TestResult[] | null>(null);
   const [testing, setTesting] = useState(false);
+  const [tagFilter, setTagFilter] = useState("all");
 
   const isMobile = useIsMobile();
 
-  const selectedIndex = exercises.findIndex((e) => e.id === selectedId);
-  const selectedExercise = selectedIndex >= 0 ? exercises[selectedIndex] : null;
+  const filtered = tagFilter === "all"
+    ? exercises
+    : exercises.filter((e) => e.tags.includes(tagFilter));
+
+  const selectedIndex = filtered.findIndex((e) => e.id === selectedId);
+  const selectedExercise = selectedIndex >= 0 ? filtered[selectedIndex] : null;
 
   useEffect(() => {
     if (isMobile) return;
@@ -40,15 +45,15 @@ export default function Home() {
       if (tag === "INPUT" || tag === "TEXTAREA" || (e.target as HTMLElement)?.isContentEditable) return;
       if (e.key === "ArrowLeft" && selectedIndex > 0) {
         e.preventDefault();
-        setSelectedId(exercises[selectedIndex - 1].id);
-      } else if (e.key === "ArrowRight" && selectedIndex < exercises.length - 1) {
+        setSelectedId(filtered[selectedIndex - 1].id);
+      } else if (e.key === "ArrowRight" && selectedIndex < filtered.length - 1) {
         e.preventDefault();
-        setSelectedId(exercises[selectedIndex + 1].id);
+        setSelectedId(filtered[selectedIndex + 1].id);
       }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [isMobile, selectedIndex, exercises]);
+  }, [isMobile, selectedIndex, filtered]);
 
   useEffect(() => {
     if (selectedId) {
@@ -141,6 +146,8 @@ export default function Home() {
         exercises={exercises}
         selectedId={selectedId}
         onSelect={setSelectedId}
+        tagFilter={tagFilter}
+        onTagFilterChange={setTagFilter}
       />
     </div>
   );
@@ -149,9 +156,9 @@ export default function Home() {
     <ProblemPanel
       exercise={selectedExercise}
       hasPrev={selectedIndex > 0}
-      hasNext={selectedIndex < exercises.length - 1}
-      onPrev={() => selectedIndex > 0 && setSelectedId(exercises[selectedIndex - 1].id)}
-      onNext={() => selectedIndex < exercises.length - 1 && setSelectedId(exercises[selectedIndex + 1].id)}
+      hasNext={selectedIndex < filtered.length - 1}
+      onPrev={() => selectedIndex > 0 && setSelectedId(filtered[selectedIndex - 1].id)}
+      onNext={() => selectedIndex < filtered.length - 1 && setSelectedId(filtered[selectedIndex + 1].id)}
     />
   );
 
