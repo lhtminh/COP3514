@@ -36,10 +36,15 @@ export function ExerciseSelector({
   onTagFilterChange,
 }: ExerciseSelectorProps) {
 
+  const isFinalTag = (t: string) => /final|midterm/i.test(t);
+
   const allTags = useMemo(() => {
     const tags = new Set<string>();
     exercises.forEach((e) => e.tags.forEach((t) => tags.add(t)));
-    return Array.from(tags).sort();
+    const sorted = Array.from(tags).sort();
+    const finals = sorted.filter(isFinalTag);
+    const rest = sorted.filter((t) => !isFinalTag(t));
+    return [...finals, ...rest];
   }, [exercises]);
 
   const filtered = useMemo(() => {
@@ -74,7 +79,10 @@ export function ExerciseSelector({
                 const pool = next === "all" ? exercises : exercises.filter((e) => e.tags.includes(next));
                 if (pool.length > 0) onSelect(pool[0].id);
               }}
-              className="capitalize"
+              className={cn(
+                "capitalize",
+                isFinalTag(value) && tagFilter !== value && "border border-blue-500/60 text-blue-600 dark:text-blue-400"
+              )}
             >
               {label}
             </Button>

@@ -81,7 +81,7 @@ export default function Home() {
     fetch(`/api/progress/${selectedId}`)
       .then((r) => r.json())
       .then((progress) => {
-        if (progress.code) {
+        if (progress.code && progress.code !== DEFAULT_CODE) {
           setCode(progress.code);
         } else {
           setCode(exercise.starterCode || DEFAULT_CODE);

@@ -3,10 +3,7 @@
     "title": "Sum Two Numbers",
     "description": "Read two integers from stdin and print their sum.",
     "difficulty": "easy",
-    "tags": [
-      "math",
-      "basics"
-    ],
+    "tags": [],
     "starterCode": "#include <stdio.h>\n\nint main() {\n    // Read two numbers and print their sum\n    \n    return 0;\n}",
     "testCases": [
       {
@@ -34,10 +31,7 @@
     "title": "Reverse Array",
     "description": "Read an integer N followed by N integers. Print the integers in reverse order, separated by spaces.",
     "difficulty": "easy",
-    "tags": [
-      "arrays",
-      "basics"
-    ],
+    "tags": [],
     "starterCode": "#include <stdio.h>\n\nint main() {\n    // Read N, then N integers\n    // Print them in reverse order\n    \n    return 0;\n}",
     "testCases": [
       {
