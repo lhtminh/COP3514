@@ -36,7 +36,7 @@ export function ExerciseSelector({
   onTagFilterChange,
 }: ExerciseSelectorProps) {
 
-  const isFinalTag = (t: string) => /final|midterm/i.test(t);
+  const isFinalTag = (t: string) => /final|midterm|practice test/i.test(t);
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();

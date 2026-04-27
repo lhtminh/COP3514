@@ -3662,5 +3662,755 @@
       }
     ],
     "id": "13a72773-a4dd-4b6a-8826-4073ad061040"
+  },
+  {
+    "title": "PT3 Q1: Count N in Linked List",
+    "description": "The following function returns the number of nodes that contain n; it returns 0 if n doesn't appear in the list.\n\nWrite statement(s) in place of missing statement(s) that will compare the value of the nodes in the linked list with n and update count if the value equals to n.",
+    "tags": [
+      "Linked Lists",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct node {\n    int value;\n    struct node *next;\n};\n\nint count_n(struct node *list, int n) {\n    struct node *p;\n    int count = 0;\n    for (p = list; p != NULL; p = p->next) {\n        // missing statement(s)\n    }\n    return count;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "if (p->value == n) count++;"
+      },
+      {
+        "id": "B",
+        "text": "if (p->value == n) count = count + 1;"
+      },
+      {
+        "id": "C",
+        "text": "if (*p == n) count++;"
+      },
+      {
+        "id": "D",
+        "text": "Both A and B"
+      }
+    ],
+    "correctAnswer": "D",
+    "id": "93826261-83a4-46b9-a0f9-c22b4edcc935"
+  },
+  {
+    "title": "PT3 Q2: fscanf Output",
+    "description": "Suppose you have just opened the file test.txt and execute the statements shown below. File test.txt consists of a single line of text:\n\nThe quick brown fox jumped over the lazy dog's back.\n\nWhat will be the output from the printf?",
+    "tags": [
+      "File I/O",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "char buffer[6];\n...\nfscanf(pFile, \"%s\", buffer);\nprintf(\"%s\", buffer);",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The"
+      },
+      {
+        "id": "B",
+        "text": "The q"
+      },
+      {
+        "id": "C",
+        "text": "The quick"
+      },
+      {
+        "id": "D",
+        "text": "The quick brown fox jumped over the lazy dog's back."
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "6b221689-d107-4225-a480-c832006ddbe0"
+  },
+  {
+    "title": "PT3 Q3: Recursive Countdown",
+    "description": "What will be the output when this program is run?",
+    "tags": [
+      "Recursion",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nvoid countdown(int n) {\n    printf(\"n = %d\\t\", n);\n    n--;\n    if (n >= 0) {\n        countdown(n);\n    }\n    printf(\"n = %d\\t\", n);\n}\n\nint main() {\n    countdown(2);\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "n = 2\tn = 1\tn = 0\tn = -1\tn = -1\tn = 0\tn = 1"
+      },
+      {
+        "id": "B",
+        "text": "n = 2\tn = 1\tn = 0\tn = -1\tn = 0\tn = 1\tn = 2"
+      },
+      {
+        "id": "C",
+        "text": "n = 2\tn = 1\tn = 0\tn = 0\tn = 1\tn = 2"
+      },
+      {
+        "id": "D",
+        "text": "n = 2\tn = 1\tn = 0\tn = -1\tn = -1\tn = 0\tn = 1\tn = 2"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "622f2f34-7c15-46ff-a906-35373a4eafce"
+  },
+  {
+    "title": "PT3 Q4: Array Modification Bug",
+    "description": "A program intended to find the maximum value in an array without changing the array is shown below. The final output is correct but it unintentionally modifies the array. Which line causes the modification?",
+    "tags": [
+      "Pointers",
+      "Debugging",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": " 1) #include <stdio.h>\n 2) int main()\n 3) {\n 4)     int* pMax;\n 5)     int* pNext;\n 6)     int numbers[] = {33, 15, 65, 98, 21, 0, -12};\n 7)     pMax = numbers;\n 8)     pNext = numbers;\n 9)\n10)     while (pNext <= &numbers[6])\n11)     {\n12)         if (*pNext > *pMax)\n13)         {\n14)             *pMax = *pNext;\n15)         }\n16)         pNext++;\n17)     }\n18)     printf(\"Max = %d\\n\", *pMax);\n19)     return 0;\n20) }",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Line 7"
+      },
+      {
+        "id": "B",
+        "text": "Line 12"
+      },
+      {
+        "id": "C",
+        "text": "Line 14"
+      },
+      {
+        "id": "D",
+        "text": "Line 16"
+      }
+    ],
+    "correctAnswer": "C",
+    "id": "50285e14-2c55-49ba-b6f8-c4c536169cc6"
+  },
+  {
+    "title": "PT3 Q5: Dynamic Array with malloc",
+    "description": "Write a statement that declares a dynamically allocated array \"a\" of integers of size n using the malloc function.",
+    "tags": [
+      "Dynamic Memory",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "// Write a statement that declares a dynamic allocated array a\n// of integers of size n using malloc function.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "int *a = (int *)malloc(n * sizeof(int));"
+      },
+      {
+        "id": "B",
+        "text": "int *a = malloc(n * sizeof(int));"
+      },
+      {
+        "id": "C",
+        "text": "int a[n] = malloc(sizeof(int));"
+      },
+      {
+        "id": "D",
+        "text": "Both A and B"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "b7b9bd7e-f299-43c9-8263-0d06f93dc4af"
+  },
+  {
+    "title": "PT3 Q6: Function Pointer Output",
+    "description": "What is the output of the following program?",
+    "tags": [
+      "Functions",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint f1(int (*f)(int));\nint f2(int i);\n\nint main(void) {\n    printf(\"%d\\n\", f1(f2));\n    return 0;\n}\n\nint f1(int (*f)(int)) {\n    int n, num = 0;\n    for (n = 0; n < 3; n++)\n        num = f(n);\n    return num;\n}\n\nint f2(int i) {\n    return i * i + i;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6"
+      },
+      {
+        "id": "B",
+        "text": "8"
+      },
+      {
+        "id": "C",
+        "text": "12"
+      },
+      {
+        "id": "D",
+        "text": "2"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "136b74dd-0844-4b3e-a96c-70b4772cbf6c"
+  },
+  {
+    "title": "PT3 Q7: fscanf Return Value",
+    "description": "Suppose you have just opened a student data file with the following format:\n\n84652123 John 12 11 1995\n17680087 Mary 9 21 1997\n\nWhat is the output of the printf statement?",
+    "tags": [
+      "File I/O",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "value = fscanf(pFile, \"%d%s%d%d%d\", &id, first_name, &month, &day, &year);\nprintf(\"%d\", value);",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1"
+      },
+      {
+        "id": "B",
+        "text": "5"
+      },
+      {
+        "id": "C",
+        "text": "0"
+      },
+      {
+        "id": "D",
+        "text": "84652123"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "1759eb1e-59f5-4987-a8e5-a3d5bfdf175c"
+  },
+  {
+    "title": "PT3 Q8: Empty Linked List Check",
+    "description": "Given a linked list of node declared as follows, how would you know if a linked list of node named list is an empty list?",
+    "tags": [
+      "Linked Lists",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct node {\n    int number;\n    struct node *next;\n};",
+    "choices": [
+      {
+        "id": "A",
+        "text": "list == NULL"
+      },
+      {
+        "id": "B",
+        "text": "list->next == NULL"
+      },
+      {
+        "id": "C",
+        "text": "list == 0"
+      },
+      {
+        "id": "D",
+        "text": "Both A and C"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "0b80c70e-5902-40f9-8806-e63ae0b123e8"
+  },
+  {
+    "title": "PT3 Q9: Function Pointer Prototype",
+    "description": "A function named integrate that integrates a mathematical function f can be made by passing f as an argument, and a and b are the range for the integration (both double). Function f takes a double parameter and returns a double. The function integrate returns a double.\n\nWrite a function prototype for the integrate function.",
+    "tags": [
+      "Functions",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "// Write a function prototype for integrate\n// - takes a function pointer f (double -> double)\n// - takes double a and double b\n// - returns double",
+    "choices": [
+      {
+        "id": "A",
+        "text": "double integrate(double (*f)(double), double a, double b);"
+      },
+      {
+        "id": "B",
+        "text": "double integrate(double *f(double), double a, double b);"
+      },
+      {
+        "id": "C",
+        "text": "double integrate(double f(double), double a, double b);"
+      },
+      {
+        "id": "D",
+        "text": "Both A and C"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "f0dbf706-a5ba-416d-9f47-eecdc0f306c4"
+  },
+  {
+    "title": "PT3 Q10: Memory Leak in clear_list",
+    "description": "What is the problem with the following code? Assume list represents a linked list and the function is supposed to release the memory occupied by the nodes in the linked list.",
+    "tags": [
+      "Dynamic Memory",
+      "Linked Lists",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "void clear_list(struct node *list) {\n    free(list);\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Memory leak"
+      },
+      {
+        "id": "B",
+        "text": "Dangling pointer"
+      },
+      {
+        "id": "C",
+        "text": "The function is correct."
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "6bbfd1ee-c614-420a-b5cf-8d809e073f49"
+  },
+  {
+    "title": "PT3 Q11: Linked List Traversal Loop",
+    "description": "Which of the following loops correctly uses p to move through the nodes of the linked list pointed by list?",
+    "tags": [
+      "Linked Lists",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct node {\n    int value;\n    struct node *next;\n};",
+    "choices": [
+      {
+        "id": "A",
+        "text": "while (p != NULL) p++;"
+      },
+      {
+        "id": "B",
+        "text": "while (p != NULL) p = p->next;"
+      },
+      {
+        "id": "C",
+        "text": "for (p = NULL; p != NULL; p = p->next)"
+      },
+      {
+        "id": "D",
+        "text": "for (p = list; p != NULL; p = p->next)"
+      }
+    ],
+    "correctAnswer": "D",
+    "id": "61942fda-ca04-4222-8b89-e8d00bf0f32b"
+  },
+  {
+    "title": "PT3 Q12: Delete Node from Linked List",
+    "description": "The following function is supposed to delete the first node containing value n in a linked list, returning a pointer to the first node in the modified list. Which function will delete the node correctly?",
+    "tags": [
+      "Linked Lists",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "hard",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "// Option A:\nstruct node *delete(struct node *list, int n) {\n    struct node *cur, *prev;\n    for (cur = list, prev = NULL;\n         cur != NULL && cur->value != n;\n         prev = cur, cur = cur->next)\n        ;\n    if (cur == NULL) return list;\n    if (prev == NULL) list = list->next;\n    else prev->next = cur->next;\n    free(cur);\n    return list;\n}\n\n// Option B:\nstruct node *delete(struct node *list, int n) {\n    struct node *cur, *prev;\n    for (cur = list, prev = NULL;\n         cur != NULL && cur->value != n;\n         prev = cur, cur = cur->next)\n        ;\n    if (prev == NULL) return list;\n    if (cur == NULL) list = list->next;\n    else prev->next = cur->next;\n    free(cur);\n    return list;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Option A"
+      },
+      {
+        "id": "B",
+        "text": "Option B"
+      },
+      {
+        "id": "C",
+        "text": "None of the above"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "ff09f601-2d58-4b24-b396-0f9c01afc239"
+  },
+  {
+    "title": "PT3 Q13: Insert into Ordered List",
+    "description": "The following function is supposed to insert a new node into its proper place in an ordered list, returning a pointer to the first node in the modified list. Which function will work correctly in all cases?",
+    "tags": [
+      "Linked Lists",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "hard",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "// Option A: no NULL check on cur, no check if prev is NULL\nstruct node *insert(struct node *list, struct node *new_node) {\n    struct node *cur = list, *prev = NULL;\n    while (new_node->value > cur->value) {\n        prev = cur; cur = cur->next;\n    }\n    new_node->next = cur;\n    prev->next = new_node;\n    return list;\n}\n\n// Option B: checks cur != NULL, handles prev == NULL\nstruct node *insert(struct node *list, struct node *new_node) {\n    struct node *cur, *prev;\n    for (cur = list, prev = NULL;\n         cur != NULL && new_node->value > cur->value;\n         prev = cur, cur = cur->next) ;\n    if (prev != NULL) {\n        prev->next = new_node;\n        new_node->next = cur;\n        return list;\n    } else\n        return new_node;\n}\n\n// Option C: checks cur != NULL but not prev\nstruct node *insert(struct node *list, struct node *new_node) {\n    struct node *cur, *prev;\n    for (cur = list, prev = NULL;\n         cur != NULL && new_node->value > cur->value;\n         prev = cur, cur = cur->next) ;\n    new_node->next = cur;\n    prev->next = new_node;\n    return list;\n}\n\n// Option D: checks both, sets new_node->next = cur in else\nstruct node *insert(struct node *list, struct node *new_node) {\n    struct node *cur, *prev;\n    for (cur = list, prev = NULL;\n         cur != NULL && new_node->value > cur->value;\n         prev = cur, cur = cur->next) ;\n    new_node->next = cur;\n    if (prev == NULL)\n        return new_node;\n    else {\n        prev->next = new_node;\n        return list;\n    }\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Option A"
+      },
+      {
+        "id": "B",
+        "text": "Option B"
+      },
+      {
+        "id": "C",
+        "text": "Option C"
+      },
+      {
+        "id": "D",
+        "text": "Option D"
+      }
+    ],
+    "correctAnswer": "D",
+    "id": "9756d2d0-206f-4268-90b1-26fbe8b9b7fc"
+  },
+  {
+    "title": "PT3 Q14: qsort Compare Function",
+    "description": "Which of the following functions can be passed to qsort in order to sort an integer array?",
+    "tags": [
+      "Sorting",
+      "Functions",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "void qsort(void* base, size_t n, size_t size,\n           int (*cmp)(const void *p, const void *q));\n\n// A)\nint int_cmp(const void *p, const void *q) {\n    return *p - *q;\n}\n\n// B)\nint int_cmp(const void *p, const void *q) {\n    return *(int *)p - *(int *)q;\n}\n\n// C)\nint int_cmp(const void *p, const void *q) {\n    return (int *)p - (int *)q;\n}\n\n// D)\nint int_cmp(const void *p, const void *q) {\n    return p - q;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Option A: return *p - *q;"
+      },
+      {
+        "id": "B",
+        "text": "Option B: return *(int *)p - *(int *)q;"
+      },
+      {
+        "id": "C",
+        "text": "Option C: return (int *)p - (int *)q;"
+      },
+      {
+        "id": "D",
+        "text": "Option D: return p - q;"
+      }
+    ],
+    "correctAnswer": "B",
+    "id": "2c308485-41f1-4ff3-840a-55e5cbdff3a7"
+  },
+  {
+    "title": "PT3 Q15: fscanf Statement",
+    "description": "Complete the fscanf statement to read one line of the student data file.\n\nFile format:\nJohn 12 11 1995\nMary 9 21 1997\n\nVariables: int month, day, year; char name[101]; FILE pointer is fp.\n\nThe fscanf statement must work when used in a loop to read consecutive lines of the file.",
+    "tags": [
+      "File I/O",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "int month, day, year;\nchar name[101];\n// Complete the fscanf statement:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "fscanf(fp, \"%s %d %d %d\", name, &month, &day, &year);"
+      },
+      {
+        "id": "B",
+        "text": "fscanf(fp, \"%s%d%d%d\", name, &month, &day, &year);"
+      },
+      {
+        "id": "C",
+        "text": "fscanf(fp, \"%s %d %d %d\", &name, &month, &day, &year);"
+      },
+      {
+        "id": "D",
+        "text": "Both A and B"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "2812edad-0344-415b-b3de-6d2738d12bdb"
+  },
+  {
+    "title": "PT3 Q16: clear_list Missing Code",
+    "description": "Which of the alternatives completes the function clear_list to release all nodes from a linked list?",
+    "tags": [
+      "Linked Lists",
+      "Dynamic Memory",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "void clear_list(struct node *list) {\n    struct node *temp;\n    while (list != NULL) {\n        temp = list;\n        // missing code here\n    }\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "list = temp->next; free(temp);"
+      },
+      {
+        "id": "B",
+        "text": "free(temp); list = list->next;"
+      },
+      {
+        "id": "C",
+        "text": "free(list); list = temp->next;"
+      },
+      {
+        "id": "D",
+        "text": "list = list->next; free(list);"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "2868d17a-20c1-4f67-9c44-682d7d76cedb"
+  },
+  {
+    "title": "PT3 Q17: malloc for Struct",
+    "description": "Given the opt structure below, which statement correctly creates one opt node using dynamic memory allocation?",
+    "tags": [
+      "Dynamic Memory",
+      "Structs",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "easy",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct opt {\n    char option;\n    struct opt *next;\n};\n\nstruct opt *new_node;",
+    "choices": [
+      {
+        "id": "A",
+        "text": "new_node = malloc(sizeof(struct opt));"
+      },
+      {
+        "id": "B",
+        "text": "new_node = malloc(sizeof(char) + sizeof(struct opt *));"
+      },
+      {
+        "id": "C",
+        "text": "new_node = malloc(sizeof(char)) + malloc(sizeof(struct opt *));"
+      },
+      {
+        "id": "D",
+        "text": "struct opt node; new_node = &node;"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "2d476d00-5c95-48bc-9da8-a37eb0914cd9"
+  },
+  {
+    "title": "PT3 Q18: Count Characters in File",
+    "description": "Complete the function count_characters that opens, reads, and closes the file, and returns the number of characters in the text file whose name is filename. If there is no character in the file or the file does not exist, return 0. Assume max 1000 characters per line.\n\nYou might need fgets: char* fgets(char* buffer, int max, FILE* pFile)",
+    "tags": [
+      "File I/O",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n#include <string.h>\n\nint count_characters(const char *filename) {\n    char str[1001];\n    FILE *pFile;\n    int count = 0;\n\n    // Your code here\n\n}",
+    "testCases": [],
+    "type": "multiple-choice",
+    "codeSnippet": "int count_characters(const char *filename) {\n    char str[1001];\n    FILE *pFile;\n    int count = 0;\n\n    // Complete this function\n    // Open the file, read line by line with fgets,\n    // count characters using strlen, close file\n    // Return 0 if file doesn't exist\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "pFile = fopen(filename, \"r\"); if (!pFile) return 0; while (fgets(str, 1001, pFile)) count += strlen(str); fclose(pFile); return count;"
+      },
+      {
+        "id": "B",
+        "text": "pFile = fopen(filename, \"r\"); while (fgets(str, 1001, pFile)) count += strlen(str); fclose(pFile); return count;"
+      },
+      {
+        "id": "C",
+        "text": "pFile = fopen(filename, \"r\"); if (!pFile) return 0; while (fscanf(pFile, \"%s\", str) != EOF) count += strlen(str); fclose(pFile); return count;"
+      },
+      {
+        "id": "D",
+        "text": "pFile = fopen(filename, \"r\"); if (!pFile) return 0; while (fgets(str, 1001, pFile)) count++; fclose(pFile); return count;"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "87ee1efa-571b-4d15-8ace-0ddec491ff2d"
+  },
+  {
+    "title": "PT3 Q19: Search Part in Inventory",
+    "description": "Complete the search function that looks up a part in inv (an array of struct part). The function prompts the user to enter a part number. If the part exists, prints the name and quantity on hand; if not, prints a \"part not found\" message. Parameter np contains the number of parts.",
+    "tags": [
+      "Structs",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "struct part {\n    int number;\n    char name[31];\n    int on_hand;\n};\n\nvoid search(struct part inv[], int np) {\n    int i, number;\n    printf(\"Enter part number: \");\n    scanf(\"%d\", &number);\n\n    // Complete this function\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "for (i = 0; i < np; i++) if (inv[i].number == number) { printf(\"Name: %s\\n\", inv[i].name); printf(\"Quantity: %d\\n\", inv[i].on_hand); return; } printf(\"Part not found\\n\");"
+      },
+      {
+        "id": "B",
+        "text": "if (inv[number].number == number) printf(\"%s %d\\n\", inv[number].name, inv[number].on_hand);"
+      },
+      {
+        "id": "C",
+        "text": "for (i = 0; i < np; i++) if (inv[i].number == number) break; printf(\"%s %d\\n\", inv[i].name, inv[i].on_hand);"
+      },
+      {
+        "id": "D",
+        "text": "None of the above"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "8085df6d-2616-4577-bfd9-0381b002355d"
+  },
+  {
+    "title": "PT3 Q20: Derivative with Function Pointer",
+    "description": "Write a function that finds the derivative of a function f at a value x. It takes a function pointer f as argument. The second parameter is a double x. Returns a double.\n\nDerivative formula: f'(x) = (f(x + stepSize) - f(x - stepSize)) / (2 * stepSize)\n\nUse 0.01 for stepSize.\n\nInput: a double x and a mode (0 = x^2, 1 = x^3)\nOutput: the derivative at x",
+    "tags": [
+      "Functions",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "medium",
+    "starterCode": "#include <stdio.h>\n\ndouble derivative(double (*f)(double), double x);\ndouble square(double x) { return x * x; }\ndouble cube(double x) { return x * x * x; }\n\nint main() {\n    double x;\n    int mode;\n    scanf(\"%lf %d\", &x, &mode);\n    if (mode == 0)\n        printf(\"%.2f\\n\", derivative(square, x));\n    else\n        printf(\"%.2f\\n\", derivative(cube, x));\n    return 0;\n}\n\ndouble derivative(double (*f)(double), double x) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3.0 0",
+        "expectedOutput": "6.00",
+        "label": "derivative of x^2 at x=3"
+      },
+      {
+        "id": "tc2",
+        "input": "2.0 1",
+        "expectedOutput": "12.00",
+        "label": "derivative of x^3 at x=2"
+      },
+      {
+        "id": "tc3",
+        "input": "0.0 0",
+        "expectedOutput": "0.00",
+        "label": "derivative of x^2 at x=0"
+      }
+    ],
+    "id": "85f26063-b86e-4d45-bb73-b7faa5a72823"
+  },
+  {
+    "title": "PT3 Q21: Move Last Node to First",
+    "description": "Write the function move_last_to_first that moves the last node of a linked list to be the head (before the first node). Return a pointer to the head of the updated linked list.\n\nInput: number of elements, then the elements.\nOutput: the list after moving the last node to first.",
+    "tags": [
+      "Linked Lists",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "hard",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *move_last_to_first(struct node *list);\n\nstruct node *build_list(int arr[], int size) {\n    struct node *head = NULL;\n    for (int i = size - 1; i >= 0; i--) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = arr[i];\n        n->next = head;\n        head = n;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    for (struct node *p = list; p != NULL; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[100];\n    for (int i = 0; i < n; i++) scanf(\"%d\", &arr[i]);\n    struct node *list = build_list(arr, n);\n    list = move_last_to_first(list);\n    print_list(list);\n    return 0;\n}\n\nstruct node *move_last_to_first(struct node *list) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "4\n1 2 3 4",
+        "expectedOutput": "4 1 2 3",
+        "label": "Move 4 to front"
+      },
+      {
+        "id": "tc2",
+        "input": "1\n5",
+        "expectedOutput": "5",
+        "label": "Single element"
+      },
+      {
+        "id": "tc3",
+        "input": "2\n10 20",
+        "expectedOutput": "20 10",
+        "label": "Two elements"
+      }
+    ],
+    "id": "13093304-5c92-441c-9d23-596999050709"
+  },
+  {
+    "title": "PT3 Q22: Delete All Occurrences",
+    "description": "Given a delete function that removes the first node containing value n and a size function that returns the number of nodes, complete delete_all that removes ALL nodes containing value n.\n\nHint: delete nodes with value n until the number of nodes does not change.\n\nInput: number of elements, the elements, then the value to delete.\nOutput: remaining list.",
+    "tags": [
+      "Linked Lists",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "hard",
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *delete_node(struct node *list, int n) {\n    struct node *cur, *prev;\n    for (cur = list, prev = NULL;\n         cur != NULL && cur->value != n;\n         prev = cur, cur = cur->next)\n        ;\n    if (cur == NULL) return list;\n    if (prev == NULL) list = list->next;\n    else prev->next = cur->next;\n    free(cur);\n    return list;\n}\n\nint size(struct node *list) {\n    int r = 0;\n    for (struct node *p = list; p != NULL; p = p->next, r++)\n        ;\n    return r;\n}\n\nstruct node *delete_all(struct node *list, int n);\n\nstruct node *build_list(int arr[], int sz) {\n    struct node *head = NULL;\n    for (int i = sz - 1; i >= 0; i--) {\n        struct node *nd = malloc(sizeof(struct node));\n        nd->value = arr[i];\n        nd->next = head;\n        head = nd;\n    }\n    return head;\n}\n\nvoid print_list(struct node *list) {\n    if (!list) { printf(\"(empty)\\n\"); return; }\n    for (struct node *p = list; p; p = p->next) {\n        if (p != list) printf(\" \");\n        printf(\"%d\", p->value);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[100];\n    for (int i = 0; i < n; i++) scanf(\"%d\", &arr[i]);\n    int val;\n    scanf(\"%d\", &val);\n    struct node *list = build_list(arr, n);\n    list = delete_all(list, val);\n    print_list(list);\n    return 0;\n}\n\nstruct node *delete_all(struct node *list, int n) {\n    // Your code here\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5\n1 2 3 2 4\n2",
+        "expectedOutput": "1 3 4",
+        "label": "Delete all 2s"
+      },
+      {
+        "id": "tc2",
+        "input": "3\n5 5 5\n5",
+        "expectedOutput": "(empty)",
+        "label": "Delete all elements"
+      },
+      {
+        "id": "tc3",
+        "input": "4\n1 2 3 4\n9",
+        "expectedOutput": "1 2 3 4",
+        "label": "Value not in list"
+      }
+    ],
+    "id": "c715b112-dc80-408c-90df-14905142383a"
+  },
+  {
+    "title": "PT3 Q23: Append to File",
+    "description": "Write a program that APPENDS the sentence \"That's all, folks!\" to a file provided as a command-line argument (open the file in append mode).",
+    "tags": [
+      "File I/O",
+      "Practice Test 3 S26"
+    ],
+    "difficulty": "medium",
+    "type": "multiple-choice",
+    "starterCode": "#include <stdio.h>\n\nint main() {\n    // Your code here\n    \n    return 0;\n}",
+    "testCases": [],
+    "codeSnippet": "#include <stdio.h>\n\nint main(int argc, char *argv[]) {\n    FILE *fp;\n\n    // Complete this program to append\n    // \"That's all, folks!\" to the file\n    // given as argv[1]\n\n    return 0;\n}",
+    "choices": [
+      {
+        "id": "A",
+        "text": "fp = fopen(argv[1], \"a\"); fprintf(fp, \"That's all, folks!\"); fclose(fp);"
+      },
+      {
+        "id": "B",
+        "text": "fp = fopen(argv[1], \"w\"); fprintf(fp, \"That's all, folks!\"); fclose(fp);"
+      },
+      {
+        "id": "C",
+        "text": "fp = fopen(argv[1], \"r+\"); fprintf(fp, \"That's all, folks!\"); fclose(fp);"
+      },
+      {
+        "id": "D",
+        "text": "fp = fopen(argv[1], \"a+\"); fputs(\"That's all, folks!\", fp); fclose(fp);"
+      }
+    ],
+    "correctAnswer": "A",
+    "id": "70015f58-7f5e-4bcd-aba9-e1d6e247d81f"
   }
 ]

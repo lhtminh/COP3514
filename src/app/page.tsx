@@ -28,6 +28,7 @@ export default function Home() {
   const [testResults, setTestResults] = useState<TestResult[] | null>(null);
   const [testing, setTesting] = useState(false);
   const [tagFilter, setTagFilter] = useState("all");
+  const [loading, setLoading] = useState(true);
 
   const isMobile = useIsMobile();
 
@@ -70,7 +71,8 @@ export default function Home() {
         const restored = saved && data.some((e) => e.id === saved);
         setSelectedId(restored ? saved : data[0]?.id ?? null);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -187,6 +189,14 @@ export default function Home() {
       testResults={testResults}
     />
   );
+
+  if (loading || isMobile === undefined) {
+    return (
+      <div className="flex-1 flex items-center justify-center">
+        <div className="size-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   if (isMobile) {
     return (
