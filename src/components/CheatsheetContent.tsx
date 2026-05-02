@@ -130,7 +130,7 @@ free(p);
 free(arr);`,
   },
   {
-    title: "Functions & Function Pointers",
+    title: "Functions",
     tag: "functions",
     code: `// Pass by reference (using pointers)
 void swap(int *a, int *b) {
@@ -138,15 +138,38 @@ void swap(int *a, int *b) {
 }
 swap(&x, &y);
 
-// Function pointer parameter
-int sum_range(int a, int b, int (*f)(int)) {
-    int result = 0;
-    for (int i = a; i <= b; i++)
-        result += f(i);
-    return result;
+// Return pointer from function
+int *max(int *a, int *b) {
+    return (*a > *b) ? a : b;
+}`,
+  },
+  {
+    title: "Function Pointers",
+    tag: "functions",
+    code: `// A function pointer stores the address
+// of a function so you can call it later
+//
+// Syntax: return_type (*name)(param_types)
+int (*fp)(int, int);  // declares fp
+
+int add(int a, int b) { return a + b; }
+int mul(int a, int b) { return a * b; }
+
+fp = add;            // point to add
+fp(3, 4);            // calls add → 7
+fp = mul;            // now point to mul
+fp(3, 4);            // calls mul → 12
+
+// As a parameter — lets a function accept
+// different behaviors
+int apply(int x, int y, int (*op)(int,int)) {
+    return op(x, y);
 }
-int sq(int x) { return x * x; }
-sum_range(1, 3, sq); // 1+4+9 = 14`,
+apply(3, 4, add);    // 7
+apply(3, 4, mul);    // 12
+
+// Used by qsort to accept custom comparators
+// qsort(arr, n, size, cmp_func_pointer);`,
   },
   {
     title: "Recursion",
@@ -244,24 +267,101 @@ struct node *pop(struct node *top) {
 }`,
   },
   {
-    title: "File I/O",
+    title: "File I/O — Open / Close",
     tag: "I/O",
-    code: `FILE *f = fopen("data.txt", "r");
+    code: `// Modes: "r" read, "w" write (truncate),
+//        "a" append, "rb"/"wb" binary
+FILE *f = fopen("data.txt", "r");
 if (f == NULL) { perror("Error"); return 1; }
 
-// Read until EOF
-while (!feof(f) && !ferror(f)) {
-    fscanf(f, "%d", &n);
+// Always close when done
+fclose(f);
+
+// rewind — move back to start of file
+rewind(f);  // same as fseek(f, 0, SEEK_SET)
+
+// feof(f)  — true AFTER a read hits EOF
+// ferror(f) — true if an error occurred`,
+  },
+  {
+    title: "File I/O — fprintf / fscanf",
+    tag: "I/O",
+    code: `// fprintf — like printf, but writes to a file
+FILE *f = fopen("out.txt", "w");
+fprintf(f, "Name: %s\\n", name);
+fprintf(f, "Score: %d\\n", score);
+// printf(...) is just fprintf(stdout, ...)
+
+// fscanf — like scanf, but reads from a file
+FILE *f2 = fopen("in.txt", "r");
+int id; double gpa; char name[50];
+fscanf(f2, "%d %lf %s", &id, &gpa, name);
+
+// Read all records until EOF
+while (fscanf(f2, "%d %lf", &id, &gpa) == 2) {
+    // process each record
+}
+// Returns number of items matched, or EOF`,
+  },
+  {
+    title: "File I/O — fgets / fputs",
+    tag: "I/O",
+    code: `// fgets — reads ONE LINE (up to n-1 chars)
+// Keeps the \\n at the end if present
+char line[256];
+fgets(line, 256, stdin);  // read from keyboard
+fgets(line, 256, f);      // read from file
+
+// fgets returns NULL on EOF or error
+while (fgets(line, 256, f) != NULL) {
+    // process each line
 }
 
-// feof returns true AFTER a failed read
-// Write
-fprintf(f, "%d\\n", n);
+// fputs — writes a string to a file
+// Does NOT add \\n automatically
+fputs("hello\\n", f);       // write to file
+fputs("hello\\n", stdout);  // write to screen
+// puts("hello") adds \\n, fputs does NOT`,
+  },
+  {
+    title: "File I/O — Common Pattern",
+    tag: "I/O",
+    code: `// Read structs from file, modify, write back
+struct student { char name[50]; int grade; };
 
-fclose(f);  // always close
+// 1. Read all records into an array
+struct student arr[100]; int n = 0;
+FILE *in = fopen("students.txt", "r");
+while (fscanf(in, " %49s %d",
+       arr[n].name, &arr[n].grade) == 2)
+    n++;
+fclose(in);
 
-// qsort (stdlib.h)
-qsort(arr, n, sizeof(int), cmp_func);`,
+// 2. Process (e.g. curve grades)
+for (int i = 0; i < n; i++)
+    arr[i].grade += 5;
+
+// 3. Write results to new file
+FILE *out = fopen("curved.txt", "w");
+for (int i = 0; i < n; i++)
+    fprintf(out, "%s %d\\n",
+            arr[i].name, arr[i].grade);
+fclose(out);`,
+  },
+  {
+    title: "Sorting — qsort",
+    tag: "arrays",
+    code: `#include <stdlib.h>
+
+// Compare function (for int ascending)
+int cmp(const void *a, const void *b) {
+    return *(int *)a - *(int *)b;
+}
+
+int arr[] = {5, 2, 8, 1, 4};
+int n = sizeof(arr)/sizeof(arr[0]);
+qsort(arr, n, sizeof(int), cmp);
+// arr is now {1, 2, 4, 5, 8}`,
   },
 ];
 

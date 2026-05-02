@@ -4412,5 +4412,229 @@
     ],
     "correctAnswer": "A",
     "id": "70015f58-7f5e-4bcd-aba9-e1d6e247d81f"
+  },
+  {
+    "title": "Fix insert_into_ordered_list",
+    "description": "The following function is supposed to insert a new node into its proper place in an ordered linked list, returning a pointer to the first node in the modified list. Unfortunately, the function doesn't work correctly in all cases.\n\nExplain what's wrong with it and fix it.\n\nThe node structure is:\n  struct node { int value; struct node *next; };\n\nBuggy code:\n```\nstruct node *insert_into_ordered_list(struct node *list, struct node *new_node) {\n    struct node *cur = list, *prev = NULL;\n    while (cur->value <= new_node->value) {\n        prev = cur;\n        cur = cur->next;\n    }\n    prev->next = new_node;\n    new_node->next = cur;\n    return list;\n}\n```\n\nBugs:\n1. The while loop doesn't check if cur is NULL (crashes at end of list)\n2. If new_node should go at the beginning (prev is NULL), prev->next crashes\n\nFix both issues. Read the input as: first line is the sorted list values (space-separated, -1 to end), second line is the value to insert. Print the resulting list space-separated.",
+    "difficulty": "hard",
+    "tags": ["FINAL REVIEW S26", "Linked Lists"],
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *insert_into_ordered_list(struct node *list,\n                                      struct node *new_node)\n{\n    struct node *cur = list, *prev = NULL;\n    // FIX: the while loop and the insertion logic\n    while (cur->value <= new_node->value) {\n        prev = cur;\n        cur = cur->next;\n    }\n    prev->next = new_node;\n    new_node->next = cur;\n    return list;\n}\n\nint main() {\n    struct node *list = NULL, *tail = NULL;\n    int val;\n    while (scanf(\"%d\", &val) == 1 && val != -1) {\n        struct node *n = malloc(sizeof(struct node));\n        n->value = val;\n        n->next = NULL;\n        if (!list) list = tail = n;\n        else { tail->next = n; tail = n; }\n    }\n    struct node *new_node = malloc(sizeof(struct node));\n    scanf(\"%d\", &new_node->value);\n    new_node->next = NULL;\n    list = insert_into_ordered_list(list, new_node);\n    for (struct node *p = list; p; p = p->next)\n        printf(\"%d \", p->value);\n    printf(\"\\n\");\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "1 3 5 7 -1\n4",
+        "expectedOutput": "1 3 4 5 7",
+        "label": "Insert in middle"
+      },
+      {
+        "id": "tc2",
+        "input": "2 4 6 -1\n1",
+        "expectedOutput": "1 2 4 6",
+        "label": "Insert at beginning"
+      },
+      {
+        "id": "tc3",
+        "input": "1 3 5 -1\n9",
+        "expectedOutput": "1 3 5 9",
+        "label": "Insert at end"
+      }
+    ],
+    "id": "fr-s26-insert-ordered-list"
+  },
+  {
+    "title": "Function Pointer Output Tracing",
+    "description": "Show the output of the following program and explain what it does.\n\n```c\n#include <stdio.h>\n\nint f1(int (*f)(int));\nint f2(int i);\n\nint main(void) {\n    printf(\"Answer: %d\\n\", f1(f2));\n    return 0;\n}\n\nint f1(int (*f)(int)) {\n    int n = 0;\n    while ((*f)(n)) n++;\n    return n;\n}\n\nint f2(int i) {\n    return i * i + i - 12;\n}\n```\n\nf2(i) = i*i + i - 12. f1 increments n from 0 until f2(n) returns 0.\nf2(0)=-12, f2(1)=-10, f2(2)=-6, f2(3)=0 → f1 returns 3.\n\nWrite the program so it prints the correct output.",
+    "difficulty": "medium",
+    "tags": ["FINAL REVIEW S26", "Function Pointers"],
+    "starterCode": "#include <stdio.h>\n\nint f1(int (*f)(int));\nint f2(int i);\n\nint main(void) {\n    printf(\"Answer: %d\\n\", f1(f2));\n    return 0;\n}\n\nint f1(int (*f)(int)) {\n    // Implement: increment n from 0 while f(n) is nonzero\n    // return n when f(n) == 0\n}\n\nint f2(int i) {\n    // Implement: return i*i + i - 12\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "",
+        "expectedOutput": "Answer: 3",
+        "label": "Correct output"
+      }
+    ],
+    "id": "fr-s26-func-ptr-tracing"
+  },
+  {
+    "title": "Count Occurrences in Linked List",
+    "description": "Write the following function:\n\n  int count_occurrences(struct node *list, int n);\n\nThe list parameter points to a linked list; the function should return the number of times that n appears in this list.\n\nThe node structure is:\n  struct node { int value; struct node *next; };\n\nInput: first line is the list values (space-separated, -1 to end), second line is the value to count.\nOutput: the count.",
+    "difficulty": "easy",
+    "tags": ["FINAL REVIEW S26", "Linked Lists"],
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nint count_occurrences(struct node *list, int n) {\n    // Your code here\n}\n\nint main() {\n    struct node *list = NULL, *tail = NULL;\n    int val;\n    while (scanf(\"%d\", &val) == 1 && val != -1) {\n        struct node *nd = malloc(sizeof(struct node));\n        nd->value = val;\n        nd->next = NULL;\n        if (!list) list = tail = nd;\n        else { tail->next = nd; tail = nd; }\n    }\n    int n;\n    scanf(\"%d\", &n);\n    printf(\"%d\\n\", count_occurrences(list, n));\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "3 5 3 7 3 -1\n3",
+        "expectedOutput": "3",
+        "label": "Multiple occurrences"
+      },
+      {
+        "id": "tc2",
+        "input": "1 2 3 4 5 -1\n6",
+        "expectedOutput": "0",
+        "label": "Not found"
+      },
+      {
+        "id": "tc3",
+        "input": "7 -1\n7",
+        "expectedOutput": "1",
+        "label": "Single element match"
+      }
+    ],
+    "id": "fr-s26-count-occurrences"
+  },
+  {
+    "title": "Delete from List (Single Pointer)",
+    "description": "Modify the delete_from_list function so that it uses only one pointer variable (cur) instead of two (cur and prev).\n\nOriginal version with two pointers:\n```c\nstruct node *delete_from_list(struct node *list, int n) {\n    struct node *cur, *prev;\n    for (cur = list, prev = NULL;\n         cur != NULL && cur->value != n;\n         prev = cur, cur = cur->next)\n        ;\n    if (cur == NULL) return list;\n    if (prev == NULL)\n        list = list->next;\n    else\n        prev->next = cur->next;\n    free(cur);\n    return list;\n}\n```\n\nHint: without prev, you need to find the node before cur by traversing from list.\n\nInput: first line is list values (space-separated, -1 to end), second line is value to delete.\nOutput: remaining list values space-separated, or \"empty\" if list is empty.",
+    "difficulty": "medium",
+    "tags": ["FINAL REVIEW S26", "Linked Lists"],
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node {\n    int value;\n    struct node *next;\n};\n\nstruct node *delete_from_list(struct node *list, int n) {\n    // Use only ONE pointer variable (cur), no prev\n    // Your code here\n}\n\nint main() {\n    struct node *list = NULL, *tail = NULL;\n    int val;\n    while (scanf(\"%d\", &val) == 1 && val != -1) {\n        struct node *nd = malloc(sizeof(struct node));\n        nd->value = val;\n        nd->next = NULL;\n        if (!list) list = tail = nd;\n        else { tail->next = nd; tail = nd; }\n    }\n    int n;\n    scanf(\"%d\", &n);\n    list = delete_from_list(list, n);\n    if (!list) printf(\"empty\\n\");\n    else {\n        for (struct node *p = list; p; p = p->next)\n            printf(\"%d \", p->value);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "1 2 3 4 5 -1\n3",
+        "expectedOutput": "1 2 4 5",
+        "label": "Delete middle"
+      },
+      {
+        "id": "tc2",
+        "input": "1 2 3 -1\n1",
+        "expectedOutput": "2 3",
+        "label": "Delete head"
+      },
+      {
+        "id": "tc3",
+        "input": "10 20 30 -1\n99",
+        "expectedOutput": "10 20 30",
+        "label": "Value not found"
+      },
+      {
+        "id": "tc4",
+        "input": "5 -1\n5",
+        "expectedOutput": "empty",
+        "label": "Delete only element"
+      }
+    ],
+    "id": "fr-s26-delete-single-ptr"
+  },
+  {
+    "title": "File Uppercase Converter",
+    "description": "Write a program that converts all letters in a file to upper case. Characters other than letters shouldn't be changed.\n\nThe program should read from stdin and write the uppercase result to stdout.\n\nUse fscanf/fprintf or fgets/fputs to read and write characters. Use toupper() from <ctype.h> to convert characters.",
+    "difficulty": "medium",
+    "tags": ["FINAL REVIEW S26", "File I/O"],
+    "starterCode": "#include <stdio.h>\n#include <ctype.h>\n\nint main() {\n    // Read each character from stdin\n    // Convert letters to uppercase using toupper()\n    // Print result to stdout\n    \n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "hello world",
+        "expectedOutput": "HELLO WORLD",
+        "label": "Simple lowercase"
+      },
+      {
+        "id": "tc2",
+        "input": "Hello, World! 123",
+        "expectedOutput": "HELLO, WORLD! 123",
+        "label": "Mixed case with punctuation and numbers"
+      },
+      {
+        "id": "tc3",
+        "input": "abc\ndef\nghi",
+        "expectedOutput": "ABC\nDEF\nGHI",
+        "label": "Multiple lines"
+      }
+    ],
+    "id": "fr-s26-file-uppercase"
+  },
+  {
+    "title": "Duplicate String (malloc)",
+    "description": "Write a function named duplicate that uses dynamic storage allocation to create a copy of a string. For example, the call\n\n  p = duplicate(str);\n\nwould allocate space for a string of the same length as str, copy the contents of str into the new string, and return a pointer to it. Have duplicate return a null pointer if the memory allocation fails.\n\nInput: a string (one line).\nOutput: the duplicated string.",
+    "difficulty": "medium",
+    "tags": ["FINAL REVIEW S26", "Memory"],
+    "starterCode": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nchar *duplicate(const char *str) {\n    // Your code here:\n    // 1. Allocate memory for strlen(str) + 1\n    // 2. Return NULL if malloc fails\n    // 3. Copy str into new memory\n    // 4. Return pointer\n}\n\nint main() {\n    char input[256];\n    fgets(input, 256, stdin);\n    // Remove trailing newline\n    input[strcspn(input, \"\\n\")] = '\\0';\n\n    char *copy = duplicate(input);\n    if (copy) {\n        printf(\"%s\\n\", copy);\n        free(copy);\n    }\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "hello",
+        "expectedOutput": "hello",
+        "label": "Simple string"
+      },
+      {
+        "id": "tc2",
+        "input": "C programming is fun!",
+        "expectedOutput": "C programming is fun!",
+        "label": "String with spaces"
+      },
+      {
+        "id": "tc3",
+        "input": "",
+        "expectedOutput": "",
+        "label": "Empty string"
+      }
+    ],
+    "id": "fr-s26-duplicate-string"
+  },
+  {
+    "title": "Command Lookup (Struct + Function Pointer)",
+    "description": "Write a function that, when given a string as its argument, searches an array of structs for a matching command name, then calls the function associated with that name.\n\nThe struct and array are:\n```c\nstruct {\n    char *cmd_name;\n    void (*cmd_pointer)(void);\n} file_cmd[];\n```\n\nYour function execute_command should:\n1. Loop through the file_cmd array\n2. Compare the input string to each cmd_name using strcmp\n3. If found, call the function pointer and return\n4. If not found, print: Command '<name>' not found.\n\nInput: a command name string.\nOutput: the result of calling the matched function, or the not-found message.\n\nFor this exercise, the commands \"hello\" and \"bye\" are defined.",
+    "difficulty": "medium",
+    "tags": ["FINAL REVIEW S26", "Function Pointers", "Structs"],
+    "starterCode": "#include <stdio.h>\n#include <string.h>\n\nvoid hello_cmd(void) { printf(\"Hello!\\n\"); }\nvoid bye_cmd(void) { printf(\"Goodbye!\\n\"); }\n\nstruct {\n    char *cmd_name;\n    void (*cmd_pointer)(void);\n} file_cmd[] = {\n    {\"hello\", hello_cmd},\n    {\"bye\",   bye_cmd}\n};\n\nvoid execute_command(char *command) {\n    // 1. Calculate number of commands using sizeof\n    // 2. Loop through file_cmd array\n    // 3. Use strcmp to find matching cmd_name\n    // 4. Call cmd_pointer if found, then return\n    // 5. Print not found message if no match\n}\n\nint main() {\n    char cmd[50];\n    scanf(\"%s\", cmd);\n    execute_command(cmd);\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "hello",
+        "expectedOutput": "Hello!",
+        "label": "Match first command"
+      },
+      {
+        "id": "tc2",
+        "input": "bye",
+        "expectedOutput": "Goodbye!",
+        "label": "Match second command"
+      },
+      {
+        "id": "tc3",
+        "input": "quit",
+        "expectedOutput": "Command 'quit' not found.",
+        "label": "Command not found"
+      }
+    ],
+    "id": "fr-s26-command-lookup"
+  },
+  {
+    "title": "Mystery Function pb (Binary)",
+    "description": "Consider the following \"mystery\" function:\n\n```c\nvoid pb(int n) {\n    if (n != 0) {\n        pb(n / 2);\n        putchar('0' + n % 2);\n    }\n}\n```\n\nTrace the execution of the function by hand. Then write a program that calls the function, passing it a number entered by the user. Print a newline after the output.\n\nWhat does the function do? It finds the binary representation of a number.\n\nFor n = 5: output is 101",
+    "difficulty": "medium",
+    "tags": ["FINAL REVIEW S26", "Recursion"],
+    "starterCode": "#include <stdio.h>\n\nvoid pb(int n) {\n    // Implement the mystery function\n    // Hint: uses recursion, n/2, n%2, and putchar\n}\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    pb(n);\n    printf(\"\\n\");\n    return 0;\n}",
+    "testCases": [
+      {
+        "id": "tc1",
+        "input": "5",
+        "expectedOutput": "101",
+        "label": "pb(5) = 101"
+      },
+      {
+        "id": "tc2",
+        "input": "10",
+        "expectedOutput": "1010",
+        "label": "pb(10) = 1010"
+      },
+      {
+        "id": "tc3",
+        "input": "1",
+        "expectedOutput": "1",
+        "label": "pb(1) = 1"
+      },
+      {
+        "id": "tc4",
+        "input": "8",
+        "expectedOutput": "1000",
+        "label": "pb(8) = 1000"
+      }
+    ],
+    "id": "fr-s26-mystery-pb"
   }
 ]
