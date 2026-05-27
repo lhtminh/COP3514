@@ -37,6 +37,7 @@ import { useTheme } from "next-themes";
 interface CodeEditorProps {
   value: string;
   onChange: (value: string) => void;
+  onSubmit?: () => void;
 }
 
 /**
@@ -131,13 +132,15 @@ const baseTheme = EditorView.theme({
   },
 });
 
-export function CodeEditor({ value, onChange }: CodeEditorProps) {
+export function CodeEditor({ value, onChange, onSubmit }: CodeEditorProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
   const onChangeRef = useRef(onChange);
+  const onSubmitRef = useRef(onSubmit);
   const { resolvedTheme } = useTheme();
 
   onChangeRef.current = onChange;
+  onSubmitRef.current = onSubmit;
 
   const createExtensions = useCallback(
     (isDark: boolean) => [
@@ -156,6 +159,14 @@ export function CodeEditor({ value, onChange }: CodeEditorProps) {
       baseTheme,
       ...(isDark ? [oneDark] : []),
       keymap.of([
+        {
+          key: "Ctrl-Enter",
+          mac: "Cmd-Enter",
+          run: () => {
+            onSubmitRef.current?.();
+            return true;
+          },
+        },
         ...defaultKeymap,
         ...historyKeymap,
         ...closeBracketsKeymap,

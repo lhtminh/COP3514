@@ -1,47 +1,61 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { eq } from "drizzle-orm";
+import { db } from "./db";
+import * as schema from "./schema";
 import type { Exercise, ExerciseProgress, Material } from "./types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const MATERIALS_DIR = path.join(DATA_DIR, "materials");
 
-async function ensureDir(dir: string) {
-  await fs.mkdir(dir, { recursive: true });
-}
+// === Row <-> Domain mappers ===
 
-async function readJson<T>(filePath: string, fallback: T): Promise<T> {
-  try {
-    const data = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(data) as T;
-  } catch {
-    return fallback;
-  }
-}
-
-async function writeJson<T>(filePath: string, data: T): Promise<void> {
-  await ensureDir(path.dirname(filePath));
-  const tmp = filePath + ".tmp";
-  await fs.writeFile(tmp, JSON.stringify(data, null, 2), "utf-8");
-  await fs.rename(tmp, filePath);
+function rowToExercise(row: typeof schema.exercises.$inferSelect): Exercise {
+  return {
+    id: row.id,
+    title: row.title,
+    description: row.description,
+    difficulty: row.difficulty,
+    type: row.type,
+    tags: row.tags,
+    starterCode: row.starterCode,
+    testCases: row.testCases as Exercise["testCases"],
+    codeSnippet: row.codeSnippet ?? undefined,
+    choices: row.choices as Exercise["choices"],
+    correctAnswer: row.correctAnswer ?? undefined,
+  };
 }
 
 // === Exercises ===
 
-const exercisesPath = () => path.join(DATA_DIR, "exercises.json");
-
 export async function getExercises(): Promise<Exercise[]> {
-  return readJson<Exercise[]>(exercisesPath(), []);
+  const rows = await db.select().from(schema.exercises);
+  return rows.map(rowToExercise);
 }
 
 export async function getExercise(id: string): Promise<Exercise | undefined> {
-  const exercises = await getExercises();
-  return exercises.find((e) => e.id === id);
+  const rows = await db
+    .select()
+    .from(schema.exercises)
+    .where(eq(schema.exercises.id, id))
+    .limit(1);
+  return rows[0] ? rowToExercise(rows[0]) : undefined;
 }
 
 export async function createExercise(exercise: Exercise): Promise<Exercise> {
-  const exercises = await getExercises();
-  exercises.push(exercise);
-  await writeJson(exercisesPath(), exercises);
+  await db.insert(schema.exercises).values({
+    id: exercise.id,
+    title: exercise.title,
+    description: exercise.description,
+    difficulty: exercise.difficulty,
+    type: exercise.type ?? "coding",
+    tags: exercise.tags,
+    starterCode: exercise.starterCode,
+    testCases: exercise.testCases,
+    codeSnippet: exercise.codeSnippet ?? null,
+    choices: exercise.choices ?? null,
+    correctAnswer: exercise.correctAnswer ?? null,
+  });
   return exercise;
 }
 
@@ -49,83 +63,142 @@ export async function updateExercise(
   id: string,
   updates: Partial<Omit<Exercise, "id">>
 ): Promise<Exercise | undefined> {
-  const exercises = await getExercises();
-  const idx = exercises.findIndex((e) => e.id === id);
-  if (idx === -1) return undefined;
-  exercises[idx] = { ...exercises[idx], ...updates };
-  await writeJson(exercisesPath(), exercises);
-  return exercises[idx];
+  const values: Record<string, unknown> = {};
+  if (updates.title !== undefined) values.title = updates.title;
+  if (updates.description !== undefined) values.description = updates.description;
+  if (updates.difficulty !== undefined) values.difficulty = updates.difficulty;
+  if (updates.type !== undefined) values.type = updates.type;
+  if (updates.tags !== undefined) values.tags = updates.tags;
+  if (updates.starterCode !== undefined) values.starterCode = updates.starterCode;
+  if (updates.testCases !== undefined) values.testCases = updates.testCases;
+  if (updates.codeSnippet !== undefined) values.codeSnippet = updates.codeSnippet;
+  if (updates.choices !== undefined) values.choices = updates.choices;
+  if (updates.correctAnswer !== undefined) values.correctAnswer = updates.correctAnswer;
+
+  const rows = await db
+    .update(schema.exercises)
+    .set(values)
+    .where(eq(schema.exercises.id, id))
+    .returning();
+
+  return rows[0] ? rowToExercise(rows[0]) : undefined;
 }
 
 export async function deleteExercise(id: string): Promise<boolean> {
-  const exercises = await getExercises();
-  const filtered = exercises.filter((e) => e.id !== id);
-  if (filtered.length === exercises.length) return false;
-  await writeJson(exercisesPath(), filtered);
-  return true;
+  const result = await db
+    .delete(schema.exercises)
+    .where(eq(schema.exercises.id, id))
+    .returning({ id: schema.exercises.id });
+  return result.length > 0;
 }
 
 // === Progress ===
 
-const progressPath = () => path.join(DATA_DIR, "progress.json");
-
 export async function getProgress(): Promise<ExerciseProgress[]> {
-  return readJson<ExerciseProgress[]>(progressPath(), []);
+  const rows = await db.select().from(schema.progress);
+  return rows.map((r) => ({
+    exerciseId: r.exerciseId,
+    code: r.code,
+    solved: r.solved,
+    lastAttemptAt: r.lastAttemptAt.toISOString(),
+  }));
 }
 
 export async function getExerciseProgress(
   exerciseId: string
 ): Promise<ExerciseProgress | undefined> {
-  const progress = await getProgress();
-  return progress.find((p) => p.exerciseId === exerciseId);
+  const rows = await db
+    .select()
+    .from(schema.progress)
+    .where(eq(schema.progress.exerciseId, exerciseId))
+    .limit(1);
+  if (!rows[0]) return undefined;
+  return {
+    exerciseId: rows[0].exerciseId,
+    code: rows[0].code,
+    solved: rows[0].solved,
+    lastAttemptAt: rows[0].lastAttemptAt.toISOString(),
+  };
 }
 
 export async function upsertProgress(
   data: ExerciseProgress
 ): Promise<ExerciseProgress> {
-  const progress = await getProgress();
-  const idx = progress.findIndex((p) => p.exerciseId === data.exerciseId);
-  if (idx === -1) {
-    progress.push(data);
-  } else {
-    progress[idx] = data;
-  }
-  await writeJson(progressPath(), progress);
+  await db
+    .insert(schema.progress)
+    .values({
+      exerciseId: data.exerciseId,
+      code: data.code,
+      solved: data.solved,
+      lastAttemptAt: new Date(data.lastAttemptAt),
+    })
+    .onConflictDoUpdate({
+      target: schema.progress.exerciseId,
+      set: {
+        code: data.code,
+        solved: data.solved,
+        lastAttemptAt: new Date(data.lastAttemptAt),
+      },
+    });
   return data;
 }
 
 // === Materials ===
 
-const materialsPath = () => path.join(DATA_DIR, "materials.json");
-
 export async function getMaterials(): Promise<Material[]> {
-  return readJson<Material[]>(materialsPath(), []);
+  const rows = await db.select().from(schema.materials);
+  return rows.map((r) => ({
+    id: r.id,
+    filename: r.filename,
+    type: r.type,
+    uploadedAt: r.uploadedAt.toISOString(),
+    filePath: r.filePath,
+  }));
 }
 
 export async function getMaterial(id: string): Promise<Material | undefined> {
-  const materials = await getMaterials();
-  return materials.find((m) => m.id === id);
+  const rows = await db
+    .select()
+    .from(schema.materials)
+    .where(eq(schema.materials.id, id))
+    .limit(1);
+  if (!rows[0]) return undefined;
+  return {
+    id: rows[0].id,
+    filename: rows[0].filename,
+    type: rows[0].type,
+    uploadedAt: rows[0].uploadedAt.toISOString(),
+    filePath: rows[0].filePath,
+  };
 }
 
 export async function createMaterial(material: Material): Promise<Material> {
-  const materials = await getMaterials();
-  materials.push(material);
-  await writeJson(materialsPath(), materials);
+  await db.insert(schema.materials).values({
+    id: material.id,
+    filename: material.filename,
+    type: material.type,
+    filePath: material.filePath,
+    uploadedAt: new Date(material.uploadedAt),
+  });
   return material;
 }
 
 export async function deleteMaterial(id: string): Promise<boolean> {
-  const materials = await getMaterials();
-  const mat = materials.find((m) => m.id === id);
-  if (!mat) return false;
-  // Delete the file
+  const rows = await db
+    .select({ filePath: schema.materials.filePath })
+    .from(schema.materials)
+    .where(eq(schema.materials.id, id))
+    .limit(1);
+
+  if (!rows[0]) return false;
+
   try {
-    await fs.unlink(path.join(process.cwd(), mat.filePath));
+    await fs.unlink(path.join(process.cwd(), rows[0].filePath));
   } catch {
     // file may already be gone
   }
-  const filtered = materials.filter((m) => m.id !== id);
-  await writeJson(materialsPath(), filtered);
+
+  await db.delete(schema.materials).where(eq(schema.materials.id, id));
   return true;
 }
 
@@ -134,5 +207,5 @@ export function getMaterialsDir(): string {
 }
 
 export async function ensureMaterialsDir(): Promise<void> {
-  await ensureDir(MATERIALS_DIR);
+  await fs.mkdir(MATERIALS_DIR, { recursive: true });
 }
